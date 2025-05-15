@@ -11,7 +11,7 @@ plants.animations.sway = anim8.newAnimation(plants.grid('3 - 5', 1), 0.3)
 end
 
 function love.update(dt)
-plants.animations.sway:update(dt)
+plants.animations.sway:update(dt) 
 end
 
 
