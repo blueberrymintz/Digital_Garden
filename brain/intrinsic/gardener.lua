@@ -1,0 +1,1 @@
+-- stored values for gardener, can't receive changes from user. completely static
