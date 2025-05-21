@@ -1,4 +1,3 @@
-
 function love.load()
     love.window.setMode(270, 480, {resizable=true, vsync=0, minwidth=90, minheight=160})
     anim8 = require 'libraries/anim8'
@@ -16,20 +15,23 @@ BadPlants.animations = {}
 BadPlants.animations.grow = anim8.newAnimation(BadPlants.grid('1-5', 1), 0.1)
  -- watering can animations
     WateringCan = {}
-    WateringCan.sprite = love.graphics.newImage('sprites/WATERING_CAN_SPRITES_BAD/')
+    WateringCan.sprite = love.graphics.newImage('sprites/WIND_SPRITES_INK/WindInkBetter.png')
+    WateringCan.grid = anim8.newGrid(340, 350, WateringCan.sprite:getWidth(), WateringCan.sprite:getHeight())
+    WateringCan.animations = {}
+    WateringCan.animations.pour = anim8.newAnimation(WateringCan.grid('1-6', 1), 0.5)
 function WateringCan.Update()
-    doer = 1
-
+    local doer = 1
 end
 end
 
 function love.update(dt)
 plants.animations.sway:update(dt)
 BadPlants.animations.grow:update((dt*0.5))
-
+WateringCan.animations.pour:update((dt))
 end
 
 function love.draw()
     plants.animations.sway:draw(plants.sprite, 100, 50, nil, 10)
     BadPlants.animations.grow:draw(BadPlants.sprite, 0, 200, nil, 0.5)
+    WateringCan.animations.pour:draw(WateringCan.sprite, 50, 100, nil, 0.5)
 end
