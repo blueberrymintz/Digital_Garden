@@ -1,0 +1,1 @@
+-- remembers stuff that needs to be recalled while program is active, especially user input

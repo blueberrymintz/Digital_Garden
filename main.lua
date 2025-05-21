@@ -1,6 +1,8 @@
 function love.load()
 anim8 = require 'libraries.anim8'
-plants = require 'brain.memory.plants'
+think = require 'brain.think.thinker'
+remember = require 'brain.remember.rememberer'
+know = require 'brain.know.knower'
 end
 
 function love.update(dt)
