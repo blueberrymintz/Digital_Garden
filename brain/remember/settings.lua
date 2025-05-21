@@ -1,0 +1,1 @@
+    love.window.setMode(270, 480, {resizable=true, vsync=0, minwidth=90, minheight=160})

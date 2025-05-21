@@ -1,1 +1,1 @@
--- remembers stuff that needs to be recalled while program is active, especially user input
+-- stores stuff that needs to be recalled while program is active, especially user input. also saves data for next launch
