@@ -13,35 +13,37 @@ BadPlants.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/h_sprite_sh
 BadPlants.grid = anim8.newGrid(520, 520, BadPlants.sprite:getWidth(), BadPlants.sprite:getHeight())
 BadPlants.animations = {}
 BadPlants.animations.grow = anim8.newAnimation(BadPlants.grid('1-5', 1), 0.1)
- -- old wind loop animations
-    legacyWindLoop = {}
-    legacyWindLoop.sprite = love.graphics.newImage('sprites/WIND_SPRITES_INK/WindInkBetter.png')
-    legacyWindLoop.grid = anim8.newGrid(340, 350, legacyWindLoop.sprite:getWidth(), legacyWindLoop.sprite:getHeight())
-    legacyWindLoop.animations = {}
-    legacyWindLoop.animations.pour = anim8.newAnimation(legacyWindLoop.grid('1-6', 1), 0.5)
-        windLoops = {}
+end
+--[[ betterPlant = {}
+betterPlant.sprite = love.graphics.newImage('sprites/plantBetter/betterPlantStage1.png')
+betterPlant.grid = anim8.newGrid(400, 400, betterPlant.sprite:getWidth(), betterPlant.sprite:getHeight())
+betterPlant.animations = {}
+betterPlant.animations.sway = anim8.newAnimation(betterPlant.grid('1-7', 1), 0.1) --]]
+
+ -- wind loop animations
+    windLoops = {}
     windLoops.sprite = love.graphics.newImage('sprites/WIND_SPRITES_INK/windLoopsSheet.png')
     windLoops.grid = anim8.newGrid(400, 400, windLoops.sprite:getWidth(), windLoops.sprite:getHeight())
     windLoops.animations = {}
     windLoops.animations.pour = anim8.newAnimation(windLoops.grid('1-10', 1), 0.1)
-function legacyWindLoop.Update()
+   --[[     WateringCan = {}
+    WateringCan.sprite = love.graphics.newImage('')
+    WateringCan.grid = anim8.newGrid(400, 400, WateringCan.sprite:getWidth(), WateringCan.sprite:getHeight())
+    WateringCan.animations = {}
+    WateringCan.animations.pour = anim8.newAnimation(WateringCan.grid('1-10', 1), 0.1) --]]
+function windLoops.Update()
     local doer = 1
 end
-betterPlant = {}
-betterPlant.sprite = love.graphics.newImage('sprites/plantBetter/betterPlantStage1.png')
-betterPlant.grid = anim8.newGrid(400, 400, betterPlant.sprite:getWidth(), betterPlant.sprite:getHeight())
-betterPlant.animations = {}
-betterPlant.animations.sway = anim8.newAnimation(betterPlant.grid('1-7', 1), 0.1)
-end
+
 
 function love.update(dt)
 plants.animations.sway:update(dt)
 BadPlants.animations.grow:update((dt*0.5))
-legacyWindLoop.animations.pour:update((dt))
+windLoops.animations.pour:update((dt))
 end
 
 function love.draw()
     plants.animations.sway:draw(plants.sprite, 100, 50, nil, 10)
     BadPlants.animations.grow:draw(BadPlants.sprite, 0, 200, nil, 0.5)
-    legacyWindLoop.animations.pour:draw(legacyWindLoop.sprite, 50, 100, nil, 0.5)
+    windLoops.animations.pour:draw(windLoops.sprite, 0, 0, nil)
 end
