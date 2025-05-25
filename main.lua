@@ -1,5 +1,9 @@
 local SceneryInit = require("libraries/scenery_main/scenerys")
-local scenery = SceneryInit(...)
+local scenery = SceneryInit(
+    { path = "scenes/example"; key = "example"; default = "true" },
+    { path = "scenes/startMenu"; key = "startMenu"},
+    { path = "scenes/homeGarden"; key = "garden"}
+)
 anim8 = require 'libraries.anim8'
 think = require 'thinker'
 set = require 'settings'
@@ -13,7 +17,6 @@ end
 
 function love.update(dt)
     scenery:update()
-local clock = cron.after(1, InitializeGame, ScreenType[1], ScreenType[2])
 end
 
 function love.draw()
