@@ -2,8 +2,8 @@ local SceneryInit = require("libraries/scenery_main/scenerys")
 Gdt = 0
 local scenery = SceneryInit(
     { path = "scenes/example"; key = "example"},
-    { path = "scenes/startMenu"; key = "startMenu"},
-    { path = "scenes/homeGarden"; key = "garden"; default = "true"}
+    { path = "scenes/startMenu"; key = "startMenu"; default = "true"},
+    { path = "scenes/homeGarden"; key = "garden"}
 )
 anim8 = require 'libraries.anim8'
 think = require 'thinker'
@@ -14,8 +14,10 @@ player = require 'player'
 GTick = {}
 GTick.track = 1
 GTick.total = 0
+    InitializeGame( 1, 2)
 
 function love.load()
+
     scenery:load()
 end
 
