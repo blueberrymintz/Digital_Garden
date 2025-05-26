@@ -8,7 +8,7 @@ function game:draw()
     
 end
 
-function game:update(dt)
+function game:update(Gdt)
     
 end
 

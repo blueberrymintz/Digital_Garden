@@ -1,7 +1,4 @@
 local game = {}
-local mousePos = {}
-mousePos.x = 0
-mousePos.y = 0
 
 function game:load()
     
@@ -16,11 +13,9 @@ end
 
 function game:update(dt)
     startMenu.animations.grow:update((dt*0.5))
-    mousePos.x = love.mouse.getX()
-    mousePos.y = love.mouse.getY()
-    if mousePos.x > 20 and mousePos.x < 110 and mousePos.y > 70 and mousePos.y < 90 then
+    if MousePos.x > 20 and MousePos.x < 110 and MousePos.y > 70 and MousePos.y < 90 then
         startMenu.gridX = 3
-    elseif mousePos.x > 20 and mousePos.x < 110 and mousePos.y > 100 and mousePos.y < 120 then
+    elseif MousePos.x > 20 and MousePos.x < 110 and MousePos.y > 100 and MousePos.y < 120 then
             startMenu.gridX = 2
     else
         startMenu.gridX = 1

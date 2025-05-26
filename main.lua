@@ -15,9 +15,10 @@ GTick = {}
 GTick.track = 1
 GTick.total = 0
 InitializeGame(1,2)
-
+MousePos = {}
 function love.load()
-    
+    MousePos.x = 0
+    MousePos.y = 0
     scenery:load()
 end
 
@@ -28,6 +29,8 @@ function love.update(dt)
         GTick.track = 1
         GTick.total = GTick.total + 1
     end
+    MousePos.x = love.mouse.getX()
+    MousePos.y = love.mouse.getY()
 end
 
 function love.draw()
