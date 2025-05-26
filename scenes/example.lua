@@ -8,7 +8,7 @@ function game:draw()
     love.graphics.print("Scenery makes life easier", 200, 300)
 end
 
-function game:update(dt)
+function game:update(Gdt)
 end
 
 return game

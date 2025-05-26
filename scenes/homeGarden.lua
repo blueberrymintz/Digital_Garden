@@ -1,5 +1,6 @@
 local game = {}
 
+
 function game:load()
      -- self drawn plant animations, some values to be held seperately
     BadPlants = {}
@@ -15,6 +16,7 @@ end
 
 function game:update(dt)
     BadPlants.animations.grow:update((dt*0.5))
+
 end
 
 return game
