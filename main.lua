@@ -14,10 +14,10 @@ player = require 'player'
 GTick = {}
 GTick.track = 1
 GTick.total = 0
-    InitializeGame( 1, 2)
+InitializeGame(1,2)
 
 function love.load()
-
+    
     scenery:load()
 end
 
