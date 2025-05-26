@@ -9,7 +9,7 @@ function InitializeGame(clearGraphics, debugMode)
         end
     -- for approximate phone screen size, resizeable
         if debugMode == 2 then
-        love.window.setMode(270, 480, {resizable = true, vsync=0, minwidth=400, minheight=300})
+        love.window.setMode(520, 800, {resizable = true, vsync=0, minwidth=400, minheight=300})
         end
      -- for approximate phone screen size, NOT resizeable
         if debugMode == 3 then

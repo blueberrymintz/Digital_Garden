@@ -4,7 +4,7 @@ local game = {}
 function game:load()
      -- self drawn plant animations, some values to be held seperately
     BadPlants = {}
-BadPlants.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/h_sprite_sheet.png')
+BadPlants.sprite = love.graphics.newImage('sprites/plantBetter/betterPlantStage1.png')
 BadPlants.grid = anim8.newGrid(520, 520, BadPlants.sprite:getWidth(), BadPlants.sprite:getHeight())
 BadPlants.animations = {}
 BadPlants.animations.grow = anim8.newAnimation(BadPlants.grid('1-5', 1), 0.1)

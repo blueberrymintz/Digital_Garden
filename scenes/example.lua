@@ -1,7 +1,7 @@
 local game = {}
 
 function game:load()
-    print("Scenery is awesome")
+    print("Warp Successful!")
 end
 
 function game:draw()
