@@ -36,7 +36,5 @@ function love.draw()
     Scenery:draw()
 end
 function love.mousepressed(x, y, button)
-    while button == 1 do
-        MouseDown = 2
-    end
+    
 end
