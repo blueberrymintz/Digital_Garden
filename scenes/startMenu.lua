@@ -1,8 +1,8 @@
 local game = {}
-local down = love.mouse.isDown(1)
+
 local mousePos = {}
-mousePos.x = 151
-mousePos.y = 551
+mousePos.x = 0
+mousePos.y = 0
 function game:load()
     
         startMenu = {}
@@ -15,14 +15,21 @@ startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1
 end
 
 function game:update(dt)
+    local down = love.mouse.isDown(1)
     mousePos.x = love.mouse.getX()
     mousePos.y = love.mouse.getY()
     startMenu.animations.grow:update((dt*0.5))
     if mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 550 and mousePos.y < 620 then
         startMenu.gridX = 2
+        if down then
+            startMenu.gridX = 4
+        end
 
 elseif mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 650 and mousePos.y < 720 then
             startMenu.gridX = 3
+                    if down then
+            startMenu.gridX = 5
+        end
 
     else
    startMenu.gridX = 1
