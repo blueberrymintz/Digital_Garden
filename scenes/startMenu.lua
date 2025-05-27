@@ -15,6 +15,8 @@ startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1
 end
 
 function game:update(dt)
+    mousePos.x = love.mouse.getX()
+    mousePos.y = love.mouse.getY()
     startMenu.animations.grow:update((dt*0.5))
     if mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 550 and mousePos.y < 620 then
         startMenu.gridX = 2
@@ -23,20 +25,14 @@ elseif mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 650 and mousePos.y
             startMenu.gridX = 3
 
     else
-   
+   startMenu.gridX = 1
     end
-
+    -- necessary. I don't know why but don't delete it, it's the only way we got it to work
+    startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1), 0.1)
 end
 function game:draw()
     startMenu.animations.grow:draw(startMenu.sprite, 0, 0, nil, 0.5)
     
 end
 
-
-        if down then
-            startMenu.gridX = 4
-        end
-                    if down then
-                startMenu.gridX = 5
-            end
 return game
