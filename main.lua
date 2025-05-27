@@ -16,35 +16,27 @@ GTick.track = 1
 GTick.total = 0
 InitializeGame(1,2)
 MousePos = {}
-MouseDown = 1
-local function resetMouseDown()
-    MouseDown = 1
-end
-function love.load()
+
+
+function love.load(dt)
     MousePos.x = 0
     MousePos.y = 0
     Scenery:load()
+
 end
 
 function love.update(dt)
     Scenery:update(dt)
-    GTick.track = GTick.track + dt
-    if GTick.track > 2 then
-        GTick.track = 1
-        GTick.total = GTick.total + 1
-    end
     MousePos.x = love.mouse.getX()
     MousePos.y = love.mouse.getY()
-    function love.mousepressed(x, y, button)
-    if button == 1 then
-        MouseDown = 2
-    end
-    if MouseDown == 2 then
-        Cron.after(1, resetMouseDown)
-    end
-end
+
 end
 
 function love.draw()
     Scenery:draw()
+end
+function love.mousepressed(x, y, button)
+    while button == 1 do
+        MouseDown = 2
+    end
 end
