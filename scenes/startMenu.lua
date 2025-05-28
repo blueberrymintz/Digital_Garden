@@ -28,18 +28,22 @@ function game:update(dt)
         startMenu.gridX = 2
         if down then
             startMenu.gridX = 4
-            startClock:update(7*dt)
+            startClock:update(5*dt)
         end
 
 elseif mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 650 and mousePos.y < 720 then
             startMenu.gridX = 3
         if down then
             startMenu.gridX = 5
-            settingsClock:update(7*dt)
+            settingsClock:update(5*dt)
         end
 
     else
    startMenu.gridX = 1
+    end
+    if not down then
+        settingsClock:reset()
+        startClock:reset()
     end
     -- necessary. I don't know why but don't delete it, it's the only way we got it to work
     startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1), 0.1)

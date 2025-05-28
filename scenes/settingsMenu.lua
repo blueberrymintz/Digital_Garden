@@ -9,7 +9,7 @@ function game:draw()
     love.graphics.print("Warp Successful! Current Scene: Settings (placeholder)", 0, 300)
 end
 
-function game:update(Gdt)
+function game:update(dt)
 
 end
 

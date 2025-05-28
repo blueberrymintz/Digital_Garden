@@ -3,7 +3,8 @@ Gdt = 0
 Scenery = SceneryInit(
     { path = "scenes/example"; key = "example"},
     { path = "scenes/startMenu"; key = "startMenu"; default = "true"},
-    { path = "scenes/homeGarden"; key = "garden"}
+    { path = "scenes/homeGarden"; key = "garden"},
+    {path = "scenes/settingsMenu"; key = "settings"}
 )
 anim8 = require 'libraries.anim8'
 think = require 'thinker'
@@ -28,12 +29,6 @@ function love.update(dt)
     Scenery:update(dt)
     MousePos.x = love.mouse.getX()
     MousePos.y = love.mouse.getY()
-    function love.mousepressed(x, y, button)
-    if button == 1 then MouseDown = 2 else MouseDown = 1 end
-    end
-    if MouseDown > 1 then 
-        MouseDown = MouseDown - (0.2*dt)
-    end
 
 
 end
