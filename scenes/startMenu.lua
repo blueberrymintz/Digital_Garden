@@ -1,6 +1,10 @@
 local game = {}
+-- cron library, for clocks
 local cron = require('libraries/cronLua_Master/cron')
+-- mouse positioning tracker
 local mousePos = {}
+local boxTracker = require('tracker/boxTracker')
+
 mousePos.x = 0
 mousePos.y = 0
 local function csetScene(foo)
@@ -9,33 +13,38 @@ end
 local startClock = cron.after(1, csetScene, 'garden')
 local settingsClock = cron.after(1, csetScene, 'settings')
 function game:load()
-    
         startMenu = {}
 startMenu.gridX = 1
 startMenu.sprite = love.graphics.newImage('sprites/scuffed_menu/JJmenu/sprite_sheet.png')
-startMenu.grid = anim8.newGrid((startMenu.sprite:getWidth()/5), 1536, startMenu.sprite:getWidth(), startMenu.sprite:getHeight())
+startMenu.grid = anim8.newGrid((startMenu.sprite:getWidth()/5), startMenu.sprite:getHeight(), startMenu.sprite:getWidth(), startMenu.sprite:getHeight())
 startMenu.animations = {}
 startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1), 0.1)
 
 end
 
 function game:update(dt)
+    --updates if mouse is Down. MUST be in update function
     local down = love.mouse.isDown(1)
+    --updates mouse tracking
     mousePos.x = love.mouse.getX()
     mousePos.y = love.mouse.getY()
+    --updates the animation, not actually necessary for this scene because it will be just 1 frame at a time
     startMenu.animations.grow:update((dt*0.5))
-    if mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 550 and mousePos.y < 620 then
+    -- tracks if the mouse is positioned over the Start button
+    StartBox = NewBoxTracker(150, 350, 550, 620)
+    SettingsBox = NewBoxTracker(150, 350, 650, 720)
+    if StartBox == 1 then
         startMenu.gridX = 2
         if down then
             startMenu.gridX = 4
-            startClock:update(5*dt)
+            startClock:update(6*dt)
         end
-
-elseif mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 650 and mousePos.y < 720 then
+-- tracks if the mouse is positioned over the Setting button
+    elseif SettingsBox == 1 then
             startMenu.gridX = 3
         if down then
             startMenu.gridX = 5
-            settingsClock:update(5*dt)
+            settingsClock:update(6*dt)
         end
 
     else
