@@ -9,7 +9,8 @@ function game:draw()
     love.graphics.print("Warp Successful!", 200, 300)
 end
 
-function game:update(Gdt)
+function game:update(dt)
+    
 end
 
 return game

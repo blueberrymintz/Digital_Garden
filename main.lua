@@ -9,7 +9,7 @@ Scenery = SceneryInit(
 anim8 = require 'libraries.anim8'
 think = require 'thinker'
 set = require 'settings'
-input = require 'tracker.keyInput'
+
 Cron = require 'libraries/cronLua_Master/cron'
 player = require 'player'
 GTick = {}
