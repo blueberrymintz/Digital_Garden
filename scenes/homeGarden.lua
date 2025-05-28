@@ -1,22 +1,15 @@
 local game = {}
 
-
 function game:load()
-     -- self drawn plant animations, some values to be held seperately
-    BadPlants = {}
-BadPlants.sprite = love.graphics.newImage('sprites/plantBetter/betterPlantStage1.png')
-BadPlants.grid = anim8.newGrid(520, 520, BadPlants.sprite:getWidth(), BadPlants.sprite:getHeight())
-BadPlants.animations = {}
-BadPlants.animations.grow = anim8.newAnimation(BadPlants.grid('1-5', 1), 0.1)
+    print("Warp Successful!")
 end
 
 function game:draw()
-    BadPlants.animations.grow:draw(BadPlants.sprite, 0, 200, nil, 0.5)
+    love.graphics.setBackgroundColor(0,0,0)
+    love.graphics.print("Warp Successful! Current Scene: Garden (placeholder)", 0, 300)
 end
 
-function game:update(dt)
-    BadPlants.animations.grow:update((dt*0.5))
-
+function game:update(Gdt)
 end
 
 return game

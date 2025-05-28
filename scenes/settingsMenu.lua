@@ -1,21 +1,16 @@
 local game = {}
-local mousePos = {}
-MousePos.x = 0
-MousePos.y = 0
-local settingsMenu = {}
+
 function game:load()
-    
+    print("Warp Successful!")
 end
 
-function game:update(dt)
-    settingsMenu.
-    MousePos.x = love.mouse.getX()
-    MousePos.y = love.mouse.getY()
-end
 function game:draw()
-    
+    love.graphics.setBackgroundColor(0,0,0)
+    love.graphics.print("Warp Successful! Current Scene: Settings (placeholder)", 0, 300)
 end
 
+function game:update(Gdt)
 
+end
 
 return game

@@ -1,8 +1,13 @@
 local game = {}
-
+local cron = require('libraries/cronLua_Master/cron')
 local mousePos = {}
 mousePos.x = 0
 mousePos.y = 0
+local function csetScene(foo)
+    game.setScene(foo)
+end
+local startClock = cron.after(1, csetScene, 'garden')
+local settingsClock = cron.after(1, csetScene, 'settings')
 function game:load()
     
         startMenu = {}
@@ -23,12 +28,14 @@ function game:update(dt)
         startMenu.gridX = 2
         if down then
             startMenu.gridX = 4
+            startClock:update(7*dt)
         end
 
 elseif mousePos.x > 150 and mousePos.x < 350 and mousePos.y > 650 and mousePos.y < 720 then
             startMenu.gridX = 3
-                    if down then
+        if down then
             startMenu.gridX = 5
+            settingsClock:update(7*dt)
         end
 
     else

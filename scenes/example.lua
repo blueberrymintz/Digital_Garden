@@ -5,7 +5,8 @@ function game:load()
 end
 
 function game:draw()
-    love.graphics.print("Scenery makes life easier", 200, 300)
+    love.graphics.setBackgroundColor(0,0,0)
+    love.graphics.print("Warp Successful!", 200, 300)
 end
 
 function game:update(Gdt)
