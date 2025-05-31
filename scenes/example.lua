@@ -1,7 +1,8 @@
 local game = {}
 
 function game:load()
-    print("Warp Successful!")
+    --prints to terminal
+    print("Warp Successful! Current Scene: Example")
 end
 
 function game:draw()

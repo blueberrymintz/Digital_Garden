@@ -1,3 +1,10 @@
+Settings = {}
+--default settings
+Settings.muteSFX = nil
+Settings.muteMusic = nil
+Settings.darkMode = true
+Settings.debugMode = 2
+Settings.clearGraphics = 1
 
 function InitializeGame(clearGraphics, debugMode)
     if clearGraphics == 1 then
@@ -22,6 +29,14 @@ function InitializeGame(clearGraphics, debugMode)
 
     love.graphics.setBackgroundColor(300,300,300)
 end
+function UpdateSettings(muteSFX, muteMusic, darkMode)
+    
+end
 
-
+function Settings:callFacts()
+    print("Settings:callFacts() called")
+    print("Mute SFX: " .. tostring(Settings.muteSFX))
+    print("Mute Music: " .. tostring(Settings.muteMusic))
+    print("Dark Mode: " .. tostring(Settings.darkMode))
+end
 

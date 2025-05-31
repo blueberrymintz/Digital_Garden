@@ -2,7 +2,7 @@ local garden = {}
 
 function garden:load()
     --prints to terminal
-    print("Warp Successful!")
+    print("Warp Successful! Current Scene: Home Garden")
 
     windowsill = {}
         -- initializes the start menu sprites and animations

@@ -16,6 +16,8 @@ end
 local startClock = cron.after(1, csetScene, 'garden')
 local settingsClock = cron.after(1, csetScene, 'settings')
 function game:load()
+    --prints to terminal
+    print("Warp Successful! Current Scene: Start Menu")
         startMenu = {}
         -- initializes the start menu sprites and animations
         -- DO NOT DELETE THIS
@@ -26,7 +28,7 @@ startMenu.animations = {}
 startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1), 0.1)
 -- loads song for start menu
 song = love.audio.newSource('sounds/organLaughing2.ogg', 'stream')
--- sets song to loop        
+-- sets song to loop
 song:setLooping(true)
 song:setVolume(2)
         
