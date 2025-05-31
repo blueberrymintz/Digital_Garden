@@ -1,5 +1,5 @@
 SceneryInit = require("libraries/scenery_main/scenerys")
-Gdt = 0
+
 Scenery = SceneryInit(
     { path = "scenes/example"; key = "example"},
     { path = "scenes/startMenu"; key = "startMenu"; default = "true"},

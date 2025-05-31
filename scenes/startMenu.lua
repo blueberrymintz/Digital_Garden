@@ -50,7 +50,7 @@ function game:update(dt)
         -- switches to glitchy animation if the mouse is down
         if down then
             startMenu.gridX = 4
-            startClock:update(6*dt)
+            startClock:update(10*dt)
         end
 -- tracks if the mouse is positioned over the Setting button
     elseif SettingsBox == 1 then
@@ -58,7 +58,7 @@ function game:update(dt)
         -- switches to glitchy animation if the mouse is down
         if down then
             startMenu.gridX = 5
-            settingsClock:update(6*dt)
+            settingsClock:update(10*dt)
         end
 
     else
