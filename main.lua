@@ -4,7 +4,8 @@ Scenery = SceneryInit(
     { path = "scenes/example"; key = "example"},
     { path = "scenes/startMenu"; key = "startMenu"; default = "true"},
     { path = "scenes/homeGarden"; key = "garden"},
-    {path = "scenes/settingsMenu"; key = "settings"}
+    {path = "scenes/settingsMenu"; key = "settings"},
+    {path = "scenes/sink"; key = "sink"}
 )
 anim8 = require 'libraries.anim8'
 think = require 'thinker'
