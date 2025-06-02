@@ -31,7 +31,7 @@ song = love.audio.newSource('sounds/organLaughing2.ogg', 'stream')
 -- sets song to loop
 song:setLooping(true)
 song:setVolume(2)
-        
+
 end
 
 function game:update(dt)

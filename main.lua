@@ -5,13 +5,15 @@ Scenery = SceneryInit(
     { path = "scenes/startMenu"; key = "startMenu"; default = "true"},
     { path = "scenes/homeGarden"; key = "garden"},
     {path = "scenes/settingsMenu"; key = "settings"},
-    {path = "scenes/sink"; key = "sink"}
+    {path = "scenes/sink"; key = "sink"},
+    {path = "scenes/pauseMenu"; key = "pauseMenu"}
 )
+Main = {}
 anim8 = require 'libraries.anim8'
 think = require 'thinker'
 settings = require 'settings'
 
-Cron = require 'libraries/cronLua_Master/cron'
+cron = require 'libraries/cronLua_Master/cron'
 player = require 'player'
 GTick = {}
 GTick.track = 1
@@ -20,11 +22,19 @@ InitializeGame(1, Settings.debugMode)
 MousePos = {}
 MouseDown = 1
 WindowSize = {}
+CallPause = nil
+local pauseMenuClock = cron.after(0.1)
 function love.load(dt)
     MousePos.x = 0
     MousePos.y = 0
     Scenery:load()
 
+end
+function love.keypressed(key, scancode, isrepeat)
+    if key == "m" then
+        pauseMenuClock:update(0.1)
+        if pauseMenuClock
+    end
 end
 
 function love.update(dt)
@@ -32,7 +42,7 @@ function love.update(dt)
     MousePos.x = love.mouse.getX()
     MousePos.y = love.mouse.getY()
     WindowSize.width, WindowSize.height = love.graphics.getDimensions()
-
+    pauseMenuClock:reset(dt)
 end
 
 function love.draw()
