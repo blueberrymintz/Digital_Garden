@@ -41,26 +41,27 @@ local toggleClockSFX = cron.after(0.01, toggleSFX)
 local backArrowClock = cron.after(0.05, csetScene, 'startMenu')
 function game:load()
     --prints to terminal
-    print("Warp Successful! Current Scene: Settings (placeholder)")
+    print("Warp Successful! Current Scene: Settings Menu")
             settingsMenu = {}
         -- initializes the start menu sprites and animations
         -- DO NOT DELETE THIS
 settingsMenu.musicToggleGridX = 1
 settingsMenu.sfxToggleGridX = 1
+settingsMenu.backArrowGridX = 1
 
 settingsMenu.sprite = love.graphics.newImage('sprites/settings/sprite_sheet(6).png')
 settingsMenu.toggleSprite = love.graphics.newImage('sprites/settings/toggleSheet.png')
-settingsMenu.backArrowSprite = love.graphics.newImage('sprites/settings/backArrow.png')
+settingsMenu.backArrowSprite = love.graphics.newImage('sprites/settings/backArrowSpriteSheet.png')
 
 settingsMenu.grid = anim8.newGrid((settingsMenu.sprite:getWidth())/2, settingsMenu.sprite:getHeight()/2, settingsMenu.sprite:getWidth(), settingsMenu.sprite:getHeight())
 settingsMenu.toggleGrid = anim8.newGrid((settingsMenu.toggleSprite:getWidth()/2), settingsMenu.toggleSprite:getHeight(), settingsMenu.toggleSprite:getWidth(), settingsMenu.toggleSprite:getHeight())
-settingsMenu.backArrowGrid = anim8.newGrid(settingsMenu.backArrowSprite:getWidth(), settingsMenu.backArrowSprite:getHeight(), settingsMenu.backArrowSprite:getWidth(), settingsMenu.backArrowSprite:getHeight())
+settingsMenu.backArrowGrid = anim8.newGrid((settingsMenu.backArrowSprite:getWidth()/2), settingsMenu.backArrowSprite:getHeight(), settingsMenu.backArrowSprite:getWidth(), settingsMenu.backArrowSprite:getHeight())
 
 settingsMenu.animations = {}
 settingsMenu.animations.background = anim8.newAnimation(settingsMenu.grid(1, 2), 0.1)
 settingsMenu.animations.musicToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.musicToggleGridX, 1), 1)
 settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.sfxToggleGridX, 1), 1)
-settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid(1, 1), 1)
+settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid(settingsMenu.backArrowGridX, 1), 1)
 
 
 end
@@ -80,13 +81,17 @@ function game:update(dt)
     else
         toggleClockSFX:reset()
     end
-            -- necessary. I don't know why but don't delete it, it's the only way we got it to work
-    if backArrowBox == 1 and down then
+
+    if backArrowBox == 1 then
+        settingsMenu.backArrowGridX = 2
+        if down then
         backArrowClock:update(dt)
+        end
     else
+        settingsMenu.backArrowGridX = 1
         backArrowClock:reset()
     end
-    
+    settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid(settingsMenu.backArrowGridX, 1), 1)
 end
 
 function game:draw()
