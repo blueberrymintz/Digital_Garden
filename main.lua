@@ -23,7 +23,10 @@ MousePos = {}
 MouseDown = 1
 WindowSize = {}
 CallPause = nil
-local pauseMenuClock = cron.after(0.1)
+local function pauseClockFunction()
+    
+end
+local pauseMenuClock = cron.after(0.1, PauseClockFunction)
 function love.load(dt)
     MousePos.x = 0
     MousePos.y = 0
@@ -33,7 +36,7 @@ end
 function love.keypressed(key, scancode, isrepeat)
     if key == "m" then
         pauseMenuClock:update(0.1)
-        if pauseMenuClock
+        if pauseMenuClock then end
     end
 end
 

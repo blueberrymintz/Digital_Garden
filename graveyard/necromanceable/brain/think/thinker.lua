@@ -1,1 +1,0 @@
--- manages scenes, thoughts and memory. basically in charge of the brain. only in charge of active thoughts, not stored data
