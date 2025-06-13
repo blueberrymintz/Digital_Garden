@@ -33,7 +33,14 @@ song:setLooping(true)
 song:setVolume(2)
 
 end
-
+function game:keypressed(key, scancode, isrepeat)
+    if key == 's' then
+        startClock:update(1)
+    end
+    if key =='t' then
+        settingsClock:update(1)
+    end
+end
 function game:update(dt)
     --plays the song
     song:play()
@@ -77,11 +84,7 @@ function game:update(dt)
     -- necessary. I don't know why but don't delete it, it's the only way we got it to work
     startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1), 0.1)
 end
-function game:keypressed(key, scancode, isrepeat)
-    if key == 'm' then
-        startClock:update(1)
-    end
-end
+
 function game:draw()
     startMenu.animations.grow:draw(startMenu.sprite, 0, 0, nil, 0.5)
     

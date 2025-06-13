@@ -65,7 +65,17 @@ settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGri
 
 
 end
-
+function game:keypressed(key)
+    if key == 'm' then
+        toggleClockMusic:update(1)
+    end
+    if key == 's' then
+        toggleClockSFX:update(1)
+    end
+    if key == 'escape' then
+        backArrowClock:update(1)
+    end
+end
 function game:update(dt)
     sfxToggleBox = NewBoxTracker(200, 258, 85, 121)
     musicToggleBox = NewBoxTracker(200, 258, 135, 171)

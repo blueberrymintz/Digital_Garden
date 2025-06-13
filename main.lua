@@ -27,17 +27,17 @@ local function pauseClockFunction()
 
 end
 local pauseMenuClock = cron.after(0.1, pauseClockFunction)
-function love.load(dt)
+function love.load()
     MousePos.x = 0
     MousePos.y = 0
     Scenery:load()
 
 end
 function love.keypressed(key, scancode, isrepeat)
-    if key == "m" then
-        pauseMenuClock:update(0.1)
-
-    end
+    Scenery:keypressed(key, scancode, isrepeat)
+end
+function love.mousepressed(button)
+    Scenery:mousepressed(button)
 end
 
 function love.update(dt)
