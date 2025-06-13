@@ -36,8 +36,8 @@ end
 function love.keypressed(key, scancode, isrepeat)
     Scenery:keypressed(key, scancode, isrepeat)
 end
-function love.mousepressed(button)
-    Scenery:mousepressed(button)
+function love.mousepressed(mouseX, mouseY, button)
+    Scenery:mousepressed(mouseX, mouseY, button)
 end
 
 function love.update(dt)

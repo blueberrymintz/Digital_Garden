@@ -33,6 +33,12 @@ song:setLooping(true)
 song:setVolume(2)
 
 end
+function game:mousepressed(mouseX, mouseY, button)
+    if button then
+        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
+    
+    end
+end
 function game:keypressed(key, scancode, isrepeat)
     if key == 's' then
         startClock:update(1)
