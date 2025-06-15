@@ -9,7 +9,10 @@ local resizeToggle = 0.3
 local function csetScene(foo)
     game.setScene(foo)
 end
-function toggleMusic()
+local function toggleDebug()
+    
+end
+local function toggleMusic()
     if settingsMenu.musicToggleGridX == 1 then
         settingsMenu.musicToggleGridX = 2
         -- code to stop music
@@ -21,7 +24,7 @@ function toggleMusic()
     end
     settingsMenu.animations.musicToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.musicToggleGridX, 1), 1)
 end
-function toggleSFX()
+local function toggleSFX()
     if settingsMenu.sfxToggleGridX == 1 then
         settingsMenu.sfxToggleGridX = 2
         -- code to stop SFX
@@ -34,6 +37,12 @@ function toggleSFX()
     settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.sfxToggleGridX, 1), 1)
 end
     
+function game:mousepressed(mouseX, mouseY, button)
+    if button then
+        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
+    
+    end
+end
 -- toggle clocks
 local toggleClockMusic = cron.after(0.01, toggleMusic)
 local toggleClockSFX = cron.after(0.01, toggleSFX)
@@ -76,6 +85,7 @@ function game:keypressed(key)
         backArrowClock:update(1)
     end
 end
+
 function game:update(dt)
     sfxToggleBox = NewBoxTracker(200, 258, 85, 121)
     musicToggleBox = NewBoxTracker(200, 258, 135, 171)
@@ -113,6 +123,7 @@ function game:draw()
     settingsMenu.animations.sfxToggle:draw(settingsMenu.toggleSprite, 200, 85, nil, resizeToggle)
     settingsMenu.animations.musicToggle:draw(settingsMenu.toggleSprite, 200, 135, nil, resizeToggle)
     settingsMenu.animations.backArrow:draw(settingsMenu.backArrowSprite, 400, 10, nil, 0.8)
+    love.graphics.rectangle('line',200,180,50,100)
 end
 
 return game

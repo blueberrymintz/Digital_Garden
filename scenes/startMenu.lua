@@ -1,6 +1,7 @@
 local game = {}
 -- cron library, for clocks
 local cron = require('libraries/cronLua_Master/cron')
+local keys = require('tracker/keyTracker')
 -- mouse positioning tracker
 local mousePos = {}
 local boxTracker = require('tracker/boxTracker')
@@ -49,7 +50,9 @@ function game:keypressed(key, scancode, isrepeat)
 end
 function game:update(dt)
     --plays the song
+    if MusicKey then
     song:play()
+    end
     --updates if mouse is Down. MUST be in update function
     local down = love.mouse.isDown(1)
     --updates mouse tracking
@@ -62,6 +65,7 @@ function game:update(dt)
     SettingsBox = NewBoxTracker(150, 350, 650, 720)
     if StartBox == 1 then
         startMenu.gridX = 2
+        UpdateKey(12)
         -- switches to glitchy animation if the mouse is down
         if down then
             startMenu.gridX = 4
