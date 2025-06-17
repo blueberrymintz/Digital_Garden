@@ -1,5 +1,5 @@
 local function keyCutter()
-    
+
 end
 function UpdateKey(key, inputValue)
     if type(key) ~= string then
@@ -11,3 +11,4 @@ function UpdateKey(key, inputValue)
     end
 end
 
+MusicKey = 1

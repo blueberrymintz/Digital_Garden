@@ -37,7 +37,7 @@ end
 function game:mousepressed(mouseX, mouseY, button)
     if button then
         print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
-    
+
     end
 end
 function game:keypressed(key, scancode, isrepeat)
@@ -61,11 +61,11 @@ function game:update(dt)
     --updates the animation, not actually necessary for this scene because it will be just 1 frame at a time
     startMenu.animations.grow:update((dt*0.5))
     -- tracks if the mouse is positioned over the Start button
-    StartBox = NewBoxTracker(150, 350, 550, 620)
-    SettingsBox = NewBoxTracker(150, 350, 650, 720)
+    StartBox = CallBoxTracker(150, 350, 550, 620)
+    SettingsBox = CallBoxTracker(150, 350, 650, 720)
     if StartBox == 1 then
         startMenu.gridX = 2
-        UpdateKey(12)
+
         -- switches to glitchy animation if the mouse is down
         if down then
             startMenu.gridX = 4

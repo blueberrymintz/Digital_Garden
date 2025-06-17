@@ -33,8 +33,6 @@ function love.load()
     Scenery:load()
 
 end
-function love.mousereleased()
-end
 function love.keypressed(key, scancode, isrepeat)
     Scenery:keypressed(key, scancode, isrepeat)
 end
