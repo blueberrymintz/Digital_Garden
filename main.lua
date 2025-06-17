@@ -9,7 +9,7 @@ Scenery = SceneryInit(
     {path = "scenes/pauseMenu"; key = "pauseMenu"}
 )
 Main = {}
-anim8 = require 'libraries.anim8'
+anim8 = require 'libraries/anim8-master/anim8'
 think = require 'thinker'
 settings = require 'settings'
 

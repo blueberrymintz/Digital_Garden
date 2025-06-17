@@ -10,7 +10,7 @@ local function csetScene(foo)
     game.setScene(foo)
 end
 local function toggleDebug()
-    
+
 end
 local function toggleMusic()
     if settingsMenu.musicToggleGridX == 1 then
@@ -87,9 +87,9 @@ function game:keypressed(key)
 end
 
 function game:update(dt)
-    sfxToggleBox = NewBoxTracker(200, 258, 85, 121)
-    musicToggleBox = NewBoxTracker(200, 258, 135, 171)
-    backArrowBox = NewBoxTracker(400, 480, 10, 70)
+    local sfxToggleBox = NewBoxTracker(200, 258, 85, 121)
+    local musicToggleBox = NewBoxTracker(200, 258, 135, 171)
+   local backArrowBox = NewBoxTracker(400, 480, 10, 70)
     local down = love.mouse.isDown(1)
     if musicToggleBox == 1 and down then
         toggleClockMusic:update(dt)
