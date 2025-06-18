@@ -30,11 +30,15 @@ startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1
 -- loads song for start menu
 song = love.audio.newSource('sounds/organLaughing2.ogg', 'stream')
 -- sets song to loop
-song:setLooping(true)
+    song:setLooping(true)
 song:setVolume(2)
-
 end
+
 function game:mousepressed(mouseX, mouseY, button)
+    BoxTracker2(1,1,100,200,mouseX,mouseY)
+    if BoxTracker2(1,1,1,2,mouseX,mouseY) == 1 then
+        print("BOXBOXBOX")
+    end
     if button then
         print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
 
@@ -50,7 +54,7 @@ function game:keypressed(key, scancode, isrepeat)
 end
 function game:update(dt)
     --plays the song
-    if MusicKey then
+    if MusicKey == 1 then
     song:play()
     end
     --updates if mouse is Down. MUST be in update function
