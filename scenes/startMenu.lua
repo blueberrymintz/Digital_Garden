@@ -2,11 +2,9 @@ local game = {}
 -- cron library, for clocks
 local cron = require('libraries/cronLua_Master/cron')
 local keys = require('tracker/keyTracker')
--- mouse positioning tracker
-local mousePos = {}
+
 local boxTracker = require('tracker/boxTracker')
-mousePos.x = 0
-mousePos.y = 0
+
 -- gets the transition to garden scene
 -- DO NOT DELETE THIS
 local function csetScene(foo)
@@ -35,15 +33,24 @@ song:setVolume(2)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    BoxTracker2(1,1,100,200,mouseX,mouseY)
-    if BoxTracker2(1,1,1,2,mouseX,mouseY) == 1 then
-        print("BOXBOXBOX")
+    -- callback for mouse over start button
+    if BoxTracker2(150,550,200,80,mouseX,mouseY) == 1 then
+        print("START")
     end
+    -- callback for mouse over settings button
+    if BoxTracker2(150,650,200,80,mouseX,mouseY) == 1 then
+        print("SETTINGS")
+    end
+    -- returns mouse X and Y in terminal for diagnosing problems
     if button then
         print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
-
     end
 end
+
+function game:mousereleased(mouseX, mouseY, button)
+
+end
+
 function game:keypressed(key, scancode, isrepeat)
     if key == 's' then
         startClock:update(1)
@@ -57,45 +64,11 @@ function game:update(dt)
     if MusicKey == 1 then
     song:play()
     end
-    --updates if mouse is Down. MUST be in update function
-    local down = love.mouse.isDown(1)
-    --updates mouse tracking
-    mousePos.x = love.mouse.getX()
-    mousePos.y = love.mouse.getY()
-    --updates the animation, not actually necessary for this scene because it will be just 1 frame at a time
-    startMenu.animations.grow:update((dt*0.5))
-    -- tracks if the mouse is positioned over the Start button
-
-    if StartBox == 1 then
-        startMenu.gridX = 2
-
-        -- switches to glitchy animation if the mouse is down
-        if down then
-            startMenu.gridX = 4
-            startClock:update(10*dt)
-        end
--- tracks if the mouse is positioned over the Setting button
-    elseif SettingsBox == 1 then
-            startMenu.gridX = 3
-        -- switches to glitchy animation if the mouse is down
-        if down then
-            startMenu.gridX = 5
-            settingsClock:update(10*dt)
-        end
-
-    else
-    --makes sure the animation is reset to the first frame if the mouse is not over the buttons
-   startMenu.gridX = 1
-    end
-    -- resets the clocks if the mouse is not down, so that the scene does not change
-    -- this is necessary because the clocks will not reset if the mouse is not down
     -- DO NOT DELETE THIS
-    if not down then
-        settingsClock:reset()
-        startClock:reset()
-    end
+    settingsClock:reset()
+    startClock:reset()
     -- necessary. I don't know why but don't delete it, it's the only way we got it to work
-    startMenu.animations.grow = anim8.newAnimation(startMenu.grid(startMenu.gridX, 1), 0.1)
+    startMenu.animations.grow:update(dt)
 end
 
 function game:draw()
