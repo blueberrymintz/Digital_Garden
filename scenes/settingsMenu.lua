@@ -9,9 +9,11 @@ local resizeToggle = 0.3
 local function csetScene(foo)
     game.setScene(foo)
 end
-local function toggleDebug()
-
-end
+    local clockCallMusic = 1
+    local clockCallSFX = 1
+    local clockCallBackArrow = 1
+-- warps back to start menu
+local backArrowClock = cron.after(0.05, csetScene, 'startMenu')
 local function toggleMusic()
     if settingsMenu.musicToggleGridX == 1 then
         settingsMenu.musicToggleGridX = 2
@@ -35,19 +37,34 @@ local function toggleSFX()
         print("SFX toggled on")
     end
     settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.sfxToggleGridX, 1), 1)
-end
-    
-function game:mousepressed(mouseX, mouseY, button)
-    if button then
-        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
-    
-    end
+
 end
 -- toggle clocks
 local toggleClockMusic = cron.after(0.01, toggleMusic)
 local toggleClockSFX = cron.after(0.01, toggleSFX)
--- warps back to start menu
-local backArrowClock = cron.after(0.05, csetScene, 'startMenu')
+function game:mousepressed(mouseX, mouseY, button)
+    if button then
+        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
+    end
+    if BoxTracker2(200, 85, 50, 50, mouseX, mouseY) == 1 then
+        print("Music Toggle Clicked")
+        clockCallMusic = 2
+    end
+    if BoxTracker2(200, 135, 50, 50, mouseX, mouseY) == 1 then
+        print("SFX Toggle Clicked")
+        clockCallSFX = 2
+    end
+    if BoxTracker2(400, 10, 100, 100, mouseX, mouseY) == 1 then
+        print("Back Arrow Clicked")
+        clockCallBackArrow = 2
+    end
+end
+
+function game:mousereleased(mouseX, mouseY, button)
+
+end
+
+
 function game:load()
     --prints to terminal
     print("Warp Successful! Current Scene: Settings Menu")
@@ -74,6 +91,8 @@ settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGri
 
 
 end
+
+
 function game:keypressed(key)
     if key == 'm' then
         toggleClockMusic:update(1)
@@ -87,30 +106,25 @@ function game:keypressed(key)
 end
 
 function game:update(dt)
-    local sfxToggleBox = NewBoxTracker(200, 258, 85, 121)
-    local musicToggleBox = NewBoxTracker(200, 258, 135, 171)
-   local backArrowBox = NewBoxTracker(400, 480, 10, 70)
-    local down = love.mouse.isDown(1)
-    if musicToggleBox == 1 and down then
         toggleClockMusic:update(dt)
-    else
-        toggleClockMusic:reset()
-    end
-    if sfxToggleBox == 1 and down then
-        toggleClockSFX:update(dt)
-    else
-        toggleClockSFX:reset()
-    end
 
-    if backArrowBox == 1 then
-        settingsMenu.backArrowGridX = 2
-        if down then
+        toggleClockMusic:reset()
+
+
+        toggleClockSFX:update(dt)
+    
+        toggleClockSFX:reset()
+
+
+
+
+
         backArrowClock:update(dt)
-        end
-    else
-        settingsMenu.backArrowGridX = 1
+
+
+
         backArrowClock:reset()
-    end
+    
     settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid(settingsMenu.backArrowGridX, 1), 1)
 end
 

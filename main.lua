@@ -39,7 +39,9 @@ end
 function love.mousepressed(mouseX, mouseY, button)
     Scenery:mousepressed(mouseX, mouseY, button)
 end
-
+function love.mousereleased(mouseX, mouseY, button)
+    Scenery:mousereleased(mouseX, mouseY, button)
+end
 function love.update(dt)
     Scenery:update(dt)
     MousePos.x = love.mouse.getX()
