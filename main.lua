@@ -14,7 +14,7 @@ think = require 'thinker'
 settings = require 'settings'
 
 cron = require 'libraries/cronLua_Master/cron'
-player = require 'player'
+
 GTick = {}
 GTick.track = 1
 GTick.total = 0

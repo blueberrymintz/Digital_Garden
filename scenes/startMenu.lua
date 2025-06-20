@@ -80,14 +80,14 @@ function game:update(dt)
     if clockCallStart == 2 then
         startClock:update(6*dt)
         startMenu.animations.grow:gotoFrame( 4, 1)
-        print('start clock updated')
+
     else
         startClock:reset()
     end
     if clockCallSettings == 2 then
         settingsClock:update(6*dt)
         startMenu.animations.grow:gotoFrame( 5, 1)
-        print('settings clock updated')
+
     else
         settingsClock:reset()
     end
