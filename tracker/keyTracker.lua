@@ -1,6 +1,7 @@
 
 MusicKey = 1
 SFXKey = 1
+LastScene = nil
 -- 1 = on, 2 = off
 function UpdateMusicKey()
     if MusicKey == 1 then

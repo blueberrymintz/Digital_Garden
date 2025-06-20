@@ -28,10 +28,11 @@ local function pauseClockFunction()
 end
 local pauseMenuClock = cron.after(0.1, pauseClockFunction)
 function love.load()
+    LastScene = nil
     MousePos.x = 0
     MousePos.y = 0
     Scenery:load()
-
+    GlobalCurrentScene = nil
 end
 function love.keypressed(key, scancode, isrepeat)
     Scenery:keypressed(key, scancode, isrepeat)

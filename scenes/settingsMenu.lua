@@ -8,6 +8,7 @@ mousePos.y = 0
 local resize = 0.5
 local resizeToggle = 0.3
 local function csetScene(foo)
+    LastScene = GlobalCurrentScene
     game.setScene(foo)
 end
     local clockCallMusic = 1
@@ -18,6 +19,7 @@ local toggleClockBackArrow = cron.after(0.05, csetScene, 'startMenu')
 
 
 function game:load()
+    GlobalCurrentScene = "settings"
     --prints to terminal
     print("Warp Successful! Current Scene: Settings Menu")
             settingsMenu = {}
@@ -37,7 +39,6 @@ settingsMenu.animations.background = anim8.newAnimation(settingsMenu.grid(1, 2),
 settingsMenu.animations.musicToggle = anim8.newAnimation(settingsMenu.toggleGrid('1-2', 1), 1)
 settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid('1-2', 1), 1)
 settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid('1-2', 1), 1)
-
 
 end
 

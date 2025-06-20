@@ -2,7 +2,7 @@ local game = {}
 
 function game:load()
     --prints to terminal
-    print("Warp Successful! Current Scene: Example")
+    print("Warp Successful! Current Scene: Pause Menu")
     GlobalCurrentScene = 'pauseMenu'
 end
 

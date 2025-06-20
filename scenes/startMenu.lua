@@ -8,6 +8,7 @@ local anim8 = require 'libraries/anim8-master/anim8'
 -- gets the transition to garden scene
 -- DO NOT DELETE THIS
 local function csetScene(foo)
+    LastScene = GlobalCurrentScene
     game.setScene(foo)
 end
 local clockCallStart = 1
@@ -17,6 +18,7 @@ local clockCallSettings = 1
 local startClock = cron.after(1, csetScene, 'garden')
 local settingsClock = cron.after(1, csetScene, 'settings')
 function game:load()
+    GlobalCurrentScene = "pauseMenu"
     --prints to terminal
     print("Warp Successful! Current Scene: Start Menu")
         startMenu = {}
@@ -55,7 +57,6 @@ function game:mousereleased(mouseX, mouseY, button)
     clockCallSettings = 1
     clockCallStart = 1
     print('released')
-
 end
 
 function game:keypressed(key, scancode, isrepeat)
@@ -66,6 +67,7 @@ function game:keypressed(key, scancode, isrepeat)
         settingsClock:update(10)
     end
 end
+
 function game:update(dt)
     --plays the song
     if MusicKey == 1 then

@@ -3,8 +3,10 @@ local game = {}
 local cron = require('libraries/cronLua_Master/cron')
 -- mouse positioning tracker
 local mousePos = {}
+local keyTracker = require('tracker/keyTracker')
 local boxTracker = require('tracker/boxTracker')
 local function csetScene(foo)
+    LastScene = GlobalCurrentScene
     game.setScene(foo)
 end
 
