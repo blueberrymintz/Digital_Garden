@@ -33,7 +33,9 @@ song = love.audio.newSource('sounds/organLaughing2.ogg', 'stream')
 -- sets song to loop
 song:setLooping(true)
 song:setVolume(2)
-
+startMenu.animations.grow:gotoFrame( 1, 1)
+clockCallSettings = 1
+clockCallStart = 1
 end
 
 function game:mousepressed(mouseX, mouseY, button)

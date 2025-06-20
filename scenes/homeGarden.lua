@@ -1,7 +1,7 @@
 local garden = {}
 local function csetScene(foo)
+    LastScene = GlobalCurrentScene
     garden.setScene(foo)
-    LastScene = foo
 end
 function garden:load()
     GlobalCurrentScene = "garden"
