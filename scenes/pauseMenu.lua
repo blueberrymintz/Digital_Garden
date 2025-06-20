@@ -23,7 +23,7 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-
+    
 end
 
 function game:mousereleased(mouseX, mouseY, button)
@@ -37,7 +37,7 @@ end
 
 function game:draw()
     love.graphics.setBackgroundColor(0,0,0)
-    love.graphics.print("Warp Successful!", 200, 300)
+    love.graphics.print("Warp Successful! Current Scene: Pause Menu", 200, 300)
 end
 
 return game
