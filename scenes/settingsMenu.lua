@@ -16,34 +16,6 @@ end
 -- warps back to start menu
 local toggleClockBackArrow = cron.after(0.05, csetScene, 'startMenu')
 
--- toggle clocks
-local toggleClockMusic = cron.after(0.01, UpdateMusicKey)
-local toggleClockSFX = cron.after(0.01, UpdateSFXKey)
-function game:mousepressed(mouseX, mouseY, button)
-    if button then
-        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
-    end
-    if BoxTracker2(200, 85, 50, 50, mouseX, mouseY) == 1 then
-        print("Music Toggle Clicked")
-        clockCallMusic = 2
-    end
-    if BoxTracker2(200, 135, 50, 50, mouseX, mouseY) == 1 then
-        print("SFX Toggle Clicked")
-        clockCallSFX = 2
-    end
-    if BoxTracker2(400, 10, 100, 100, mouseX, mouseY) == 1 then
-        print("Back Arrow Clicked")
-        clockCallBackArrow = 2
-    end
-end
-
-function game:mousereleased(mouseX, mouseY, button)
-    clockCallMusic = 1
-    clockCallSFX = 1
-    clockCallBackArrow = 1
-    print('released')
-end
-
 
 function game:load()
     --prints to terminal
@@ -69,6 +41,36 @@ settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGri
 
 end
 
+-- toggle clocks
+local toggleClockMusic = cron.after(0.01, UpdateMusicKey)
+local toggleClockSFX = cron.after(0.01, UpdateSFXKey)
+function game:mousepressed(mouseX, mouseY, button)
+    if button then
+        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
+    end
+    if BoxTracker2(200, 85, 50, 50, mouseX, mouseY) == 1 then
+        print("SFX Toggle Clicked")
+        clockCallSFX = 2
+    end
+    if BoxTracker2(200, 135, 50, 50, mouseX, mouseY) == 1 then
+
+        print("Music Toggle Clicked")
+        clockCallMusic = 2
+    end
+    if BoxTracker2(400, 10, 100, 100, mouseX, mouseY) == 1 then
+        print("Back Arrow Clicked")
+        clockCallBackArrow = 2
+        settingsMenu.animations.backArrow:gotoFrame(2)
+    end
+end
+
+function game:mousereleased(mouseX, mouseY, button)
+    clockCallMusic = 1
+    clockCallSFX = 1
+    clockCallBackArrow = 1
+    print('released')
+end
+
 
 function game:keypressed(key)
     if key == 'm' then
@@ -84,11 +86,12 @@ end
 
 function game:update(dt)
     if clockCallMusic == 2 then
-        toggleClockMusic:update(10*dt)
 
+        toggleClockMusic:update(10*dt)
     end
     if clockCallSFX == 2 then
         toggleClockSFX:update(10*dt)
+        settingsMenu.animations.sfxToggle:gotoFrame(2)
     end
 
      if clockCallBackArrow == 2 then
@@ -99,8 +102,20 @@ function game:update(dt)
         toggleClockMusic:reset()
         toggleClockSFX:reset()
         toggleClockBackArrow:reset()
+        settingsMenu.animations.backArrow:gotoFrame(1)
     end
-    
+        if MusicKey == 2 then
+        settingsMenu.animations.musicToggle:gotoFrame(2)
+        end
+        if MusicKey == 1 then
+            settingsMenu.animations.musicToggle:gotoFrame(1)
+        end
+        if SFXKey == 2 then
+            settingsMenu.animations.sfxToggle:gotoFrame(2)
+        end
+        if SFXKey == 1 then
+            settingsMenu.animations.sfxToggle:gotoFrame(1)
+        end
 
 end
 
