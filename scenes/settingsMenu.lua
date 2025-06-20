@@ -1,6 +1,7 @@
 local game = {}
 local cron = require('libraries/cronLua_Master/cron')
 local boxTracker = require 'tracker/boxTracker'
+local keys = require 'tracker/keyTracker'
 local mousePos = {}
 mousePos.x = 0
 mousePos.y = 0
@@ -16,8 +17,8 @@ end
 local toggleClockBackArrow = cron.after(0.05, csetScene, 'startMenu')
 
 -- toggle clocks
-local toggleClockMusic = cron.after(0.01, UpdateKey, )
-local toggleClockSFX = cron.after(0.01, UpdateKey, )
+local toggleClockMusic = cron.after(0.01, UpdateMusicKey)
+local toggleClockSFX = cron.after(0.01, UpdateSFXKey)
 function game:mousepressed(mouseX, mouseY, button)
     if button then
         print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
@@ -84,12 +85,12 @@ end
 function game:update(dt)
     if clockCallMusic == 2 then
         toggleClockMusic:update(10*dt)
-        
+
     end
     if clockCallSFX == 2 then
         toggleClockSFX:update(10*dt)
     end
-    
+
      if clockCallBackArrow == 2 then
         toggleClockBackArrow:update(10*dt)
     end

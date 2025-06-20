@@ -70,6 +70,8 @@ function game:update(dt)
     --plays the song
     if MusicKey == 1 then
     song:play()
+    elseif MusicKey == 2 then
+        love.audio.stop()
     end
 
     -- necessary. I don't know why but don't delete it, it's the only way we got it to work
