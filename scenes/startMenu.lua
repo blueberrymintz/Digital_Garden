@@ -74,14 +74,14 @@ function game:update(dt)
 
     -- necessary. I don't know why but don't delete it, it's the only way we got it to work
     if clockCallStart == 2 then
-        startClock:update(0.6*dt)
+        startClock:update(6*dt)
         startMenu.animations.grow:gotoFrame( 4, 1)
         print('start clock updated')
     else
         startClock:reset()
     end
     if clockCallSettings == 2 then
-        settingsClock:update(0.6*dt)
+        settingsClock:update(6*dt)
         startMenu.animations.grow:gotoFrame( 5, 1)
         print('settings clock updated')
     else

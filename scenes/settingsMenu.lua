@@ -13,35 +13,11 @@ end
     local clockCallSFX = 1
     local clockCallBackArrow = 1
 -- warps back to start menu
-local backArrowClock = cron.after(0.05, csetScene, 'startMenu')
-local function toggleMusic()
-    if settingsMenu.musicToggleGridX == 1 then
-        settingsMenu.musicToggleGridX = 2
-        -- code to stop music
-        print("Music toggled off")
-    else
-        settingsMenu.musicToggleGridX = 1
-        -- code to play music
-        print("Music toggled on")
-    end
-    settingsMenu.animations.musicToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.musicToggleGridX, 1), 1)
-end
-local function toggleSFX()
-    if settingsMenu.sfxToggleGridX == 1 then
-        settingsMenu.sfxToggleGridX = 2
-        -- code to stop SFX
-        print("SFX toggled off")
-    else
-        settingsMenu.sfxToggleGridX = 1
-        -- code to play SFX
-        print("SFX toggled on")
-    end
-    settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.sfxToggleGridX, 1), 1)
+local toggleClockBackArrow = cron.after(0.05, csetScene, 'startMenu')
 
-end
 -- toggle clocks
-local toggleClockMusic = cron.after(0.01, toggleMusic)
-local toggleClockSFX = cron.after(0.01, toggleSFX)
+local toggleClockMusic = cron.after(0.01, UpdateKey, )
+local toggleClockSFX = cron.after(0.01, UpdateKey, )
 function game:mousepressed(mouseX, mouseY, button)
     if button then
         print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
@@ -61,7 +37,10 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
-
+    clockCallMusic = 1
+    clockCallSFX = 1
+    clockCallBackArrow = 1
+    print('released')
 end
 
 
@@ -71,9 +50,6 @@ function game:load()
             settingsMenu = {}
         -- initializes the start menu sprites and animations
         -- DO NOT DELETE THIS
-settingsMenu.musicToggleGridX = 1
-settingsMenu.sfxToggleGridX = 1
-settingsMenu.backArrowGridX = 1
 
 settingsMenu.sprite = love.graphics.newImage('sprites/settings/sprite_sheet(6).png')
 settingsMenu.toggleSprite = love.graphics.newImage('sprites/settings/toggleSheet.png')
@@ -85,9 +61,9 @@ settingsMenu.backArrowGrid = anim8.newGrid((settingsMenu.backArrowSprite:getWidt
 
 settingsMenu.animations = {}
 settingsMenu.animations.background = anim8.newAnimation(settingsMenu.grid(1, 2), 0.1)
-settingsMenu.animations.musicToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.musicToggleGridX, 1), 1)
-settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid(settingsMenu.sfxToggleGridX, 1), 1)
-settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid(settingsMenu.backArrowGridX, 1), 1)
+settingsMenu.animations.musicToggle = anim8.newAnimation(settingsMenu.toggleGrid('1-2', 1), 1)
+settingsMenu.animations.sfxToggle = anim8.newAnimation(settingsMenu.toggleGrid('1-2', 1), 1)
+settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid('1-2', 1), 1)
 
 
 end
@@ -101,31 +77,30 @@ function game:keypressed(key)
         toggleClockSFX:update(1)
     end
     if key == 'escape' then
-        backArrowClock:update(1)
+        toggleClockBackArrow:update(1)
     end
 end
 
 function game:update(dt)
-        toggleClockMusic:update(dt)
-
+    if clockCallMusic == 2 then
+        toggleClockMusic:update(10*dt)
+        
+    end
+    if clockCallSFX == 2 then
+        toggleClockSFX:update(10*dt)
+    end
+    
+     if clockCallBackArrow == 2 then
+        toggleClockBackArrow:update(10*dt)
+    end
+    
+    if clockCallMusic  == 1 and clockCallSFX == 1 and clockCallBackArrow == 1 then
         toggleClockMusic:reset()
-
-
-        toggleClockSFX:update(dt)
-    
         toggleClockSFX:reset()
-
-
-
-
-
-        backArrowClock:update(dt)
-
-
-
-        backArrowClock:reset()
+        toggleClockBackArrow:reset()
+    end
     
-    settingsMenu.animations.backArrow = anim8.newAnimation(settingsMenu.backArrowGrid(settingsMenu.backArrowGridX, 1), 1)
+
 end
 
 function game:draw()
