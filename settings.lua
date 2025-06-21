@@ -5,7 +5,7 @@ Settings.muteMusic = nil
 Settings.darkMode = true
 Settings.debugMode = 4
 Settings.clearGraphics = 1
-Settings.printDevTools = 1
+Settings.printDevTools = 3
 function InitializeGame(clearGraphics, debugMode)
     if clearGraphics == 1 then
     love.graphics.setDefaultFilter("nearest", "nearest")
