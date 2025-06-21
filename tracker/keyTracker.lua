@@ -1,5 +1,5 @@
 
-MusicKey = 1
+MusicKey = 2
 SFXKey = 1
 LastScene = nil
 -- 1 = on, 2 = off
