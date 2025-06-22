@@ -3,6 +3,7 @@ local cron = require('libraries/cronLua_Master/cron')
 local boxTracker = require 'tracker/boxTracker'
 local keys = require 'tracker/keyTracker'
 local mousePos = {}
+
 mousePos.x = 0
 mousePos.y = 0
 local resize = 0.5
@@ -83,11 +84,11 @@ function game:keypressed(key)
     if key == 'escape' then
         toggleClockBackArrow:update(1)
     end
+
 end
 
 function game:update(dt)
     if clockCallMusic == 2 then
-
         toggleClockMusic:update(10*dt)
     end
     if clockCallSFX == 2 then

@@ -2,7 +2,6 @@ local game = {}
 -- cron library, for clocks
 local cron = require('libraries/cronLua_Master/cron')
 local keys = require('tracker/keyTracker')
-
 local boxTracker = require('tracker/boxTracker')
 local anim8 = require 'libraries/anim8-master/anim8'
 -- gets the transition to garden scene
@@ -68,6 +67,9 @@ function game:keypressed(key, scancode, isrepeat)
     if key =='t' then
         settingsClock:update(10)
     end
+    if key == 'a' then
+        csetScene('startMenuAlt')
+    end
 end
 
 function game:update(dt)
@@ -96,8 +98,10 @@ function game:update(dt)
     if clockCallStart == 1 and clockCallSettings == 1 then
         startMenu.animations.grow:gotoFrame( 1, 1)
     end
+
 end
 function game:draw()
+    love.graphics.setBackgroundColor(0, 0, 0)
     startMenu.animations.grow:draw(startMenu.sprite, 0, 0, 0, 0.5)
     
 end

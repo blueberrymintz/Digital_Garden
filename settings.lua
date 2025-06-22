@@ -3,7 +3,7 @@ Settings = {}
 Settings.muteSFX = nil
 Settings.muteMusic = nil
 Settings.darkMode = true
-Settings.debugMode = 4
+Settings.debugMode = 3
 Settings.clearGraphics = 1
 Settings.printDevTools = 3
 function InitializeGame(clearGraphics, debugMode)
@@ -20,14 +20,16 @@ function InitializeGame(clearGraphics, debugMode)
         end
      -- for approximate phone screen size, NOT resizeable
         if debugMode == 3 then
-        love.window.setMode(270, 480, {resizeable=nil, vsync=0, minwidth=90, minheight=160})
+        love.window.setMode(270, 630, {vsync=0, minwidth=270, minheight= 630})
         end
     -- wraps to screen size, resizeable
         if debugMode == 4 then 
         love.window.setMode(0,0, {resizable=nil, vsync= 0})
         end
-
-    love.graphics.setBackgroundColor(300,300,300)
+    -- for actually running in mobile simulator, NOT resizeable
+        if debugMode == 5 then
+            love.window.setMode(90,210, {resizable = true, vsync = 0, minwidth = 1, minheight = 2})
+        end
 end
 function UpdateSettings(muteSFX, muteMusic, darkMode)
     
