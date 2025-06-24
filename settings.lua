@@ -3,7 +3,7 @@ Settings = {}
 Settings.muteSFX = nil
 Settings.muteMusic = nil
 Settings.darkMode = true
-Settings.debugMode = 3
+Settings.debugMode = 5
 Settings.clearGraphics = 1
 Settings.printDevTools = 3
 function InitializeGame(clearGraphics, debugMode)

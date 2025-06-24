@@ -82,7 +82,7 @@ function game:keypressed(key)
         toggleClockSFX:update(1)
     end
     if key == 'escape' then
-        toggleClockBackArrow:update(1)
+        csetScene('startMenuAlt')
     end
 
 end

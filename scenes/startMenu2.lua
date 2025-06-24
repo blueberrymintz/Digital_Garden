@@ -1,12 +1,51 @@
 local game = {}
 
+local function csetScene(foo)
+    -- this function is used to change the scene and set the last scene
+    LastScene = GlobalCurrentScene
+    game.setScene(foo)
+end
+local boxTracker = require("tracker/boxTracker")
 function game:load()
     print("Warp Successful! Current Scene: Start Menu Alt")
     GlobalCurrentScene = "startMenuAlt"
-    pixelFontSize = 10 * Screen.resizeValue
-    pixelFont = love.graphics.newFont('fonts/tight_pixel.ttf', pixelFontSize*3)
-    smallPixelFont = love.graphics.newFont('fonts/tight_pixel.ttf', pixelFontSize)
-    mediumPixelFont = love.graphics.newFont('fonts/tight_pixel.ttf', pixelFontSize*2)
+    sprites = {}
+    sprites.kitbash = {}
+    sprites.START = {}
+    sprites.SETTINGS = {}
+        love.window.setMode(402, 874, {vsync=0, minwidth=270, minheight= 630})
+    -- spritesf
+    OSresizeValue = 1
+        local resizeValue = Screen.resizeValue
+        if OS == 'iOS' then
+            OSresizeValue = 1
+        elseif OS == 'macOS' then
+            OSresizeValue = 0.2
+        end
+
+
+        sprites.kitbash.resizeValue = resizeValue * OSresizeValue
+        sprites.kitbash.image = love.graphics.newImage('sprites/start_menu/kitbash.png')
+        sprites.kitbash.grid = anim8.newGrid(sprites.kitbash.image:getWidth(), sprites.kitbash.image:getHeight(), sprites.kitbash.image:getWidth(), sprites.kitbash.image:getHeight())
+        sprites.kitbash.animation = anim8.newAnimation(sprites.kitbash.grid(1, 1), 0.1)
+        sprites.kitbash.stretch = {x = 1, y = 1}
+        sprites.kitbash.position = {x = 0, y = (Screen.centerY - (sprites.kitbash.image:getHeight() * sprites.kitbash.resizeValue) / 2) /3}
+        
+        sprites.START.resizeValue = (resizeValue * 0.5) * OSresizeValue
+        sprites.START.position = {x = 1, y = 60}
+        sprites.START.image = love.graphics.newImage('sprites/start_menu/startMenu2/start.png')
+        sprites.START.grid = anim8.newGrid(sprites.START.image:getWidth(), sprites.START.image:getHeight(), sprites.START.image:getWidth(), sprites.START.image:getHeight())
+        sprites.START.animation = anim8.newAnimation(sprites.START.grid(1, 1), 0.1)
+        sprites.START.position = {x = 0, y = sprites.kitbash.position.y + sprites.kitbash.image:getHeight() * sprites.kitbash.resizeValue + 20}
+        
+
+        sprites.SETTINGS.resizeValue = (resizeValue * 0.5) * OSresizeValue
+        sprites.SETTINGS.position = {x = 1, y = 120}
+        sprites.SETTINGS.image = love.graphics.newImage('sprites/start_menu/startMenu2/settings.png')
+        sprites.SETTINGS.grid = anim8.newGrid(sprites.SETTINGS.image:getWidth(), sprites.SETTINGS.image:getHeight(), sprites.SETTINGS.image:getWidth(), sprites.SETTINGS.image:getHeight())
+        sprites.SETTINGS.animation = anim8.newAnimation(sprites.SETTINGS.grid(1, 1), 0.1)
+        sprites.SETTINGS.position = {x = 0, y = sprites.START.position.y + sprites.START.image:getHeight() * sprites.START.resizeValue + 20}
+        
 end
 
 function game:resize(w, h)
@@ -18,15 +57,38 @@ function game:keypressed(key)
     if key == 'escape' then
         love.event.quit()
     end
-    if key == 'shift' and 'd' then
-        DevelopmentMode = true
-        print("Development Mode Enabled")
+    if key == 's' then
+        print("attempting warp to sink (testing)")
+        csetScene('sink')
     end
-
+    if key == 'h' then
+        print('W: ' .. love.graphics.getWidth() .. ' H: ' .. love.graphics.getHeight())
+    end
+    if key == 'c' then
+        love.window.setMode(270, 630, {vsync=0, minwidth=270, minheight= 630})
+        OS = 'macOS'
+        csetScene('fixer')
+    end
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-
+    sprites.kitbash.box = BoxTracker2(sprites.kitbash.position.x, sprites.kitbash.position.y, sprites.kitbash.image:getWidth() * sprites.kitbash.resizeValue, sprites.kitbash.image:getHeight() * sprites.kitbash.resizeValue, mouseX, mouseY)
+    sprites.START.box = BoxTracker2(sprites.START.position.x, sprites.START.position.y, sprites.START.image:getWidth() * sprites.START.resizeValue, sprites.START.image:getHeight() * sprites.START.resizeValue, mouseX, mouseY)
+    sprites.SETTINGS.box = BoxTracker2(sprites.SETTINGS.position.x, sprites.SETTINGS.position.y, sprites.SETTINGS.image:getWidth() * sprites.SETTINGS.resizeValue, sprites.SETTINGS.image:getHeight() * sprites.SETTINGS.resizeValue, mouseX, mouseY)
+    if sprites.kitbash.box == 1 then
+        print("Kitbash clicked")
+    end
+    if sprites.START.box == 1 then
+        print("Start clicked")
+        csetScene('sink')
+    end
+    if sprites.SETTINGS.box == 1 then
+        print("Settings clicked")
+        csetScene('settings')
+    end
+    if button then
+        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
+    end
 end
 
 function game:mousereleased(mouseX, mouseY, button)
@@ -39,9 +101,10 @@ end
 
 function game:draw()
     love.graphics.setBackgroundColor(0, 0, 0)
-    love.graphics.print("KITBASH", pixelFont, 0, 10)
-    love.graphics.print("START", mediumPixelFont, 0, 30)
-    love.graphics.print("press ESC to quit", smallPixelFont, 0, 70)
+    sprites.kitbash.animation:draw(sprites.kitbash.image, sprites.kitbash.position.x, sprites.kitbash.position.y, 0, sprites.kitbash.resizeValue, sprites.kitbash.resizeValue)
+    sprites.START.animation:draw(sprites.START.image, sprites.START.position.x, sprites.START.position.y, 0, sprites.START.resizeValue, sprites.START.resizeValue)
+    sprites.SETTINGS.animation:draw(sprites.SETTINGS.image, sprites.SETTINGS.position.x, sprites.SETTINGS.position.y, 0, sprites.SETTINGS.resizeValue, sprites.SETTINGS.resizeValue)
+
 end
 
 return game
