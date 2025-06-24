@@ -20,7 +20,7 @@ OS = 'iOS' -- default OS
 GTick = {}
 GTick.track = 1
 GTick.total = 0
-
+FIRSTSTART = true
 InitializeGame(1, Settings.debugMode)
 local function pauseClockFunction()
 

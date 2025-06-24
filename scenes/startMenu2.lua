@@ -13,14 +13,18 @@ function game:load()
     sprites.kitbash = {}
     sprites.START = {}
     sprites.SETTINGS = {}
+    if FIRSTSTART == true then
         love.window.setMode(402, 874, {vsync=0, minwidth=270, minheight= 630})
-    -- spritesf
+    end
+    FIRSTSTART = false
+    
+    -- sprites
     OSresizeValue = 1
         local resizeValue = Screen.resizeValue
         if OS == 'iOS' then
             OSresizeValue = 1
         elseif OS == 'macOS' then
-            OSresizeValue = 0.2
+            OSresizeValue = 0.1
         end
 
 
