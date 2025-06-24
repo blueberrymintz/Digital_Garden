@@ -19,23 +19,24 @@ function game:load()
         OSresizeValue = 0.1
     end
     print("Warp Successful! Current Scene: Sink (Placeholder)")
-    GlobalCurrentScene = "sink"
-    sink = {}
-    local sinkKnob = {}
-    sink.sprite = love.graphics.newImage('sprites/sink/sink.png')
-    sink.grid = anim8.newGrid(sink.sprite:getWidth(), sink.sprite:getHeight(), sink.sprite:getWidth(), sink.sprite:getHeight())
-    sink.animations = {}
-    sink.animations.background = anim8.newAnimation(sink.grid(1, 1), 0.1)
-    sink.animations.background:gotoFrame(1, 1)
-    sink.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
-    sink.position = {x = Screen.centerX, y = Screen.centerY}
+    GlobalCurrentScene = "Sink"
+    Sink = {}
+    SinkKnob = {}
+    -- initializes the Sink sprites and animations
+    Sink.sprite = love.graphics.newImage('sprites/Sink/Sink.png')
+    Sink.grid = anim8.newGrid(Sink.sprite:getWidth(), Sink.sprite:getHeight(), Sink.sprite:getWidth(), Sink.sprite:getHeight())
+    Sink.animations = {}
+    Sink.animations.background = anim8.newAnimation(Sink.grid(1, 1), 0.1)
+    Sink.animations.background:gotoFrame(1, 1)
+    Sink.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    Sink.position = {x = Screen.centerX, y = Screen.centerY}
 
-    sinkKnob.sprite = love.graphics.newImage('sprites/sink/sinkKnobSheet.png')
-    sinkKnob.grid = anim8.newGrid(sinkKnob.sprite:getWidth()/2, sinkKnob.sprite:getHeight()/2, sinkKnob.sprite:getWidth(), sinkKnob.sprite:getHeight())
-    sinkKnob.animations = {}
-    sinkKnob.animations.knob = anim8.newAnimation(sinkKnob.grid('1-2', '1-2'), 0.1)
-    sinkKnob.animations.knob:gotoFrame(1, 1)
-    sinkKnob.position = {x = 0, y = 0}
+    SinkKnob.sprite = love.graphics.newImage('sprites/Sink/SinkKnobSheet.png')
+    SinkKnob.grid = anim8.newGrid(SinkKnob.sprite:getWidth()/2, SinkKnob.sprite:getHeight()/2, SinkKnob.sprite:getWidth(), SinkKnob.sprite:getHeight())
+    SinkKnob.animations = {}
+    SinkKnob.animations.knob = anim8.newAnimation(SinkKnob.grid('1-2', '1-2'), 0.1)
+    SinkKnob.animations.knob:gotoFrame(1, 1)
+    SinkKnob.position = {x = 0, y = 0}
 end
 
 function game:update(dt)
@@ -44,9 +45,9 @@ end
 
 function game:draw()
     love.graphics.setBackgroundColor(0,0,0)
-    -- draw the sink background
-    sink.animations.background:draw(sink.sprite, sink.position.x, sink.position.y, 0, sink.resizeValue, sink.resizeValue, sink.sprite:getWidth()/2, sink.sprite:getHeight()/2)
-    -- draw the sink knob
+    -- draw the Sink background
+    Sink.animations.background:draw(Sink.sprite, Sink.position.x, Sink.position.y, 0, Sink.resizeValue, Sink.resizeValue, Sink.sprite:getWidth()/2, Sink.sprite:getHeight()/2)
+    -- draw the Sink knob
 end
 
 return game
