@@ -14,7 +14,7 @@ Main = {}
 anim8 = require 'libraries/anim8-master/anim8'
 think = require 'thinker'
 settings = require 'settings'
-DevelopmentMode = false
+DevelopmentMode = true
 cron = require 'libraries/cronLua_Master/cron'
 
 GTick = {}
@@ -44,7 +44,7 @@ function love.load()
 end
 function love.resize(w, h)
     Scenery:resize(w, h)
-    Screen.width, Screen.height = love.window.getMode()
+    Screen.width, Screen.height = w, h
     Screen.centerX = Screen.width / 2
     Screen.centerY = Screen.height / 2
     Screen.resizeValue = Screen.height / Screen.width
