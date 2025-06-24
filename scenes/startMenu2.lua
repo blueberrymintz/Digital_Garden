@@ -13,20 +13,20 @@ function game:load()
     sprites.kitbash = {}
     sprites.START = {}
     sprites.SETTINGS = {}
-    if FIRSTSTART == true then
+    local resizeValue = Screen.resizeValue
+    FIRSTSTART = false
+    OSresizeValue = 1
+    if OS_String == 'iOS' then
+        OSresizeValue = 1
         love.window.setMode(402, 874, {vsync=0, minwidth=270, minheight= 630})
     end
-    FIRSTSTART = false
-    
-    -- sprites
-    OSresizeValue = 1
-        local resizeValue = Screen.resizeValue
-        if OS == 'iOS' then
-            OSresizeValue = 1
-        elseif OS == 'macOS' then
-            OSresizeValue = 0.1
-        end
+    if OS_String == 'OS X' or 'Linux' then
+        OSresizeValue = 0.1
+    end
 
+    -- sprites
+
+        local resizeValue = Screen.resizeValue
 
         sprites.kitbash.resizeValue = resizeValue * OSresizeValue
         sprites.kitbash.image = love.graphics.newImage('sprites/start_menu/kitbash.png')

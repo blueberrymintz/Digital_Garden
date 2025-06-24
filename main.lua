@@ -16,7 +16,7 @@ think = require 'thinker'
 settings = require 'settings'
 DevelopmentMode = false
 cron = require 'libraries/cronLua_Master/cron'
-OS = 'iOS' -- default OS
+
 GTick = {}
 GTick.track = 1
 GTick.total = 0
@@ -25,6 +25,7 @@ InitializeGame(1, Settings.debugMode)
 local function pauseClockFunction()
 
 end
+
         love.window.setMode(402, 874, {vsync=0, minwidth=270, minheight= 630})
 Screen = {}
     Screen.width, Screen.height = love.window.getMode()
@@ -38,6 +39,8 @@ function love.load()
     GlobalCurrentScene = nil
     print("SW" .. Screen.width .. " SH" .. Screen.height .. " CenterX" .. Screen.centerX .. " CenterY" .. Screen.centerY)
     print("resizeValue: " .. Screen.resizeValue)
+    OS_String = love.system.getOS()
+    print("OS: " .. OS_String)
 end
 function love.resize(w, h)
     Scenery:resize(w, h)
