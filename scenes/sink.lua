@@ -36,7 +36,9 @@ function game:load()
     SinkKnob.animations = {}
     SinkKnob.animations.knob = anim8.newAnimation(SinkKnob.grid('1-2', '1-2'), 0.1)
     SinkKnob.animations.knob:gotoFrame(1, 1)
+    SinkKnob.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     SinkKnob.position = {x = 0, y = 0}
+
 end
 
 function game:update(dt)
@@ -48,6 +50,7 @@ function game:draw()
     -- draw the Sink background
     Sink.animations.background:draw(Sink.sprite, Sink.position.x, Sink.position.y, 0, Sink.resizeValue, Sink.resizeValue, Sink.sprite:getWidth()/2, Sink.sprite:getHeight()/2)
     -- draw the Sink knob
+    SinkKnob.animations.knob:draw(SinkKnob.sprite, SinkKnob.position.x, SinkKnob.position.y, 0, SinkKnob.resizeValue, SinkKnob.resizeValue, SinkKnob.sprite:getWidth()/2, SinkKnob.sprite:getHeight()/2)
 end
 
 return game
