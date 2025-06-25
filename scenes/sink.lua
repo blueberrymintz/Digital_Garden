@@ -10,9 +10,8 @@ local function csetScene(foo)
     game.setScene(foo)
 end
 
-function game:load()
     --prints to terminal
-
+function game:load()
     print("Warp Successful! Current Scene: Sink (Placeholder)")
     GlobalCurrentScene = "Sink"
     Sink = {}
@@ -24,7 +23,11 @@ function game:load()
     Sink.animations.background = anim8.newAnimation(Sink.grid(1, 1), 0.1)
     Sink.animations.background:gotoFrame(1, 1)
     Sink.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
-    Sink.position = {x = Screen.centerX * Sink.resizeValue, y = Screen.centerY * Screen.resizeValue}
+    Sink.position = {x = Screen.centerX, y = Screen.centerY}
+    Sink.offset = {x = (Sink.sprite:getWidth()/2), y = Sink.sprite:getHeight()}
+    Sink.isOn = false
+    Sink.tick = false
+
 
     SinkKnob.sprite = love.graphics.newImage('sprites/newSink/sinkKnobSheet.png')
     SinkKnob.grid = anim8.newGrid(SinkKnob.sprite:getWidth()/4, SinkKnob.sprite:getHeight(), SinkKnob.sprite:getWidth(), SinkKnob.sprite:getHeight())
@@ -33,13 +36,29 @@ function game:load()
     SinkKnob.animations.knob:gotoFrame(1, 1)
     SinkKnob.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     SinkKnob.position = {x = Screen.centerX , y = Screen.centerY }
+    SinkKnob.offset = {x = (SinkKnob.sprite:getWidth()/4), y = SinkKnob.sprite:getHeight()}
+    local function sinkRunner(string)
+    if string == 'flip' then
+        if Sink.isOn == true then
+            Sink.isOn = false
+        else
+            Sink.isOn = true
+        end
+        Sink.tick = false
+        print('SinkClock: "DING"')
+    end
+end
+SinkClock = cron.after(1, sinkRunner, 'flip')
 
 end
 
 function game:keypressed(key, scancode, isrepeat)
-    keyTracker:keypressed(key, scancode, isrepeat)
+
     if key == 'escape' then
         csetScene('startMenuAlt')
+    end
+    if key == 's' then
+        Sink.tick = true
     end
 end
 
@@ -56,15 +75,20 @@ end
 
 
 function game:update(dt)
-    
+    if Sink.tick == true then
+        SinkClock:update(dt)
+    end
+    if Sink.tick == false then
+        SinkClock:reset()
+    end
 end
 
 function game:draw()
     love.graphics.setBackgroundColor(0,0,0)
     -- draw the Sink background
-    Sink.animations.background:draw(Sink.sprite, Sink.position.x, Sink.position.y, 0, Sink.resizeValue, Sink.resizeValue, Sink.sprite:getWidth()/2, Sink.sprite:getHeight())
+    Sink.animations.background:draw(Sink.sprite, Sink.position.x, Sink.position.y, 0, Sink.resizeValue, Sink.resizeValue, Sink.offset.x, Sink.offset.y)
     -- draw the Sink knob
-    SinkKnob.animations.knob:draw(SinkKnob.sprite, SinkKnob.position.x, SinkKnob.position.y, 0, SinkKnob.resizeValue, SinkKnob.resizeValue, SinkKnob.sprite:getWidth()/4, SinkKnob.sprite:getHeight())
+    SinkKnob.animations.knob:draw(SinkKnob.sprite, SinkKnob.position.x, SinkKnob.position.y, 0, SinkKnob.resizeValue, SinkKnob.resizeValue, SinkKnob.offset.x, SinkKnob.offset.y)
 end
 
 return game

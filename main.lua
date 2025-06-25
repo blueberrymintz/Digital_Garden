@@ -48,6 +48,7 @@ function love.resize(w, h)
     Screen.centerX = Screen.width / 2
     Screen.centerY = Screen.height / 2
     Screen.resizeValue = Screen.height / Screen.width
+    print("Resize Event: SW" .. Screen.width .. " SH" .. Screen.height .. " CenterX" .. Screen.centerX .. " CenterY" .. Screen.centerY)
 end
 function love.keypressed(key, scancode, isrepeat)
     Scenery:keypressed(key, scancode, isrepeat)
