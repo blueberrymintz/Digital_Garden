@@ -39,14 +39,14 @@ function game:load()
     SinkKnob.position = {x = Screen.centerX , y = Screen.centerY }
     SinkKnob.offset = {x = (SinkKnob.sprite:getWidth()/4), y = SinkKnob.sprite:getHeight()}
 
-    Mug.sprite = love.graphics.newImage('sprites/newSink/mug.png')
-    Mug.grid = anim8.newGrid(Mug.sprite:getWidth(), Mug.sprite:getHeight(), Mug.sprite:getWidth(), Mug.sprite:getHeight())
+    Mug.sprite = love.graphics.newImage('sprites/newSink/mugSheet.png')
+    Mug.grid = anim8.newGrid(Mug.sprite:getWidth()/2, Mug.sprite:getHeight(), Mug.sprite:getWidth(), Mug.sprite:getHeight())
     Mug.animations = {}
-    Mug.animations.mug = anim8.newAnimation(Mug.grid(1, 1), 0.1)
+    Mug.animations.mug = anim8.newAnimation(Mug.grid('1-2', 1), 0.1)
     Mug.animations.mug:gotoFrame(1, 1)
     Mug.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     Mug.position = {x = Screen.centerX, y = Screen.centerY}
-    Mug.offset = {x = (Mug.sprite:getWidth()*Mug.resizeValue)*0.75, y = (Mug.sprite:getHeight()*Mug.resizeValue)*0.75}
+    Mug.offset = {x = ((Mug.sprite:getWidth() * (1/3)) * Mug.resizeValue), y = ((Mug.sprite:getHeight() * (3/4)) * Mug.resizeValue)}
     Mug.isFull = false
 
     local function sinkRunner(string)
@@ -73,7 +73,9 @@ function game:keypressed(key, scancode, isrepeat)
         Sink.tick = true
     end
     if key == 'p' then
-        print("Mug Fullness: " .. Mug.isFull)
+        print("Mug Fullness: ")
+        print('Mug Resize' .. Mug.resizeValue)
+        print('Mug Offset' .. Mug.offset.x .. ' ' .. Mug.offset.y)
     end
 end
 
@@ -85,6 +87,7 @@ function game:mousepressed(mouseX, mouseY, button)
         Mug.position.x = mouseX
         Mug.position.y = mouseY
     end
+    
 end 
 
 
@@ -93,6 +96,11 @@ function game:mousereleased(mouseX, mouseY, button)
         Sink.isOn = false
         SinkClock:reset()
     end
+    if button then
+        Mug.position.x = mouseX
+        Mug.position.y = mouseY
+    end
+    
 end
 
 
@@ -106,6 +114,9 @@ function game:update(dt)
     if Sink.isOn == true then
         Mug.isFull = true
     end
+    if Mug.isFull == true then
+        Mug.animations.mug:gotoFrame(2, 1)
+    end
 end
 
 function game:draw()
@@ -116,6 +127,7 @@ function game:draw()
     SinkKnob.animations.knob:draw(SinkKnob.sprite, SinkKnob.position.x, SinkKnob.position.y, 0, SinkKnob.resizeValue, SinkKnob.resizeValue, SinkKnob.offset.x, SinkKnob.offset.y)
     -- draw the Mug
     Mug.animations.mug:draw(Mug.sprite, Mug.position.x, Mug.position.y, 0, Mug.resizeValue, Mug.resizeValue, Mug.offset.x, Mug.offset.y)
+
 end
 
 
