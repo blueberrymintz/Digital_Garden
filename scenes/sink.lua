@@ -46,7 +46,7 @@ function game:load()
     Mug.animations.mug:gotoFrame(1, 1)
     Mug.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     Mug.position = {x = Screen.centerX, y = Screen.centerY}
-    Mug.offset = {x = (Mug.sprite:getWidth()*Mug.resizeValue) / 2, y = (Mug.sprite:getHeight()*Mug.resizeValue) / 2}
+    Mug.offset = {x = (Mug.sprite:getWidth()*Mug.resizeValue)*0.75, y = (Mug.sprite:getHeight()*Mug.resizeValue)*0.75}
 
     local function sinkRunner(string)
     if string == 'flip' then
@@ -99,6 +99,7 @@ function game:update(dt)
     if Sink.tick == false then
         SinkClock:reset()
     end
+
 end
 
 function game:draw()
