@@ -47,6 +47,7 @@ function game:load()
     Mug.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     Mug.position = {x = Screen.centerX, y = Screen.centerY}
     Mug.offset = {x = (Mug.sprite:getWidth()*Mug.resizeValue)*0.75, y = (Mug.sprite:getHeight()*Mug.resizeValue)*0.75}
+    Mug.isFull = false
 
     local function sinkRunner(string)
     if string == 'flip' then
@@ -71,6 +72,9 @@ function game:keypressed(key, scancode, isrepeat)
     if key == 's' then
         Sink.tick = true
     end
+    if key == 'p' then
+        print("Mug Fullness: " .. Mug.isFull)
+    end
 end
 
 function game:mousepressed(mouseX, mouseY, button)
@@ -86,7 +90,7 @@ end
 
 function game:mousereleased(mouseX, mouseY, button)
     if button == 1 then
-        Sink.tick = false
+        Sink.isOn = false
         SinkClock:reset()
     end
 end
@@ -99,7 +103,9 @@ function game:update(dt)
     if Sink.tick == false then
         SinkClock:reset()
     end
-
+    if Sink.isOn == true then
+        Mug.isFull = true
+    end
 end
 
 function game:draw()
