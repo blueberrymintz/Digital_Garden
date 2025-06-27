@@ -25,7 +25,7 @@ function game:load()
     Sink.animations.background:gotoFrame(1, 1)
     Sink.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     Sink.position = {x = Screen.centerX, y = Screen.centerY}
-    Sink.offset = {x = (Sink.sprite:getWidth()/2), y = Sink.sprite:getHeight()}
+    Sink.offset = {x = (Sink.sprite:getWidth() / 3), y = Sink.sprite:getHeight()}
     Sink.isOn = false
     Sink.tick = false
 
@@ -37,16 +37,16 @@ function game:load()
     SinkKnob.animations.knob:gotoFrame(1, 1)
     SinkKnob.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
     SinkKnob.position = {x = Screen.centerX , y = Screen.centerY }
-    SinkKnob.offset = {x = (SinkKnob.sprite:getWidth()/4), y = SinkKnob.sprite:getHeight()}
+    SinkKnob.offset = {x = (SinkKnob.sprite:getWidth() / 4), y = SinkKnob.sprite:getHeight()}
 
     Mug.sprite = love.graphics.newImage('sprites/newSink/mugSheet.png')
     Mug.grid = anim8.newGrid(Mug.sprite:getWidth()/2, Mug.sprite:getHeight(), Mug.sprite:getWidth(), Mug.sprite:getHeight())
     Mug.animations = {}
     Mug.animations.mug = anim8.newAnimation(Mug.grid('1-2', 1), 0.1)
     Mug.animations.mug:gotoFrame(1, 1)
-    Mug.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    Mug.resizeValue = (Screen.resizeValue * OSresizeValue) * 2
     Mug.position = {x = Screen.centerX, y = Screen.centerY}
-    Mug.offset = {x = ((Mug.sprite:getWidth() * (1/3)) * Mug.resizeValue), y = ((Mug.sprite:getHeight() * (3/4)) * Mug.resizeValue)}
+    Mug.offset = {x = ((Mug.sprite:getWidth() * (1/2)) * Mug.resizeValue), y = ((Mug.sprite:getHeight()) * Mug.resizeValue)}
     Mug.isFull = false
 
     local function sinkRunner(string)
@@ -113,6 +113,13 @@ function game:update(dt)
     end
     if Sink.isOn == true then
         Mug.isFull = true
+    end
+    if Mug.isFull == true then
+        Mug.animations.mug:gotoFrame(2, 1)
+    end
+    if Mug.isFull == false then
+        Mug.animations.mug:gotoFrame(1, 1) 
+
     end
     if Mug.isFull == true then
         Mug.animations.mug:gotoFrame(2, 1)

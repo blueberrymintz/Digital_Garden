@@ -7,7 +7,16 @@ function garden:load()
     GlobalCurrentScene = "garden"
     --prints to terminal
     print("Warp Successful! Current Scene: Home Garden")
+    garden.sprite = love.graphics.newImage(sprites/homeGarden/gardenBackground.png)
+    garden.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    garden.position = {x = Screen.centerX, y = Screen.centerY}
+    garden.offset = {x = (garden.sprite:getWidth() / 2), y = (garden.sprite:getHeight() / 2)}
+    garden.animations = {}
+    garden.animations.background = anim8.newAnimation(anim8.newGrid(garden.sprite:getWidth(), garden.sprite:getHeight(), garden.sprite:getWidth(), garden.sprite:getHeight())(1, 1), 0.1)
+    garden.animations.background:gotoFrame(1, 1)
+    -- sets the current scene to gardenBackground
 
+    
 
 end
 
