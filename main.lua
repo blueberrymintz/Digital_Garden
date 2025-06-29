@@ -2,7 +2,6 @@ SceneryInit = require("libraries/scenery_main/scenerys")
 
 Scenery = SceneryInit(
     { path = "scenes/example"; key = "example"},
-    { path = "scenes/startMenu"; key = "startMenu"},
     { path = "scenes/homeGarden"; key = "garden"},
     {path = "scenes/settingsMenu"; key = "settings"},
     {path = "scenes/sink"; key = "sink"},
@@ -52,6 +51,9 @@ function love.resize(w, h)
 end
 function love.keypressed(key, scancode, isrepeat)
     Scenery:keypressed(key, scancode, isrepeat)
+    if key == 'p' then
+        print("OS_String: " .. OS_String)
+    end
 end
 function love.mousepressed(mouseX, mouseY, button)
     Scenery:mousepressed(mouseX, mouseY, button)

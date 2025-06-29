@@ -72,6 +72,10 @@ function game:keypressed(key, scancode, isrepeat)
     if key == 's' then
         Sink.tick = true
     end
+    if key == 'a' then
+        print("Attempting warp to home garden")
+        csetScene('garden')
+    end
     if key == 'p' then
         print("Mug Fullness: ")
         print('Mug Resize' .. Mug.resizeValue)

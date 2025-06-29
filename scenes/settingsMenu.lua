@@ -95,11 +95,12 @@ function game:update(dt)
         toggleClockSFX:update(10*dt)
         settingsMenu.animations.sfxToggle:gotoFrame(2)
     end
+    if OS_String ~= 'iOS' and OS_String ~= 'Android' then
 
-     if clockCallBackArrow == 2 then
-        toggleClockBackArrow:update(10*dt)
+        if clockCallBackArrow == 2 then
+            toggleClockBackArrow:update(10*dt)
+        end
     end
-    
     if clockCallMusic  == 1 and clockCallSFX == 1 and clockCallBackArrow == 1 then
         toggleClockMusic:reset()
         toggleClockSFX:reset()
@@ -118,8 +119,8 @@ function game:update(dt)
         if SFXKey == 1 then
             settingsMenu.animations.sfxToggle:gotoFrame(1)
         end
-
 end
+
 
 function game:draw()
     love.graphics.setBackgroundColor(0,0,0)
@@ -129,7 +130,9 @@ function game:draw()
     settingsMenu.animations.background:draw(settingsMenu.sprite, 0, 0, nil, resize)
     settingsMenu.animations.sfxToggle:draw(settingsMenu.toggleSprite, 200, 85, nil, resizeToggle)
     settingsMenu.animations.musicToggle:draw(settingsMenu.toggleSprite, 200, 135, nil, resizeToggle)
+    if OS_String ~= 'iOS' then
     settingsMenu.animations.backArrow:draw(settingsMenu.backArrowSprite, 400, 10, nil, 0.8)
+    end
     love.graphics.rectangle('line',200,180,50,100)
 end
 

@@ -1,22 +1,23 @@
 local garden = {}
-local function csetScene(foo)
+local function csetScene(foo, args)
     LastScene = GlobalCurrentScene
-    garden.setScene(foo)
+    garden.setScene(foo, args)
 end
-function garden:load()
+function garden:load(args)
     GlobalCurrentScene = "garden"
     --prints to terminal
     print("Warp Successful! Current Scene: Home Garden")
-    garden.sprite = love.graphics.newImage(sprites/homeGarden/gardenBackground.png)
-    garden.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
-    garden.position = {x = Screen.centerX, y = Screen.centerY}
-    garden.offset = {x = (garden.sprite:getWidth() / 2), y = (garden.sprite:getHeight() / 2)}
-    garden.animations = {}
-    garden.animations.background = anim8.newAnimation(anim8.newGrid(garden.sprite:getWidth(), garden.sprite:getHeight(), garden.sprite:getWidth(), garden.sprite:getHeight())(1, 1), 0.1)
-    garden.animations.background:gotoFrame(1, 1)
+    flower = {}
+    flower.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/flower.png')
+    flower.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    flower.position = {x = Screen.centerX, y = Screen.centerY}
+    flower.offset = {x = (flower.sprite:getWidth() / 2), y = (flower.sprite:getHeight() / 2)}
+    flower.animations = {}
+    flower.animations.background = anim8.newAnimation(anim8.newGrid(flower.sprite:getWidth(), flower.sprite:getHeight(), flower.sprite:getWidth(), flower.sprite:getHeight())(1, 1), 0.1)
+    flower.animations.background:gotoFrame(1, 1)
     -- sets the current scene to gardenBackground
 
-    
+
 
 end
 
@@ -29,20 +30,21 @@ function garden:keypressed(key, scancode, isrepeat)
         print("Attempting warp: pauseMenu")
         csetScene('pauseMenu')
     end
+    if key == 'd' then
+        -- if d key is pressed open sink
+        print("Attempting warp: sink")
+        csetScene('sink')
+    end
 end
 
 function garden:mousepressed(mouseX, mouseY, button)
     -- prints mouse position and button pressed
-    if button then
-        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
-    end
+
 end
 
 function garden:mousereleased(mouseX, mouseY, button)
     -- resets the mouse button pressed
-    if button then
-        print('Mouse Released X:' .. mouseX .. '  Mouse Released Y:' .. mouseY .. '  Button:' .. button)
-    end
+
 end
 
 function garden:update(dt)
@@ -54,7 +56,7 @@ function garden:draw()
     --background to black
     love.graphics.setBackgroundColor(0,0,0)
     --draws to screen
-    love.graphics.print("Warp Successful! Current Scene: Home Garden", 200, 300)
+    flower.animations.background:draw(flower.sprite, flower.position.x, flower.position.y, 0, flower.resizeValue, flower.resizeValue, flower.offset.x, flower.offset.y)
 end
 
 return garden

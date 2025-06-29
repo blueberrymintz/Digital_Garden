@@ -62,8 +62,8 @@ function game:keypressed(key)
         love.event.quit()
     end
     if key == 's' then
-        print("attempting warp to sink (testing)")
-        csetScene('sink')
+        print("attempting warp to home garden")
+        csetScene('garden')
     end
     if key == 'h' then
         print('W: ' .. love.graphics.getWidth() .. ' H: ' .. love.graphics.getHeight())
@@ -84,15 +84,14 @@ function game:mousepressed(mouseX, mouseY, button)
     end
     if sprites.START.box == 1 then
         print("Start clicked")
-        csetScene('sink')
+        print('Attempting warp to home garden')
+        csetScene('garden')
     end
     if sprites.SETTINGS.box == 1 then
         print("Settings clicked")
         csetScene('settings')
     end
-    if button then
-        print('Mouse X:' .. mouseX .. '  Mouse Y:' .. mouseY .. '  Button:' .. button)
-    end
+
 end
 
 function game:mousereleased(mouseX, mouseY, button)

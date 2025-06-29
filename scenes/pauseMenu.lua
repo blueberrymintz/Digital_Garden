@@ -15,7 +15,7 @@ end
 
 function game:keypressed(key, scancode, isrepeat)
     if key == 'm' then
-        csetScene("startMenu")
+        csetScene("startMenuAlt")
     end
     if key == 'b' then
         csetScene("trueLastScene")
