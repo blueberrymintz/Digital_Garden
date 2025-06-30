@@ -1,13 +1,11 @@
 local game = {}
 local boxes = require 'tracker/boxTracker'
 local anim8 = require 'libraries/anim8-master/anim8'
-
-
 local sprites = {kitbash = {}, START = {}, SETTINGS = {}}
 
 
 local function csetScene(sceneKey)
-    game.setScene = sceneKey
+    game.setScene(sceneKey)
 end
 
 
@@ -40,7 +38,9 @@ function game:load()
 end
 
 function game:keypressed(key, scancode, isrepeat)
-
+    if key == '1' then
+        csetScene("settingsMenuRewrite")
+    end
 
 end
 
