@@ -15,9 +15,18 @@ function garden:load(args)
     flower.animations = {}
     flower.animations.background = anim8.newAnimation(anim8.newGrid(flower.sprite:getWidth(), flower.sprite:getHeight(), flower.sprite:getWidth(), flower.sprite:getHeight())(1, 1), 0.1)
     flower.animations.background:gotoFrame(1, 1)
+    flower.watered = false
     -- sets the current scene to gardenBackground
 
-
+    base = {}
+    base.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/plantBase/plantBaseSheet.png')
+    base.resizeValue = {(Screen.resizeValue * OSresizeValue) * 3}
+    base.position = {x = Screen.centerX, y = Screen.centerY}
+    base.offset = {x = (base.sprite:getWidth() / 2), y = (base.sprite:getHeight() / 2)}
+    base.animations = {}
+    base.animations.default = anim8.newAnimation(anim8.newGrid(base.sprite:getWidth(), base.sprite:getHeight(), base.sprite:getWidth(), base.sprite:getHeight())(1, 1), 0.1)
+    base.animations.default:gotoFrame(1, 1)
+    base.drySoil = true
 
 end
 
