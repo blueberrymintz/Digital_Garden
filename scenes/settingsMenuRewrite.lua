@@ -95,8 +95,8 @@ local function updateToggle(toggleString)
 end
 
 function game:keypressed(key, scancode, isrepeat)
-    if key == 'escape' then
-        csetScene('startMenuAlt')
+    if key == '1' then
+        csetScene('startMenuRewrite')
     end
 
     if key == 's' then

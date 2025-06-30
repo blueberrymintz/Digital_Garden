@@ -61,10 +61,12 @@ function game:mousereleased(mouseX, mouseY, button)
     local SETTINGSbox = BoxTracker2(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
     if button and STARTbox == 1 then
         print("Start button released")
+        csetScene("homeGardenRewrite")
 
     end
     if button and SETTINGSbox == 1 then
         print("Settings button released")
+        csetScene("settingsMenuRewrite")
     end
 end
 
