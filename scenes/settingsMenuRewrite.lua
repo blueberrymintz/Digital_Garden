@@ -74,8 +74,8 @@ function game:load()
 
 end
 
-local function updateToggle(string)
-        if string == 'SFX' then
+local function updateToggle(toggleString)
+        if toggleString == 'SFX' then
             if SFXKey == 1 then
                 SFXKey = 2
                 sprites.toggle.animation.SFX:gotoFrame(1, 1)
@@ -83,7 +83,7 @@ local function updateToggle(string)
                 SFXKey = 1
                 sprites.toggle.animation.SFX:gotoFrame(2, 1)
             end
-        elseif string == 'music' then
+        elseif toggleString == 'music' then
             if MusicKey == 1 then
                 MusicKey = 2
                 sprites.toggle.animation.music:gotoFrame(1, 1)
@@ -111,7 +111,22 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    
+    local SFXbox = BoxTracker2(sprites.SFX.pos.x, sprites.SFX.pos.y, sprites.SFX.trueWidth, sprites.SFX.trueHeight, mouseX, mouseY)
+    local musicBox = BoxTracker2(sprites.music.pos.x, sprites.music.pos.y, sprites.music.trueWidth, sprites.music.trueHeight, mouseX, mouseY)
+    local SFXtoggleBox = BoxTracker2(sprites.toggle.pos.SFX.x, sprites.toggle.pos.SFX.y, sprites.toggle.trueWidth, sprites.toggle.trueHeight, mouseX, mouseY)
+    local musicToggleBox = BoxTracker2(sprites.toggle.pos.music.x, sprites.toggle.pos.music.y, sprites.toggle.trueWidth, sprites.toggle.trueHeight, mouseX, mouseY)
+    if button == 1 and SFXbox == 1 then
+        updateToggle('SFX')
+    end
+    if button == 1 and musicBox == 1 then
+        updateToggle('music')
+    end
+    if button == 1 and SFXtoggleBox == 1 then
+        updateToggle('SFX')
+    end
+    if button == 1 and musicToggleBox == 1 then
+        updateToggle('music')
+    end
 end
 
 function game:mousereleased(mouseX, mouseY, button)
