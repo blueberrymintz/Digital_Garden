@@ -9,7 +9,7 @@ function garden:load(args)
     print("Warp Successful! Current Scene: Home Garden")
     flower = {}
     flower.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/flower.png')
-    flower.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    flower.resizeValue = (Screen.resizeValue * OSresizeValue) * 1
     flower.position = {x = Screen.centerX, y = Screen.centerY}
     flower.offset = {x = (flower.sprite:getWidth() / 2), y = (flower.sprite:getHeight() / 2)}
     flower.animations = {}
@@ -20,13 +20,15 @@ function garden:load(args)
 
     base = {}
     base.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/plantBase/plantBaseSheet.png')
-    base.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    base.grid = anim8.newGrid(base.sprite:getWidth() / 3, base.sprite:getHeight(), base.sprite:getWidth(), base.sprite:getHeight())
+    base.resizeValue = (Screen.resizeValue * OSresizeValue) * 1
     base.position = {x = Screen.centerX, y = Screen.centerY + (Screen.centerY / 10)}
     base.offset = {x = (base.sprite:getWidth() / 2), y = (base.sprite:getHeight() / 2)}
     base.animations = {}
-    base.animations.default = anim8.newAnimation(anim8.newGrid(base.sprite:getWidth(), base.sprite:getHeight(), base.sprite:getWidth(), base.sprite:getHeight())(1, 1), 0.1)
+    base.animations.default = anim8.newAnimation(base.grid('1 - 3', 1), 0.1)
     base.animations.default:gotoFrame(1, 1)
     base.drySoil = true
+
 
 end
 
@@ -43,6 +45,9 @@ function garden:keypressed(key, scancode, isrepeat)
         -- if d key is pressed open sink
         print("Attempting warp: sink")
         csetScene('sink')
+    end
+    if key == '1' then
+        
     end
 end
 

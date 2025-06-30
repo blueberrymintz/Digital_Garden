@@ -31,7 +31,7 @@ Screen = {}
     Screen.width, Screen.height = love.window.getMode()
     Screen.centerX = Screen.width / 2
     Screen.centerY = Screen.height / 2
-    Screen.resizeValue = Screen.height / Screen.width
+    Screen.resizeValue = {w = 402/Screen.width, h = 874/Screen.height}
 local pauseMenuClock = cron.after(0.1, pauseClockFunction)
 function love.load()
     LastScene = nil
@@ -47,7 +47,7 @@ function love.resize(w, h)
     Screen.width, Screen.height = w, h
     Screen.centerX = Screen.width / 2
     Screen.centerY = Screen.height / 2
-    Screen.resizeValue = Screen.height / Screen.width
+    Screen.resizeValue = {w = 402/Screen.width, h = 874/Screen.height}
     print("Resize Event: SW" .. Screen.width .. " SH" .. Screen.height .. " CenterX" .. Screen.centerX .. " CenterY" .. Screen.centerY)
 end
 function love.keypressed(key, scancode, isrepeat)

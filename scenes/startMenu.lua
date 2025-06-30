@@ -13,7 +13,7 @@ function game:load()
     sprites.kitbash = {}
     sprites.START = {}
     sprites.SETTINGS = {}
-    local resizeValue = Screen.resizeValue
+    local resizeValue = Screen.resizeValue.w
     FIRSTSTART = false
     OSresizeValue = 1
     if OS_String == 'iOS' then
@@ -28,14 +28,14 @@ function game:load()
 
         local resizeValue = Screen.resizeValue
 
-        sprites.kitbash.resizeValue = resizeValue * OSresizeValue
+        sprites.kitbash.resizeValue = resizeValue
         sprites.kitbash.image = love.graphics.newImage('sprites/start_menu/kitbash.png')
         sprites.kitbash.grid = anim8.newGrid(sprites.kitbash.image:getWidth(), sprites.kitbash.image:getHeight(), sprites.kitbash.image:getWidth(), sprites.kitbash.image:getHeight())
         sprites.kitbash.animation = anim8.newAnimation(sprites.kitbash.grid(1, 1), 0.1)
         sprites.kitbash.stretch = {x = 1, y = 1}
-        sprites.kitbash.position = {x = 0, y = (Screen.centerY - (sprites.kitbash.image:getHeight() * sprites.kitbash.resizeValue) / 2) /3}
+        sprites.kitbash.position = {x = 0, y = 0}
         
-        sprites.START.resizeValue = (resizeValue * 0.5) * OSresizeValue
+        sprites.START.resizeValue = (resizeValue * 0.5)
         sprites.START.position = {x = 1, y = 60}
         sprites.START.image = love.graphics.newImage('sprites/start_menu/startMenu2/start.png')
         sprites.START.grid = anim8.newGrid(sprites.START.image:getWidth(), sprites.START.image:getHeight(), sprites.START.image:getWidth(), sprites.START.image:getHeight())
@@ -43,7 +43,7 @@ function game:load()
         sprites.START.position = {x = 0, y = sprites.kitbash.position.y + sprites.kitbash.image:getHeight() * sprites.kitbash.resizeValue + 20}
         
 
-        sprites.SETTINGS.resizeValue = (resizeValue * 0.5) * OSresizeValue
+        sprites.SETTINGS.resizeValue = (resizeValue * 0.5)
         sprites.SETTINGS.position = {x = 1, y = 120}
         sprites.SETTINGS.image = love.graphics.newImage('sprites/start_menu/startMenu2/settings.png')
         sprites.SETTINGS.grid = anim8.newGrid(sprites.SETTINGS.image:getWidth(), sprites.SETTINGS.image:getHeight(), sprites.SETTINGS.image:getWidth(), sprites.SETTINGS.image:getHeight())
