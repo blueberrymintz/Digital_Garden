@@ -20,8 +20,8 @@ function garden:load(args)
 
     base = {}
     base.sprite = love.graphics.newImage('sprites/PLANT_SPRITES_BAD/plantBase/plantBaseSheet.png')
-    base.resizeValue = {(Screen.resizeValue * OSresizeValue) * 3}
-    base.position = {x = Screen.centerX, y = Screen.centerY}
+    base.resizeValue = (Screen.resizeValue * OSresizeValue) * 3
+    base.position = {x = Screen.centerX, y = Screen.centerY + (Screen.centerY / 10)}
     base.offset = {x = (base.sprite:getWidth() / 2), y = (base.sprite:getHeight() / 2)}
     base.animations = {}
     base.animations.default = anim8.newAnimation(anim8.newGrid(base.sprite:getWidth(), base.sprite:getHeight(), base.sprite:getWidth(), base.sprite:getHeight())(1, 1), 0.1)
@@ -66,6 +66,7 @@ function garden:draw()
     love.graphics.setBackgroundColor(0,0,0)
     --draws to screen
     flower.animations.background:draw(flower.sprite, flower.position.x, flower.position.y, 0, flower.resizeValue, flower.resizeValue, flower.offset.x, flower.offset.y)
+    base.animations.default:draw(base.sprite, base.position.x, base.position.y, 0, base.resizeValue, base.resizeValue, base.offset.x, base.offset.y)
 end
 
 return garden
