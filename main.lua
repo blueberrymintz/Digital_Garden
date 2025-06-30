@@ -7,7 +7,8 @@ Scenery = SceneryInit(
     {path = "scenes/sink"; key = "sink"},
     {path = "scenes/pauseMenu"; key = "pauseMenu"},
     {path = "scenes/startMenu"; key = "startMenuAlt"; default = true},
-    {path = "scenes/fixer"; key = 'fixer'}
+    {path = "scenes/fixer"; key = 'fixer'},
+    {path = "scenes/elevator"; key = 'elevator'}
 )
 Main = {}
 anim8 = require 'libraries/anim8-master/anim8'

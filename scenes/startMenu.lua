@@ -73,6 +73,9 @@ function game:keypressed(key)
         OS = 'macOS'
         csetScene('fixer')
     end
+    if key == 'e' then
+        csetScene("elevator")
+    end
 end
 
 function game:mousepressed(mouseX, mouseY, button)
