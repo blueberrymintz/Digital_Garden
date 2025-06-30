@@ -16,7 +16,7 @@ end
     local clockCallSFX = 1
     local clockCallBackArrow = 1
 -- warps back to start menu
-local toggleClockBackArrow = cron.after(0.05, csetScene, 'startMenu')
+local toggleClockBackArrow = cron.after(0.05, csetScene, 'startMenuAlt')
 
 
 function game:load()
@@ -130,9 +130,7 @@ function game:draw()
     settingsMenu.animations.background:draw(settingsMenu.sprite, 0, 0, nil, resize)
     settingsMenu.animations.sfxToggle:draw(settingsMenu.toggleSprite, 200, 85, nil, resizeToggle)
     settingsMenu.animations.musicToggle:draw(settingsMenu.toggleSprite, 200, 135, nil, resizeToggle)
-    if OS_String ~= 'iOS' then
     settingsMenu.animations.backArrow:draw(settingsMenu.backArrowSprite, 400, 10, nil, 0.8)
-    end
     love.graphics.rectangle('line',200,180,50,100)
 end
 

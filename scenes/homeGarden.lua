@@ -1,4 +1,4 @@
-local garden = {}
+--[[ local garden = {}
 local function csetScene(foo, args)
     LastScene = GlobalCurrentScene
     garden.setScene(foo, args)
@@ -68,4 +68,4 @@ function garden:draw()
     flower.animations.background:draw(flower.sprite, flower.position.x, flower.position.y, 0, flower.resizeValue, flower.resizeValue, flower.offset.x, flower.offset.y)
 end
 
-return garden
+return garden ]]--

@@ -6,7 +6,7 @@ Scenery = SceneryInit(
     {path = "scenes/settingsMenu"; key = "settings"},
     {path = "scenes/sink"; key = "sink"},
     {path = "scenes/pauseMenu"; key = "pauseMenu"},
-    {path = "scenes/startMenu2"; key = "startMenuAlt"; default = true},
+    {path = "scenes/startMenu"; key = "startMenuAlt"; default = true},
     {path = "scenes/fixer"; key = 'fixer'}
 )
 Main = {}
@@ -53,6 +53,12 @@ function love.keypressed(key, scancode, isrepeat)
     Scenery:keypressed(key, scancode, isrepeat)
     if key == 'p' then
         print("OS_String: " .. OS_String)
+        print("Screen.width:" .. Screen.width)
+        print("Screen.height:" .. Screen.height)
+        print("Screen.centerX:" .. Screen.centerX)
+        print("Screen.centerY:" .. Screen.centerY)
+        print("Screen.resizeValue:" .. Screen.resizeValue)
+        print("MouseX:" .. love.mouse.getX() .. " MouseY:" .. love.mouse.getY())
     end
 end
 function love.mousepressed(mouseX, mouseY, button)
