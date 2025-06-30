@@ -51,29 +51,67 @@ function game:load()
     sprites.toggle.trueHeight = sprites.toggle.image:getHeight() * sprites.toggle.resize.h
 
     sprites.toggle.animation = {}
-    sprites.toggle.animation.SFX = anim8.newAnimation(sprites.toggle.grid(1, 1), 0.1)
-    sprites.toggle.animation.music = anim8.newAnimation(sprites.toggle.grid(1, 1), 0.1)
+    sprites.toggle.animation.SFX = anim8.newAnimation(sprites.toggle.grid('1-2', 1), 0.1)
+    sprites.toggle.animation.music = anim8.newAnimation(sprites.toggle.grid('1-2', 1), 0.1)
 
     sprites.toggle.pos = {
         SFX = {x = 250 * Screen.resizeValue.w, y = 80 * Screen.resizeValue.h},
         music = {x = 250 * Screen.resizeValue.w, y = 180 * Screen.resizeValue.h}
     }
+    if MusicKey == 1 then
+        sprites.toggle.animation.music:gotoFrame(2, 1)
+    elseif MusicKey == 2 then
+        sprites.toggle.animation.music:gotoFrame(1, 1)
+    end
 
-
-
-
+    if SFXKey == 1 then
+        sprites.toggle.animation.SFX:gotoFrame(2, 1)
+    elseif SFXKey == 2 then
+        sprites.toggle.animation.SFX:gotoFrame(1, 1)
+    end
 
     
 
 end
 
+local function updateToggle(string)
+        if string == 'SFX' then
+            if SFXKey == 1 then
+                SFXKey = 2
+                sprites.toggle.animation.SFX:gotoFrame(1, 1)
+            else
+                SFXKey = 1
+                sprites.toggle.animation.SFX:gotoFrame(2, 1)
+            end
+        elseif string == 'music' then
+            if MusicKey == 1 then
+                MusicKey = 2
+                sprites.toggle.animation.music:gotoFrame(1, 1)
+            else
+                MusicKey = 1
+                sprites.toggle.animation.music:gotoFrame(2, 1)
+        end
+    end
+end
+
 function game:keypressed(key, scancode, isrepeat)
+    if key == 'escape' then
+        csetScene('startMenuAlt')
+    end
+
+    if key == 's' then
+        updateToggle('SFX')
+    end
+
+    if key == 'm' then
+        updateToggle('music')
+    end
 
 
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-
+    
 end
 
 function game:mousereleased(mouseX, mouseY, button)
