@@ -12,13 +12,14 @@ end
 
 
 function game:load()
-    
+    -- rewritten code allows resizing to actually work instead of being completely static
     sprites.kitbash.image = love.graphics.newImage('sprites/start_menu/kitbash.png')
     sprites.kitbash.pos = {x = 0 * Screen.resizeValue.w, y = 0 * Screen.resizeValue.h}
     sprites.kitbash.resize = {w = Screen.resizeValue.w * 0.2, h = Screen.resizeValue.h * 0.2}
     sprites.kitbash.grid = anim8.newGrid(sprites.kitbash.image:getWidth(), sprites.kitbash.image:getHeight(), sprites.kitbash.image:getWidth(), sprites.kitbash.image:getHeight())
     sprites.kitbash.animation = anim8.newAnimation(sprites.kitbash.grid(1, 1), 0.1)
-
+    
+    --declarations for start button
     sprites.START.image = love.graphics.newImage('sprites/start_menu/startMenu2/start.png')
     sprites.START.pos = {x = 0 * Screen.resizeValue.w, y = 80 * Screen.resizeValue.h}
     sprites.START.resize = {w = Screen.resizeValue.w * 0.2, h = Screen.resizeValue.h * 0.2}
@@ -27,14 +28,15 @@ function game:load()
     sprites.START.trueWidth = sprites.START.image:getWidth() * sprites.START.resize.w
     sprites.START.trueHeight = sprites.START.image:getHeight() * sprites.START.resize.h
 
+    -- declarations for settings
     sprites.SETTINGS.image = love.graphics.newImage('sprites/start_menu/startMenu2/settings.png')
     sprites.SETTINGS.pos = {x = 0 * Screen.resizeValue.w, y = 200 * Screen.resizeValue.h}
     sprites.SETTINGS.resize = {w = Screen.resizeValue.w * 0.2, h = Screen.resizeValue.h * 0.2}
     sprites.SETTINGS.grid = anim8.newGrid(sprites.SETTINGS.image:getWidth(), sprites.SETTINGS.image:getHeight(), sprites.SETTINGS.image:getWidth(), sprites.SETTINGS.image:getHeight())
     sprites.SETTINGS.animation = anim8.newAnimation(sprites.SETTINGS.grid(1, 1), 0.1)
+    sprites.SETTINGS.trueWidth = sprites.SETTINGS.image:getWidth() * sprites.SETTINGS.resize.w
+    sprites.SETTINGS.trueHeight = sprites.SETTINGS.image:getHeight() * sprites.SETTINGS.resize.h
     
-    local STARTbox = boxes.newBox(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
-
 end
 
 function game:keypressed(key, scancode, isrepeat)
@@ -43,13 +45,27 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    if button and STARTbox == true then
+    local STARTbox = BoxTracker2(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
+    local SETTINGSbox = BoxTracker2(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
+    if button and STARTbox == 1 then
         print("Start button pressed")
+    end
+    if button and SETTINGSbox == 1 then
+        print("Settings button pressed")
+
     end
 end
 
 function game:mousereleased(mouseX, mouseY, button)
+    local STARTbox = BoxTracker2(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
+    local SETTINGSbox = BoxTracker2(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
+    if button and STARTbox == 1 then
+        print("Start button released")
 
+    end
+    if button and SETTINGSbox == 1 then
+        print("Settings button released")
+    end
 end
 
 function game:update(dt)
