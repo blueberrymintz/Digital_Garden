@@ -1,5 +1,9 @@
 local game = {}
 
+local anim8 = require 'libraries/anim8-master/anim8'
+
+
+
 function game:load()
     -- elevator sprites
 

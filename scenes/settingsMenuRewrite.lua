@@ -13,6 +13,7 @@ end
 
 
 function game:load()
+    print("Warp Successful! Current Scene: Settings Menu Rewrite")
 
     sprites.settings = {}
     sprites.settings.image = love.graphics.newImage('sprites/settingsMenuRewrite/settingsSprite.png')

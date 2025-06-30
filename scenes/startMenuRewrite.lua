@@ -10,6 +10,7 @@ end
 
 
 function game:load()
+    print("Warp Successful! Current Scene: Start Menu Rewrite")
     -- rewritten code allows resizing to actually work instead of being completely static
     sprites.kitbash.image = love.graphics.newImage('sprites/start_menu/kitbash.png')
     sprites.kitbash.pos = {x = 0 * Screen.resizeValue.w, y = 0 * Screen.resizeValue.h}
@@ -40,6 +41,9 @@ end
 function game:keypressed(key, scancode, isrepeat)
     if key == '1' then
         csetScene("settingsMenuRewrite")
+    end
+    if key == '2' then
+        csetScene("elevator")
     end
 
 end
