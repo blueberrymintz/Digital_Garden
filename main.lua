@@ -6,14 +6,14 @@ Scenery = SceneryInit(
     {path = "scenes/settingsMenu"; key = "settings"},
     {path = "scenes/sink"; key = "sink"},
     {path = "scenes/pauseMenu"; key = "pauseMenu"},
-    {path = "scenes/startMenu"; key = "startMenuAlt"; default = true},
+    {path = "scenes/startMenu"; key = "startMenuAlt"},
     {path = "scenes/fixer"; key = 'fixer'},
-    {path = "scenes/elevator"; key = 'elevator'}
+    {path = "scenes/elevator"; key = 'elevator'},
+    {path = "scenes/startMenuRewrite"; key = "startMenuRewrite"; default = true}
 )
 Main = {}
-anim8 = require 'libraries/anim8-master/anim8'
-think = require 'thinker'
-settings = require 'settings'
+local anim8 = require 'libraries/anim8-master/anim8'
+local settings = require 'settings'
 DevelopmentMode = true
 cron = require 'libraries/cronLua_Master/cron'
 
@@ -38,7 +38,7 @@ function love.load()
     Scenery:load()
     GlobalCurrentScene = nil
     print("SW" .. Screen.width .. " SH" .. Screen.height .. " CenterX" .. Screen.centerX .. " CenterY" .. Screen.centerY)
-    print("resizeValue: " .. Screen.resizeValue)
+    print("resizeValue W:" .. Screen.resizeValue.w .. " H: " .. Screen.resizeValue.h)
     OS_String = love.system.getOS()
     print("OS: " .. OS_String)
 end
@@ -58,7 +58,7 @@ function love.keypressed(key, scancode, isrepeat)
         print("Screen.height:" .. Screen.height)
         print("Screen.centerX:" .. Screen.centerX)
         print("Screen.centerY:" .. Screen.centerY)
-        print("Screen.resizeValue:" .. Screen.resizeValue)
+        print("Screen.resizeValue W:" .. Screen.resizeValue.w .. " H:" .. Screen.resizeValue.h)
         print("MouseX:" .. love.mouse.getX() .. " MouseY:" .. love.mouse.getY())
     end
 end
