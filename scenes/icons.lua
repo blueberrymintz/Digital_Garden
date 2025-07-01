@@ -20,15 +20,34 @@ function game:load()
     sprites.waterCan.image = love.graphics.newImage("sprites/symbols/wateringCanIcon")
 
     -- plant icon
+        sprites.plant.grid = anim8.newGrid(sprites.plant.image:getWidth(), sprites.plant.image:getHeight(), sprites.plant.image:getWidth(), sprites.plant.image:getHeight())
+        sprites.plant.position = {
+            x = 50,
+            y = 50
+        }
+        sprites.plant.resize = {
+            w = Screen.resizeValue,
+            h = Screen.resizeValue
+        }
+        sprites.plant.trueWidth = sprites.plant.image:getWidth() * sprites.plant.resize.w
+        sprites.plant.trueHeight = sprites.plant.image:getHeight() * sprites.plant.resize.h
 
-    sprites.plant.grid = anim8.newGrid(sprites.plant.image:getWidth(), sprites.plant.image:getHeight(), sprites.plant.image:getWidth(), sprites.plant.image:getHeight())
-    sprites.plant.position = {
-        x = 50,
-        y = 50
-    }
-    sprites.plant.resize = {
-        w = 
-    }
+    -- lifting icon
+        sprites.lifting.grid = anim8.newGrid(sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight(), sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight())
+        sprites.lifting.position = {
+            x = 100,
+            y = 50
+        }
+        sprites.lifting.resize = {
+            w = Screen.resizeValue,
+            h = Screen.resizeValue
+        }
+        sprites.plant.trueWidth = sprites.plant.image:getWidth() * sprites.plant.resize.w
+        sprites.plant.trueHeight = sprites.plant.image:getHeight() * sprites.plant.resize.h
+        
+    -- 
+    
+
     
 end
 
