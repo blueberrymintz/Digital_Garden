@@ -133,7 +133,10 @@ function game:update(dt)
 end
 
 function game:draw()
-    
+    sprites.plant.animation.a:draw(sprites.plant.image, sprites.plant.position.x, sprites.plant.position.y, 0, sprites.plant.resize.w, sprites.plant.resize.h)
+    sprites.lifting.animation.a:draw(sprites.lifting.image, sprites.lifting.position.x, sprites.lifting.position.y, 0, sprites.lifting.resize.w, sprites.lifting.resize.h)
+    sprites.park.animation.a:draw(sprites.park.image, sprites.park.position.x, sprites.park.position.y, sprites.park.resize.w, sprites.park.resize.h)
+    sprites.store.
 end
 
 return game
