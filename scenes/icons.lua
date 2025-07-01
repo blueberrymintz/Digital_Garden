@@ -93,9 +93,25 @@ sprites.shift = {
 
 
  -- ALL animations
-    sprites.plant.animations = {
-        a = 
-    }
+        sprites.plant.animation = {
+        a = anim8.newAnimation(sprites.plant.grid( 1, 1), 1)
+        }
+
+        sprites.lifting.animation = {
+        a = anim8.newAnimation(sprites.lifting.grid( 1, 1), 1)
+        }
+
+        sprites.park.animation = {
+        a = anim8.newAnimation(sprites.park.grid( 1, 1), 1)
+        }
+        
+        sprites.store.animation = {
+        a = anim8.newAnimation(sprites.store.grid( 1, 1), 1)
+        }
+
+        sprites.waterCan.animation = {
+        a = anim8.newAnimation(sprites.waterCan.grid( 1, 1), 1)
+        }
     
 end
 
