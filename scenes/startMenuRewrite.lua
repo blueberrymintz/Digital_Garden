@@ -45,6 +45,9 @@ function game:keypressed(key, scancode, isrepeat)
     if key == '2' then
         csetScene("elevator")
     end
+    if key == '3' then
+        csetScene("icons")
+    end
 
 end
 
