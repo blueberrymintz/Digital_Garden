@@ -136,7 +136,8 @@ function game:draw()
     sprites.plant.animation.a:draw(sprites.plant.image, sprites.plant.position.x, sprites.plant.position.y, 0, sprites.plant.resize.w, sprites.plant.resize.h)
     sprites.lifting.animation.a:draw(sprites.lifting.image, sprites.lifting.position.x, sprites.lifting.position.y, 0, sprites.lifting.resize.w, sprites.lifting.resize.h)
     sprites.park.animation.a:draw(sprites.park.image, sprites.park.position.x, sprites.park.position.y, sprites.park.resize.w, sprites.park.resize.h)
-    sprites.store.
+    sprites.store.animation.a:draw(sprites.store.image, sprites.store.position.x, sprites.store.position.y, 0, sprites.store.resize.w, sprites.store.resize.h)
+    sprites.waterCan.animation.a:draw(sprites.waterCan.image, sprites.waterCan.x, sprites.waterCan.y, 0, sprites.waterCan.resize.w, sprites.waterCan.resize.h)
 end
 
 return game

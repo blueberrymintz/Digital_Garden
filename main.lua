@@ -11,7 +11,8 @@ Scenery = SceneryInit(
     {path = "scenes/elevator"; key = 'elevator'},
     {path = "scenes/startMenuRewrite"; key = "startMenuRewrite"; default = true},
     {path = "scenes/settingsMenuRewrite"; key = "settingsMenuRewrite"},
-    {path = "scenes/homeGardenRewrite"; key = "homeGardenRewrite"}
+    {path = "scenes/homeGardenRewrite"; key = "homeGardenRewrite"},
+    {path = "scenes/icons"; key = "icons"}
 )
 Main = {}
 local anim8 = require 'libraries/anim8-master/anim8'
