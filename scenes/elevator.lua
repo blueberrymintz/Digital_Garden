@@ -11,6 +11,9 @@ local function csetScene(sceneKey)
 end
 
 
+local callElevator = false
+local resetElevator = false
+local elevatorIsHere = false
 local sprites = {}
 
 function game:load()
@@ -25,7 +28,8 @@ function game:load()
    sprites.elevator.position = {x = 50, y = 300}
 
    sprites.elevator.truePos = {x = sprites.elevator.position.x * Screen.resizeValue.w, y = sprites.elevator.position.y * Screen.resizeValue.h}
-
+   sprites.elevator.trueWidth = sprites.elevator.sprite:getWidth() * sprites.elevator.resizeValue.w
+   sprites.elevator.trueHeight = sprites.elevator.sprite:getHeight() * sprites.elevator.resizeValue.h
    sprites.elevator.animations = {}
    sprites.elevator.animations.g = anim8.newAnimation(sprites.elevator.grid('1-2',1), 1)
 
@@ -59,12 +63,15 @@ function game:load()
     sprites.button.position.down.trueWidth = sprites.button.sprite.down:getWidth() * sprites.button.resizeValue.w
     sprites.button.position.down.trueHeight = sprites.button.sprite.down:getHeight() * sprites.button.resizeValue.h
 
-
+    if elevatorIsHere then
+        sprites.elevator.animations.g:gotoFrame(1, 1)
+    else
+        sprites.elevator.animations.g:gotoFrame(2, 1)
+    end
     print("ElevatorX = " ..  sprites.elevator.position.x .. " ElevatorY = " .. sprites.elevator.position.y)
     print("button.position.down = " ..  sprites.button.position.down.x .. " " .. sprites.button.position.down.y .. " button.position.up = " .. sprites.button.position.up.x .. " " .. sprites.button.position.up.y)
 end
-local callElevator = false
-local resetElevator = false
+
 local function elevatorArrival()
 
     print("The elevator has arrived!")
@@ -75,6 +82,7 @@ local function elevatorArrival()
     sprites.button.animations.up:gotoFrame(1, 1)
     sprites.button.animations.down:gotoFrame(1, 1)
     resetElevator = true
+    elevatorIsHere = true
 end
 local function resetElevatorFunction()
 
@@ -103,7 +111,7 @@ end
 function game:mousepressed(mouseX, mouseY, button)
     local upArrowBox = BoxTracker2(sprites.button.position.up.x, sprites.button.position.up.y, sprites.button.position.up.trueWidth, sprites.button.position.up.trueHeight, mouseX, mouseY)
     local downArrowBox = BoxTracker2(sprites.button.position.down.x, sprites.button.position.down.y, sprites.button.position.down.trueWidth, sprites.button.position.down.trueHeight, mouseX, mouseY)
-
+    local elevatorBox = BoxTracker2(sprites.elevator.position.x, sprites.elevator.position.y, sprites.elevator.trueWidth, sprites.elevator.trueHeight, mouseX, mouseY)
     if button and upArrowBox == 1 then
         print("Up Arrow Pressed")
         sprites.button.animations.up:gotoFrame(2, 1)
@@ -114,6 +122,14 @@ function game:mousepressed(mouseX, mouseY, button)
         print("Down Arrow Pressed")
         sprites.button.animations.down:gotoFrame(2, 1)
         callElevator = true
+    end
+    if button and elevatorBox == 1 then
+        print("Elevator Pressed")
+        if elevatorIsHere then
+            csetScene("homeGardenRewrite")
+        else
+            print("Elevator is not here yet!")
+        end
     end
 
 end
