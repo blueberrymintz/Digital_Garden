@@ -54,19 +54,36 @@ function game:load()
 
     sprites.button.position.up.truePos = {x = sprites.button.position.up.x * sprites.button.resizeValue.w, y = sprites.button.position.up.y * sprites.button.resizeValue.h}
     sprites.button.position.down.truePos = {x = sprites.button.position.down.x * sprites.button.resizeValue.w, y = sprites.button.position.down.y * sprites.button.resizeValue.h}
+    sprites.button.position.up.trueWidth = sprites.button.sprite.up:getWidth() * sprites.button.resizeValue.w
+    sprites.button.position.up.trueHeight = sprites.button.sprite.up:getHeight() * sprites.button.resizeValue.h
+    sprites.button.position.down.trueWidth = sprites.button.sprite.down:getWidth() * sprites.button.resizeValue.w
+    sprites.button.position.down.trueHeight = sprites.button.sprite.down:getHeight() * sprites.button.resizeValue.h
+
 
     print("ElevatorX = " ..  sprites.elevator.position.x .. " ElevatorY = " .. sprites.elevator.position.y)
     print("button.position.down = " ..  sprites.button.position.down.x .. " " .. sprites.button.position.down.y .. " button.position.up = " .. sprites.button.position.up.x .. " " .. sprites.button.position.up.y)
 end
 local callElevator = false
+local resetElevator = false
 local function elevatorArrival()
 
     print("The elevator has arrived!")
     callElevator = false
+    sprites.elevator.animations.g:gotoFrame(1, 1)
+    
+    -- reset the button animations
+    sprites.button.animations.up:gotoFrame(1, 1)
+    sprites.button.animations.down:gotoFrame(1, 1)
+    resetElevator = true
+end
+local function resetElevatorFunction()
+
+    resetElevator = false
+    print("Elevator reset")
 end
 
 local callElevatorClock = cron.after(5, elevatorArrival)
-
+local resetElevatorClock = cron.after(1, resetElevatorFunction)
 
 
 
@@ -84,14 +101,15 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    local upArrowBox = BoxTracker2(sprites.button.position.up.x, sprites.button.position.up.y, sprites.button.position.up.truePos.x, sprites.button.position.up.truePos.y, mouseX, mouseY)
-    local downArrowBox = BoxTracker2(sprites.button.position.down.x, sprites.button.position.down.y, sprites.button.position.down.truePos.x, sprites.button.position.down.truePos.y, mouseX, mouseY)
-    
+    local upArrowBox = BoxTracker2(sprites.button.position.up.x, sprites.button.position.up.y, sprites.button.position.up.trueWidth, sprites.button.position.up.trueHeight, mouseX, mouseY)
+    local downArrowBox = BoxTracker2(sprites.button.position.down.x, sprites.button.position.down.y, sprites.button.position.down.trueWidth, sprites.button.position.down.trueHeight, mouseX, mouseY)
+
     if button and upArrowBox == 1 then
         print("Up Arrow Pressed")
         sprites.button.animations.up:gotoFrame(2, 1)
         callElevator = true
     end
+
     if button and downArrowBox == 1 then
         print("Down Arrow Pressed")
         sprites.button.animations.down:gotoFrame(2, 1)
@@ -108,6 +126,9 @@ end
 function game:update(dt)
     if callElevator then
         callElevatorClock:update(dt)
+    end
+    if resetElevator then
+        resetElevatorClock:reset()
     end
     
 
