@@ -75,9 +75,9 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight)
-    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight)
-    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight)
+    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
+    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
+    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
     if button and settingsBox then
         print("settingsBox clicked")
     end
@@ -90,13 +90,13 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
-    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight)
-    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight)
-    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight)
+    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
+    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
+    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
     if button and settingsBox then
         print("settingsBox clicked")
     end
-    if button and homeBox then 
+    if button and homeBox then
         print("homeBox clicked")
     end
     if button and portalsBox then
