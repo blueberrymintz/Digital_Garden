@@ -31,7 +31,7 @@ function CallLastHeldObject()
 end
 
 function CallHeldObject()
-    
+    return tostring(heldObject)
 end
 
 function SetHeldObject(objString)

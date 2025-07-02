@@ -142,9 +142,13 @@ end
 
 function game:mousereleased(mouseX, mouseY, button)
     local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
-
+    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    
     if button and sinkBox == 1 then
         print("sink released")
+    end
+    if button and waterCanBox == 1 then
+        print("water can released")
     end
     -- global navigation buttons
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
@@ -161,6 +165,9 @@ function game:mousereleased(mouseX, mouseY, button)
     if button and portalsBox == 1 then
         print("portalsBox released")
         csetScene("icons")
+    end
+    if button then
+        DropObject(CallHeldObject())
     end
 end
 
