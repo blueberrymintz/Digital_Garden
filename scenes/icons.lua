@@ -1,5 +1,17 @@
+-- libraries
+
 local anim8 = require "libraries/anim8-master/anim8"
+
+
+
+
 local game = {}
+
+local function csetScene(scene)
+    -- this function is used to change the scene and set the last scene
+    LastScene = GlobalCurrentScene
+    game.setScene(scene)
+end
 
 local sprites = {}
 
@@ -14,10 +26,10 @@ function game:load()
     sprites.waterCan = {}
 
 -- resize for all sprites
-sprites.resize = 0.08
+sprites.resize = 0.06
 sprites.shift = {
     x = 0,
-    y = 0
+    y = 100
 }
 
     sprites.plant.image = love.graphics.newImage("sprites/symbols/plantIcon.png")
@@ -115,7 +127,9 @@ sprites.shift = {
 end
 
 function game:keypressed(key, scancode, isrepeat)
-
+    if key == 'escape' then
+        csetScene(LastScene)
+    end
 
 end
 
