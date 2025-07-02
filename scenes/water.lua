@@ -15,6 +15,7 @@ local buttons = {}
 
 
 
+
 function game:load()
     
 
@@ -43,6 +44,14 @@ sprites.background = {}
     sprites.water.animation = anim8.newAnimation(sprites.water.grid("1-2", 1), 1)
     sprites.water.trueWidth = (sprites.water.image:getWidth()/2) * sprites.water.resize.w
     sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resize.h
+    sprites.water.offset = {
+        x = 0,
+        y = 0
+    }
+    sprites.water.holdPos = {
+        x = 0,
+        y = 0
+    }
 
     sprites.sink = {}
     sprites.sink.image = love.graphics.newImage("sprites/wateringScene/waterCooler.png")
@@ -126,6 +135,7 @@ function game:mousepressed(mouseX, mouseY, button)
             DropObject("waterCan")
         else TapObject("waterCan")
         end
+        sprites.water.holdPos.x = mouseY - sprites.water.pos.x
     end
     if button and waterCanBox == 1 then
         print("water can clicked")
@@ -155,6 +165,7 @@ function game:mousereleased(mouseX, mouseY, button)
     end
     if button and waterCanBox == 1 then
         print("water can released")
+
     end
     -- global navigation buttons
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
@@ -172,13 +183,16 @@ function game:mousereleased(mouseX, mouseY, button)
         print("portalsBox released")
         csetScene("icons")
     end
-
+    sprites.water.holdPos.x = 0
+    sprites.water.holdPos.y = 0
 end
 
 function game:update(dt)
     if WaterCan.isHeld then
-        sprites.water.pos.x = love.mouse.getX()
+
+        sprites.water.pos.x = love.mouse.getX() - sprites.water.holdPos.x
         sprites.water.pos.y = love.mouse.getY()
+
     end
 
 end
@@ -187,12 +201,12 @@ function game:draw()
     sprites.background.animation:draw(sprites.background.image, sprites.background.pos.x, sprites.background.pos.y, 0, sprites.background.resize.w, sprites.background.resize.h)
     
     sprites.sink.animation:draw(sprites.sink.image, sprites.sink.pos.x, sprites.sink.pos.y, 0, sprites.sink.resize.w, sprites.sink.resize.h)
-    sprites.water.animation:draw(sprites.water.image, sprites.water.pos.x, sprites.water.pos.y, 0, sprites.water.resize.w, sprites.water.resize.h)
+    sprites.water.animation:draw(sprites.water.image, sprites.water.pos.x, sprites.water.pos.y, 0, sprites.water.resize.w, sprites.water.resize.h, sprites.water.offset.x, sprites.water.offset.y)
 -- global navigation button
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
         buttons.home.animation:draw(buttons.home.image, buttons.home.pos.x, buttons.home.pos.y, 0, buttons.home.resize.w, buttons.home.resize.h)
             buttons.portals.animation:draw(buttons.portals.image, buttons.portals.pos.x, buttons.portals.pos.y, 0, buttons.portals.resize.w, buttons.portals.resize.h)
-
+love.graphics.rectangle("line", sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
 end
 
 return game
