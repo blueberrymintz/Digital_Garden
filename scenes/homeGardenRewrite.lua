@@ -14,8 +14,12 @@ local buttons = {}
 
 local plants = {}
 plants.tracker = {
-    water = 0
-    
+-- water 1 == unwatered; water 2 == full of water; water 3 == overwatered
+    water = 1,
+-- food 1 == unfed; food 2 == full of food; food 3 == overfed
+    food = 1,
+-- age is directly tied to the evolution of the plant
+    age = 1
 }
 function game:load()
     print("Warp Successful! Current Scene: Home Garden Rewrite")
