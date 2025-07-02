@@ -104,6 +104,9 @@ function game:keypressed(key, scancode, isrepeat)
     if key == "b" then
         TapObject("waterCan")
     end
+    if key == "n" then
+        DropObject("waterCan")
+    end
     if key == "v" then
         local heldObject = CallHeldObject()
         print(tostring(heldObject))
@@ -116,11 +119,11 @@ function game:mousepressed(mouseX, mouseY, button)
     local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
     if button and sinkBox == 1 then
         print("sink clicked")
-        TapObject("waterCan")
-        SetHeldObject("waterCan")
+
     end
     if button and waterCanBox == 1 then
         print("water can clicked")
+        TapObject("waterCan")
     end
     -- global navigation buttons
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
@@ -162,7 +165,6 @@ function game:mousereleased(mouseX, mouseY, button)
 end
 
 function game:update(dt)
-
     if WaterCan.isHeld then
         sprites.water.pos.x = love.mouse.getX()
         sprites.water.pos.y = love.mouse.getY()
