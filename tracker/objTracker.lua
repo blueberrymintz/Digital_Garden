@@ -52,8 +52,7 @@ end
 function DropObject(objString)
     if objString == WaterCan.objString then
         WaterCan.isHeld = false
-        
-        print("Object: " .. tostring(objString) .. " has been dropped.")
+        print("Object: " .. tostring(objString) .. " has been dropped. " ..  tostring(WaterCan.isHeld))
     else
         print("No matching object found for string" .. tostring(objString))
     end
