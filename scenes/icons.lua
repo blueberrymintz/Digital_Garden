@@ -41,8 +41,8 @@ sprites.shift = {
     -- plant icon
         sprites.plant.grid = anim8.newGrid(sprites.plant.image:getWidth(), sprites.plant.image:getHeight(), sprites.plant.image:getWidth(), sprites.plant.image:getHeight())
         sprites.plant.pos = {
-            x = 50 + sprites.shift.x,
-            y = 50 + sprites.shift.y
+            x = 50,
+            y = 50
         }
         sprites.plant.resize = {
             w = Screen.resizeValue.w * sprites.resize,
@@ -54,8 +54,8 @@ sprites.shift = {
     -- lifting icon
         sprites.lifting.grid = anim8.newGrid(sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight(), sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight())
         sprites.lifting.pos = {
-            x = 150 + sprites.shift.x,
-            y = 50 + sprites.shift.y
+            x = 150,
+            y = 50
         }
         sprites.lifting.resize = {
             w = Screen.resizeValue.w * sprites.resize,
@@ -67,8 +67,8 @@ sprites.shift = {
     -- park icon
         sprites.park.grid = anim8.newGrid(sprites.park.image:getWidth(), sprites.lifting.image:getHeight(), sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight())
         sprites.park.pos = {
-            x = 250 + sprites.shift.x,
-            y = 50 + sprites.shift.y
+            x = 250,
+            y = 50
         }
         sprites.park.resize = {
             w = Screen.resizeValue.w * sprites.resize,
@@ -80,8 +80,8 @@ sprites.shift = {
     -- store icon
         sprites.store.grid = anim8.newGrid(sprites.store.image:getWidth(), sprites.store.image:getHeight(), sprites.store.image:getWidth(), sprites.store.image:getHeight())
         sprites.store.pos = {
-            x = 50 + sprites.shift.x,
-            y = 200 + sprites.shift.y
+            x = 50,
+            y = 200
         }
         sprites.store.resize = {
             w = Screen.resizeValue.w * sprites.resize,
@@ -90,11 +90,12 @@ sprites.shift = {
         sprites.store.trueWidth = sprites.store.image:getWidth() * sprites.store.resize.w
         sprites.store.trueHeight = sprites.store.image:getHeight() * sprites.store.resize.h
 
+
     -- watering can icon
         sprites.waterCan.grid = anim8.newGrid(sprites.waterCan.image:getWidth(), sprites.waterCan.image:getHeight(), sprites.waterCan.image:getWidth(), sprites.waterCan.image:getHeight())
         sprites.waterCan.pos = {
-            x = 150 + sprites.shift.x,
-            y = 200 + sprites.shift.y
+            x = 150 +  ,
+            y = 200 +  
         }
         sprites.waterCan.resize = {
             w = Screen.resizeValue.w * sprites.resize,
@@ -136,9 +137,9 @@ end
 function game:mousepressed(mouseX, mouseY, button)
     sprites.plant.box = BoxTracker2(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
     sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
-    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight)
-    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight)
-    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.x, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight)
+    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
+    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
+    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.x, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight, mouseX, mouseY)
 
     if button then
         if sprites.plant.box then
@@ -164,14 +165,13 @@ end
 function game:mousereleased(mouseX, mouseY, button)
     sprites.plant.box = BoxTracker2(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
     sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
-    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight)
-    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight)
-    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.x, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight)
+    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
+    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
+    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.x, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight, mouseX, mouseY)
 
     if button then
         if sprites.plant.box then
             print("plant clicked")
-            csetScene("homeGardenRewrite")
         end
         if sprites.lifting.box then
             print("lifting clicked")
