@@ -185,6 +185,7 @@ function game:mousereleased(mouseX, mouseY, button)
         end
         if sprites.waterCan.box == 1 then
             print("waterCan clicked")
+            csetScene("water")
         end
 
     end

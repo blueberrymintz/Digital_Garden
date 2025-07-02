@@ -8,7 +8,8 @@ Scenery = SceneryInit(
     {path = "scenes/startMenuRewrite"; key = "startMenuRewrite"; default = true},
     {path = "scenes/settingsMenuRewrite"; key = "settingsMenuRewrite"},
     {path = "scenes/homeGardenRewrite"; key = "homeGardenRewrite"},
-    {path = "scenes/icons"; key = "icons"}
+    {path = "scenes/icons"; key = "icons"},
+    {path = "scenes/water"; key = "water"}
 )
 Main = {}
 local anim8 = require 'libraries/anim8-master/anim8'
@@ -84,4 +85,5 @@ end
 
 function love.draw()
     Scenery:draw()
+    
 end
