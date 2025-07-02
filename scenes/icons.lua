@@ -1,7 +1,7 @@
 -- libraries
 
-local anim8 = require "libraries/anim8-master/anim8"
-
+local anim8 = require("libraries/anim8-master/anim8")
+local boxes = require("tracker/boxTracker")
 
 
 
@@ -40,7 +40,7 @@ sprites.shift = {
 
     -- plant icon
         sprites.plant.grid = anim8.newGrid(sprites.plant.image:getWidth(), sprites.plant.image:getHeight(), sprites.plant.image:getWidth(), sprites.plant.image:getHeight())
-        sprites.plant.position = {
+        sprites.plant.pos = {
             x = 50 + sprites.shift.x,
             y = 50 + sprites.shift.y
         }
@@ -53,7 +53,7 @@ sprites.shift = {
 
     -- lifting icon
         sprites.lifting.grid = anim8.newGrid(sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight(), sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight())
-        sprites.lifting.position = {
+        sprites.lifting.pos = {
             x = 150 + sprites.shift.x,
             y = 50 + sprites.shift.y
         }
@@ -61,12 +61,12 @@ sprites.shift = {
             w = Screen.resizeValue.w * sprites.resize,
             h = Screen.resizeValue.h * sprites.resize
         }
-        sprites.plant.trueWidth = sprites.plant.image:getWidth() * sprites.plant.resize.w
-        sprites.plant.trueHeight = sprites.plant.image:getHeight() * sprites.plant.resize.h
+        sprites.lifting.trueWidth = sprites.plant.image:getWidth() * sprites.plant.resize.w
+        sprites.lifting.trueHeight = sprites.plant.image:getHeight() * sprites.plant.resize.h
 
     -- park icon
         sprites.park.grid = anim8.newGrid(sprites.park.image:getWidth(), sprites.lifting.image:getHeight(), sprites.lifting.image:getWidth(), sprites.lifting.image:getHeight())
-        sprites.park.position = {
+        sprites.park.pos = {
             x = 250 + sprites.shift.x,
             y = 50 + sprites.shift.y
         }
@@ -79,7 +79,7 @@ sprites.shift = {
 
     -- store icon
         sprites.store.grid = anim8.newGrid(sprites.store.image:getWidth(), sprites.store.image:getHeight(), sprites.store.image:getWidth(), sprites.store.image:getHeight())
-        sprites.store.position = {
+        sprites.store.pos = {
             x = 50 + sprites.shift.x,
             y = 200 + sprites.shift.y
         }
@@ -92,7 +92,7 @@ sprites.shift = {
 
     -- watering can icon
         sprites.waterCan.grid = anim8.newGrid(sprites.waterCan.image:getWidth(), sprites.waterCan.image:getHeight(), sprites.waterCan.image:getWidth(), sprites.waterCan.image:getHeight())
-        sprites.waterCan.position = {
+        sprites.waterCan.pos = {
             x = 150 + sprites.shift.x,
             y = 200 + sprites.shift.y
         }
@@ -101,7 +101,7 @@ sprites.shift = {
             h = Screen.resizeValue.h * sprites.resize
         }
         sprites.waterCan.trueWidth = sprites.waterCan.image:getWidth() * sprites.store.resize.w
-        sprites.waterCan.trueWidth = sprites.waterCan.image:getHeight() * sprites.waterCan.resize.h
+        sprites.waterCan.trueHeight = sprites.waterCan.image:getHeight() * sprites.waterCan.resize.h
 
  -- ALL animations
         sprites.plant.animation = {
@@ -134,6 +134,30 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
+    sprites.plant.box = BoxTracker2(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
+    sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
+    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight)
+    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight)
+    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.x, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight)
+
+    if button then
+        if sprites.plant.box then
+            print("plant clicked")
+        end
+        if sprites.lifting.box then
+            print("lifting clicked")
+        end
+        if sprites.park.box then
+            print("park clicked")
+        end
+        if sprites.store.box then
+            print("store clicked")
+        end
+        if sprites.waterCan.box then
+            print("waterCan clicked")
+        end
+
+    end
 
 end
 
@@ -146,11 +170,11 @@ function game:update(dt)
 end
 
 function game:draw()
-    sprites.plant.animation.a:draw(sprites.plant.image, sprites.plant.position.x, sprites.plant.position.y, 0, sprites.plant.resize.w, sprites.plant.resize.h)
-    sprites.lifting.animation.a:draw(sprites.lifting.image, sprites.lifting.position.x, sprites.lifting.position.y, 0, sprites.lifting.resize.w, sprites.lifting.resize.h)
-    sprites.park.animation.a:draw(sprites.park.image, sprites.park.position.x, sprites.park.position.y, sprites.park.resize.w, sprites.park.resize.h)
-    sprites.store.animation.a:draw(sprites.store.image, sprites.store.position.x, sprites.store.position.y, 0, sprites.store.resize.w, sprites.store.resize.h)
-    sprites.waterCan.animation.a:draw(sprites.waterCan.image, sprites.waterCan.position.x, sprites.waterCan.position.y, 0, sprites.waterCan.resize.w, sprites.waterCan.resize.h)
+    sprites.plant.animation.a:draw(sprites.plant.image, sprites.plant.pos.x, sprites.plant.pos.y, 0, sprites.plant.resize.w, sprites.plant.resize.h)
+    sprites.lifting.animation.a:draw(sprites.lifting.image, sprites.lifting.pos.x, sprites.lifting.pos.y, 0, sprites.lifting.resize.w, sprites.lifting.resize.h)
+    sprites.park.animation.a:draw(sprites.park.image, sprites.park.pos.x, sprites.park.pos.y, sprites.park.resize.w, sprites.park.resize.h)
+    sprites.store.animation.a:draw(sprites.store.image, sprites.store.pos.x, sprites.store.pos.y, 0, sprites.store.resize.w, sprites.store.resize.h)
+    sprites.waterCan.animation.a:draw(sprites.waterCan.image, sprites.waterCan.pos.x, sprites.waterCan.pos.y, 0, sprites.waterCan.resize.w, sprites.waterCan.resize.h)
 end
 
 return game
