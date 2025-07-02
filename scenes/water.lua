@@ -14,13 +14,14 @@ local sprites = {}
 local buttons = {}
 
 
+
 function game:load()
     
 
     sprites.water = {}
     sprites.water.image = love.graphics.newImage("sprites/wateringScene/waterCanSheet.png")
     sprites.water.pos = {
-        x = 200,
+        x = 50,
         y = 400
     }
     sprites.water.resize = {
@@ -28,10 +29,10 @@ function game:load()
         h = Screen.resizeValue.h * 1
     }
     sprites.water.grid = anim8.newGrid(sprites.water.image:getWidth()/2, sprites.water.image:getHeight(), sprites.water.image:getWidth(), sprites.water.image:getHeight())
-    sprites.water.animation = anim8.newAnimation(sprites.water.grid(1, 1), 1)
-    sprites.water.trueWidth = sprites.water.image:getWidth() * sprites.water.resizeValue.w
-    sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resizeValue.h
-
+    sprites.water.animation = anim8.newAnimation(sprites.water.grid("1-2", 1), 1)
+    sprites.water.trueWidth = sprites.water.image:getWidth() * sprites.water.resize.w
+    sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resize.h
+--[[
     sprites.sink = {}
     sprites.sink.image = love.graphics.newImage("")
     sprites.sink.pos = {
@@ -44,8 +45,8 @@ function game:load()
     }
     sprites.sink.grid = anim8.newGrid(sprites.sink.image:getWidth(), sprites.sink.image:getHeight(), sprites.sink.image:getWidth(), sprites.sink.image:getHeight())
     sprites.sink.animation = anim8.newAnimation(sprites.sink.grid(1, 1), 1)
-    sprites.sink.trueWidth = sprites.sink.image:getWidth() * sprites.sink.resizeValue.w
-    sprites.sink.trueHeight = sprites.sink.image:getHeight() * sprites.sink.resizeValue.h
+    sprites.sink.trueWidth = sprites.sink.image:getWidth() * sprites.sink.resize.w
+    sprites.sink.trueHeight = sprites.sink.image:getHeight() * sprites.sink.resize.h ]]--
 
 
 
@@ -60,7 +61,7 @@ function game:load()
     }
         buttons.settings.resize = {w = Screen.resizeValue.w * 1, h = Screen.resizeValue.h * 1}
         buttons.settings.grid = anim8.newGrid(buttons.settings.image:getWidth(), buttons.settings.image:getHeight(), buttons.settings.image:getWidth(), buttons.settings.image:getHeight())
-        buttons.settings.animation = anim8.newAnimation(buttons.settings.grid("1-2", 1), 0.1)
+        buttons.settings.animation = anim8.newAnimation(buttons.settings.grid(1, 1), 0.1)
         buttons.settings.trueWidth = buttons.settings.image:getWidth() * buttons.settings.resize.w
         buttons.settings.trueHeight = buttons.settings.image:getHeight() * buttons.settings.resize.h
 
