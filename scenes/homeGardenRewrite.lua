@@ -5,8 +5,9 @@ local boxTracker = require 'tracker.boxTracker'
 local keys = require 'tracker.keyTracker'
 
 
-local sprites = {}
 
+local sprites = {}
+local buttons = {}
 
 function game:load()
     print("Warp Successful! Current Scene: Home Garden Rewrite")
@@ -29,6 +30,17 @@ function game:load()
     sprites.plant.trueWidth = sprites.plant.image:getWidth() * sprites.plant.resize.w
     sprites.plant.trueHeight = sprites.plant.image:getHeight() * sprites.plant.resize.h
 
+
+    buttons.settings.image = love.graphics.newImage('sprites/symbols/gearSymbol')
+    buttons.settings.pos = {
+        x = 100,
+        y = 300
+    }
+    buttons.settings.resize = {w - Screen.resizeValue.w * 1, h = Screen.resizeValue.h * 1}
+    buttons.settings.grid = anim8.newGrid(buttons.settings.image:getWidth(), buttons.settings.image:getHeight(), buttons.settings.image:getWidth(), buttons.settings.image:getHeight())
+    buttons.settings.animation = anim8.newAnimatino(buttons.settings.grid(1, 1), 0.1)
+    buttons.settings.trueWidth = buttons.settings.image:getWidth() * buttons.settings.resize.w
+    buttons.settings.trueHeight = buttons.settings.image:getHeight() * buttons.settings.resize.h
 
 
 
