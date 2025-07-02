@@ -5,8 +5,6 @@ Scenery = SceneryInit(
     {path = "scenes/homeGarden"; key = "garden"},
     {path = "scenes/settingsMenu"; key = "settings"},
     {path = "scenes/sink"; key = "sink"},
-    {path = "scenes/pauseMenu"; key = "pauseMenu"},
-    {path = "scenes/startMenu"; key = "startMenuAlt"},
     {path = "scenes/fixer"; key = 'fixer'},
     {path = "scenes/elevator"; key = 'elevator'},
     {path = "scenes/startMenuRewrite"; key = "startMenuRewrite"; default = true},
