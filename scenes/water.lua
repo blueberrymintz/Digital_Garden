@@ -18,6 +18,17 @@ local buttons = {}
 function game:load()
     
 
+-- background image
+sprites.background = {}
+    sprites.background.image = love.graphics.newImage('sprites/homeGardenRewrite/plantsBackgroundSprite.png')
+    sprites.background.pos = {x = 0 * Screen.resizeValue.w, y = 0 * Screen.resizeValue.h}
+    sprites.background.resize = {w = Screen.resizeValue.w, h = Screen.resizeValue.h}
+    sprites.background.grid = anim8.newGrid(sprites.background.image:getWidth(), sprites.background.image:getHeight(), sprites.background.image:getWidth(), sprites.background.image:getHeight())
+    sprites.background.animation = anim8.newAnimation(sprites.background.grid(1, 1), 0.1)
+    sprites.background.trueWidth = sprites.background.image:getWidth() * sprites.background.resize.w
+    sprites.background.trueHeight = sprites.background.image:getHeight() * sprites.background.resize.h
+
+    -- watering can image
     sprites.water = {}
     sprites.water.image = love.graphics.newImage("sprites/wateringScene/waterCanSheet.png")
     sprites.water.pos = {
@@ -135,7 +146,8 @@ function game:update(dt)
 end
 
 function game:draw()
-        
+    sprites.background.animation:draw(sprites.background.image, sprites.background.pos.x, sprites.background.pos.y, 0, sprites.background.resize.w, sprites.background.resize.h)
+    
     sprites.water.animation:draw(sprites.water.image, sprites.water.pos.x, sprites.water.pos.y, 0, sprites.water.resize.w, sprites.water.resize.h)
     -- global navigation button
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
