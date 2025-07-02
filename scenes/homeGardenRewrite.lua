@@ -4,7 +4,10 @@ local cron = require "libraries.cronLua_Master.cron"
 local boxTracker = require 'tracker.boxTracker'
 local keys = require 'tracker.keyTracker'
 
-
+local function csetScene(scene)
+    LastScene = GlobalCurrentScene
+    game.setScene(scene)
+end
 
 local sprites = {}
 local buttons = {}
@@ -78,13 +81,13 @@ function game:mousepressed(mouseX, mouseY, button)
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
     local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
     local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
-    if button and settingsBox == 1then
+    if button and settingsBox == 1 then
         print("settingsBox clicked")
     end
-    if button and homeBox == 1then 
+    if button and homeBox == 1 then 
         print("homeBox clicked")
     end
-    if button and portalsBox == 1then
+    if button and portalsBox == 1 then
         print("portalsBox clicked")
     end
 end
@@ -94,13 +97,16 @@ function game:mousereleased(mouseX, mouseY, button)
     local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
     local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
     if button and settingsBox == 1 then
-        print("settingsBox clicked")
+        print("settingsBox released")
+        csetScene("settingsMenuRewrite")
     end
-    if button and homeBox == 1then
-        print("homeBox clicked")
+    if button and homeBox == 1 then
+        print("homeBox released")
+        csetScene("homeGardenRewrite")
     end
     if button and portalsBox == 1 then
-        print("portalsBox clicked")
+        print("portalsBox released")
+        csetScene("icons")
     end
 end
 
