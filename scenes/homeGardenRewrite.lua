@@ -42,6 +42,28 @@ function game:load()
     buttons.settings.trueWidth = buttons.settings.image:getWidth() * buttons.settings.resize.w
     buttons.settings.trueHeight = buttons.settings.image:getHeight() * buttons.settings.resize.h
 
+    buttons.home.image = love.graphics.newImage('sprites/symbols/homeSymbol')
+    buttons.home.pos = {
+        x = 200,
+        y = 400
+    }
+    buttons.home.resize = {w - Screen.resizeValue.w * 1, h = Screen.resizeValue.h * 1}
+    buttons.home.grid = anim8.newGrid(buttons.home.image:getWidth(), buttons.home.image:getHeight(), buttons.home.image:getWidth(), buttons.home.image:getHeight())
+    buttons.home.animation = anim8.newAnimatino(buttons.home.grid(1, 1), 0.1)
+    buttons.home.trueWidth = buttons.home.image:getWidth() * buttons.home.resize.w
+    buttons.home.trueHeight = buttons.home.image:getHeight() * buttons.home.resize.h
+
+    buttons.portals.image = love.graphics.newImage('sprites/symbols/9circlesSymbol')
+    buttons.portals.pos = {
+        x = 100,
+        y = 300
+    }
+    buttons.portals.resize = {w - Screen.resizeValue.w * 1, h = Screen.resizeValue.h * 1}
+    buttons.portals.grid = anim8.newGrid(buttons.portals.image:getWidth(), buttons.portals.image:getHeight(), buttons.portals.image:getWidth(), buttons.portals.image:getHeight())
+    buttons.portals.animation = anim8.newAnimatino(buttons.portals.grid(1, 1), 0.1)
+    buttons.portals.trueWidth = buttons.portals.image:getWidth() * buttons.portals.resize.w
+    buttons.portals.trueHeight = buttons.portals.image:getHeight() * buttons.portals.resize.h
+
 
 
 end
