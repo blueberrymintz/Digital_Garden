@@ -4,40 +4,55 @@
 
 
 
-HeldObject = nil
-GlobalWaterCan = {}
-GlobalWaterCan.objString = "waterCan"
-GlobalWaterCan.isFull = false
-GlobalWaterCan.waterCharges = 0
-GlobalWaterCan.maxWaterCharges = 1
-GlobalWaterCan.isPouring = false
-GlobalWaterCan.isHeld = false
+local heldObject = nil
+local lastHeldObject = nil
 
-local function loadObject(objString)
-	-- Placeholder: simulate loading an object by string
-	print("Loading object: " .. tostring(objString))
-	return { objString = objString }
+WaterCan = {}
+WaterCan.objString = "waterCan"
+WaterCan.isFull = false
+WaterCan.waterCharges = 0
+WaterCan.maxWaterCharges = 1
+WaterCan.isPouring = false
+WaterCan.isHeld = false
+
+
+function SetLastHeldObject(objString)
+	-- Placeholder: set LastHeldObject to a new object
+
+    if objString ~= nil then
+    lastHeldObject = objString
+    print("Last held object set to: " .. tostring(objString))
+    end
 end
 
-function LastHeldObject(objString)
-	-- Placeholder: set LastHeldObject to a new object
-	LastHeldObject = { objString = objString }
-	print("Last held object set to: " .. tostring(objString))
+
+function CallLastHeldObject()
+    return tostring(lastHeldObject)
+end
+
+function CallHeldObject()
+    
+end
+
+function SetHeldObject(objString)
+    heldObject = objString
+
 end
 
 function TapObject(objString)
-    if objString == GlobalWaterCan.objString then
-        GlobalWaterCan.isHeld = true
-        HeldObject = "waterCan"
+    if objString == WaterCan.objString then
+        WaterCan.isHeld = true
+        SetHeldObject(tostring(objString))
         print("Object " .. objString .. " is now held.")
     else
         print("No matching object found to hold: " .. tostring(objString))
     end
 end
+
 function DropObject(objString)
-    if objString == GlobalWaterCan.objString then
-        GlobalWaterCan.isHeld = false
-        HeldObject = nil
+    if objString == WaterCan.objString then
+        WaterCan.isHeld = false
+        
         print("Object: " .. objString " has been dropped.")
     else
         print("No matching object found for string" .. tostring(objString))
