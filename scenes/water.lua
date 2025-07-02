@@ -17,6 +17,37 @@ local buttons = {}
 function game:load()
     
 
+    sprites.water = {}
+    sprites.water.image = love.graphics.newImage("sprites/wateringScene/waterCanSheet.png")
+    sprites.water.pos = {
+        x = 200,
+        y = 400
+    }
+    sprites.water.resize = {
+        w = Screen.resizeValue.w * 1,
+        h = Screen.resizeValue.h * 1
+    }
+    sprites.water.grid = anim8.newGrid(sprites.water.image:getWidth()/2, sprites.water.image:getHeight(), sprites.water.image:getWidth(), sprites.water.image:getHeight())
+    sprites.water.animation = anim8.newAnimation(sprites.water.grid(1, 1), 1)
+    sprites.water.trueWidth = sprites.water.image:getWidth() * sprites.water.resizeValue.w
+    sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resizeValue.h
+
+    sprites.sink = {}
+    sprites.sink.image = love.graphics.newImage("")
+    sprites.sink.pos = {
+        x = 0,
+        y = 0
+    }
+    sprites.sink.resize = {
+        w = Screen.resizeValue.w * 1,
+        h = Screen.resizeValue.h * 1
+    }
+    sprites.sink.grid = anim8.newGrid(sprites.sink.image:getWidth(), sprites.sink.image:getHeight(), sprites.sink.image:getWidth(), sprites.sink.image:getHeight())
+    sprites.sink.animation = anim8.newAnimation(sprites.sink.grid(1, 1), 1)
+    sprites.sink.trueWidth = sprites.sink.image:getWidth() * sprites.sink.resizeValue.w
+    sprites.sink.trueHeight = sprites.sink.image:getHeight() * sprites.sink.resizeValue.h
+
+
 
     -- global navigation buttons
         buttons.settings = {}
@@ -29,7 +60,7 @@ function game:load()
     }
         buttons.settings.resize = {w = Screen.resizeValue.w * 1, h = Screen.resizeValue.h * 1}
         buttons.settings.grid = anim8.newGrid(buttons.settings.image:getWidth(), buttons.settings.image:getHeight(), buttons.settings.image:getWidth(), buttons.settings.image:getHeight())
-        buttons.settings.animation = anim8.newAnimation(buttons.settings.grid(1, 1), 0.1)
+        buttons.settings.animation = anim8.newAnimation(buttons.settings.grid("1-2", 1), 0.1)
         buttons.settings.trueWidth = buttons.settings.image:getWidth() * buttons.settings.resize.w
         buttons.settings.trueHeight = buttons.settings.image:getHeight() * buttons.settings.resize.h
 
@@ -104,7 +135,7 @@ end
 
 function game:draw()
         
-    
+    sprites.water.animation:draw(sprites.water.image, sprites.water.pos.x, sprites.water.pos.y, 0, sprites.water.resize.w, sprites.water.resize.h)
     -- global navigation button
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
         buttons.home.animation:draw(buttons.home.image, buttons.home.pos.x, buttons.home.pos.y, 0, buttons.home.resize.w, buttons.home.resize.h)
