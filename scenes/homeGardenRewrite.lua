@@ -78,13 +78,13 @@ function game:mousepressed(mouseX, mouseY, button)
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
     local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
     local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
-    if button and settingsBox then
+    if button and settingsBox == 1then
         print("settingsBox clicked")
     end
-    if button and homeBox then 
+    if button and homeBox == 1then 
         print("homeBox clicked")
     end
-    if button and portalsBox then
+    if button and portalsBox == 1then
         print("portalsBox clicked")
     end
 end
@@ -93,13 +93,13 @@ function game:mousereleased(mouseX, mouseY, button)
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
     local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
     local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
-    if button and settingsBox then
+    if button and settingsBox == 1 then
         print("settingsBox clicked")
     end
-    if button and homeBox then
+    if button and homeBox == 1then
         print("homeBox clicked")
     end
-    if button and portalsBox then
+    if button and portalsBox == 1 then
         print("portalsBox clicked")
     end
 end
