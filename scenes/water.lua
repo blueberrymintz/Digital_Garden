@@ -41,7 +41,7 @@ sprites.background = {}
     }
     sprites.water.grid = anim8.newGrid(sprites.water.image:getWidth()/2, sprites.water.image:getHeight(), sprites.water.image:getWidth(), sprites.water.image:getHeight())
     sprites.water.animation = anim8.newAnimation(sprites.water.grid("1-2", 1), 1)
-    sprites.water.trueWidth = sprites.water.image:getWidth() * sprites.water.resize.w
+    sprites.water.trueWidth = (sprites.water.image:getWidth()/2) * sprites.water.resize.w
     sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resize.h
 
     sprites.sink = {}
@@ -117,9 +117,15 @@ end
 function game:mousepressed(mouseX, mouseY, button)
     local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
     local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    if CallHeldObject() == "waterCan" then
+        DropObject("waterCan")
+    end
     if button and sinkBox == 1 then
         print("sink clicked")
-
+        if CallHeldObject() == "waterCan" then
+            DropObject("waterCan")
+        else TapObject("waterCan")
+        end
     end
     if button and waterCanBox == 1 then
         print("water can clicked")
@@ -166,9 +172,7 @@ function game:mousereleased(mouseX, mouseY, button)
         print("portalsBox released")
         csetScene("icons")
     end
-    if button then
-        DropObject(CallHeldObject())
-    end
+
 end
 
 function game:update(dt)
