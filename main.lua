@@ -2,7 +2,6 @@ SceneryInit = require("libraries/scenery_main/scenerys")
 
 Scenery = SceneryInit(
     {path = "scenes/example"; key = "example"},
-    {path = "scenes/sink"; key = "sink"},
     {path = "scenes/fixer"; key = 'fixer'},
     {path = "scenes/elevator"; key = 'elevator'},
     {path = "scenes/startMenuRewrite"; key = "startMenuRewrite"; default = true},
