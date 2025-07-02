@@ -45,8 +45,8 @@ sprites.background = {}
     sprites.water.trueWidth = (sprites.water.image:getWidth()/2) * sprites.water.resize.w
     sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resize.h
     sprites.water.offset = {
-        x = 0,
-        y = 0
+        x = sprites.water.image:getWidth()/4,
+        y = sprites.water.image:getHeight()/2
     }
     sprites.water.holdPos = {
         x = 0,
@@ -65,6 +65,9 @@ sprites.background = {}
     }
     sprites.sink.grid = anim8.newGrid(sprites.sink.image:getWidth(), sprites.sink.image:getHeight(), sprites.sink.image:getWidth(), sprites.sink.image:getHeight())
     sprites.sink.animation = anim8.newAnimation(sprites.sink.grid(1, 1), 1)
+    sprites.water.truePos = {}
+    sprites.water.truePos.x = sprites.water.pos.x + sprites.water.offset.x
+    sprites.water.truePos.y = sprites.water.pos.y + sprites.water.offset.y
     sprites.sink.trueWidth = sprites.sink.image:getWidth() * sprites.sink.resize.w
     sprites.sink.trueHeight = sprites.sink.image:getHeight() * sprites.sink.resize.h
 
@@ -125,7 +128,7 @@ end
 
 function game:mousepressed(mouseX, mouseY, button)
     local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
-    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    local waterCanBox = BoxTracker2(sprites.water.truePos.x, sprites.water.truePos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
     if CallHeldObject() == "waterCan" then
         DropObject("waterCan")
     end
@@ -190,7 +193,7 @@ end
 function game:update(dt)
     if WaterCan.isHeld then
 
-        sprites.water.pos.x = love.mouse.getX() - sprites.water.holdPos.x
+        sprites.water.pos.x = love.mouse.getX()
         sprites.water.pos.y = love.mouse.getY()
 
     end
@@ -206,7 +209,7 @@ function game:draw()
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
         buttons.home.animation:draw(buttons.home.image, buttons.home.pos.x, buttons.home.pos.y, 0, buttons.home.resize.w, buttons.home.resize.h)
             buttons.portals.animation:draw(buttons.portals.image, buttons.portals.pos.x, buttons.portals.pos.y, 0, buttons.portals.resize.w, buttons.portals.resize.h)
-love.graphics.rectangle("line", sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
+love.graphics.rectangle("line", sprites.water.truePos.x, sprites.water.truePos.y, sprites.water.trueWidth, sprites.water.trueHeight)
 end
 
 return game
