@@ -13,7 +13,7 @@ Scenery = SceneryInit(
 Main = {}
 local anim8 = require 'libraries/anim8-master/anim8'
 local settings = require 'settings'
-DevelopmentMode = true
+DevelopmentMode = false
 cron = require 'libraries/cronLua_Master/cron'
 
 GTick = {}

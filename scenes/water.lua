@@ -129,6 +129,9 @@ function game:mousepressed(mouseX, mouseY, button)
     
     if button and sinkBox == 1 then
         print("sink clicked")
+    end
+    if button and waterCanBox == 1 then
+        print("water can clicked")
         if CallHeldObject() == "waterCan" then
             DropObject("waterCan")
         else
@@ -136,11 +139,6 @@ function game:mousepressed(mouseX, mouseY, button)
             sprites.water.holdPos.x = mouseX - sprites.water.pos.x
             sprites.water.holdPos.y = mouseY - sprites.water.pos.y
         end
-
-    end
-    if button and waterCanBox == 1 then
-        print("water can clicked")
-        TapObject("waterCan")
     end
     -- global navigation buttons
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
