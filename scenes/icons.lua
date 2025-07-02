@@ -172,6 +172,7 @@ function game:mousereleased(mouseX, mouseY, button)
     if button then
         if sprites.plant.box == 1 then
             print("plant clicked")
+            csetScene("homeGardenRewrite")
         end
         if sprites.lifting.box == 1 then
             print("lifting clicked")
