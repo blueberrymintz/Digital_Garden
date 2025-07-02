@@ -36,28 +36,28 @@ sprites.background = {}
         y = 400
     }
     sprites.water.resize = {
-        w = Screen.resizeValue.w * 1,
-        h = Screen.resizeValue.h * 1
+        w = Screen.resizeValue.w * 0.75,
+        h = Screen.resizeValue.h * 0.75
     }
     sprites.water.grid = anim8.newGrid(sprites.water.image:getWidth()/2, sprites.water.image:getHeight(), sprites.water.image:getWidth(), sprites.water.image:getHeight())
     sprites.water.animation = anim8.newAnimation(sprites.water.grid("1-2", 1), 1)
     sprites.water.trueWidth = sprites.water.image:getWidth() * sprites.water.resize.w
     sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resize.h
---[[
+
     sprites.sink = {}
-    sprites.sink.image = love.graphics.newImage("")
+    sprites.sink.image = love.graphics.newImage("sprites/wateringScene/waterCooler.png")
     sprites.sink.pos = {
-        x = 0,
-        y = 0
+        x = 120,
+        y = 170
     }
     sprites.sink.resize = {
-        w = Screen.resizeValue.w * 1,
-        h = Screen.resizeValue.h * 1
+        w = Screen.resizeValue.w * 1.25,
+        h = Screen.resizeValue.h * 1.25
     }
     sprites.sink.grid = anim8.newGrid(sprites.sink.image:getWidth(), sprites.sink.image:getHeight(), sprites.sink.image:getWidth(), sprites.sink.image:getHeight())
     sprites.sink.animation = anim8.newAnimation(sprites.sink.grid(1, 1), 1)
     sprites.sink.trueWidth = sprites.sink.image:getWidth() * sprites.sink.resize.w
-    sprites.sink.trueHeight = sprites.sink.image:getHeight() * sprites.sink.resize.h ]]--
+    sprites.sink.trueHeight = sprites.sink.image:getHeight() * sprites.sink.resize.h
 
 
 
@@ -106,7 +106,15 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-
+    local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
+    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    if button and sinkBox == 1 then
+        print("sink clicked")
+    end
+    if button and waterCanBox == 1 then
+        print("water can clicked")
+    end
+    -- global navigation buttons
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
     local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
     local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
@@ -122,7 +130,11 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
+    local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
 
+    if button and sinkBox == 1 then
+        print("sink released")
+    end
     -- global navigation buttons
     local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
     local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
@@ -148,8 +160,9 @@ end
 function game:draw()
     sprites.background.animation:draw(sprites.background.image, sprites.background.pos.x, sprites.background.pos.y, 0, sprites.background.resize.w, sprites.background.resize.h)
     
+    sprites.sink.animation:draw(sprites.sink.image, sprites.sink.pos.x, sprites.sink.pos.y, 0, sprites.sink.resize.w, sprites.sink.resize.h)
     sprites.water.animation:draw(sprites.water.image, sprites.water.pos.x, sprites.water.pos.y, 0, sprites.water.resize.w, sprites.water.resize.h)
-    -- global navigation button
+-- global navigation button
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
         buttons.home.animation:draw(buttons.home.image, buttons.home.pos.x, buttons.home.pos.y, 0, buttons.home.resize.w, buttons.home.resize.h)
             buttons.portals.animation:draw(buttons.portals.image, buttons.portals.pos.x, buttons.portals.pos.y, 0, buttons.portals.resize.w, buttons.portals.resize.h)
