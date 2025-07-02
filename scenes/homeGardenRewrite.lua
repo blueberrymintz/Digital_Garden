@@ -111,7 +111,7 @@ function game:mousereleased(mouseX, mouseY, button)
     end
     if button and homeBox == 1 then
         print("homeBox released")
-        csetScene("homeGardenRewrite")
+        csetScene("startMenuRewrite")
     end
     if button and portalsBox == 1 then
         print("portalsBox released")
