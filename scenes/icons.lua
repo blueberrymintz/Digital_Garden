@@ -142,19 +142,19 @@ function game:mousepressed(mouseX, mouseY, button)
     sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.y, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight, mouseX, mouseY)
 
     if button then
-        if sprites.plant.box then
+        if sprites.plant.box == 1 then
             print("plant clicked")
         end
-        if sprites.lifting.box then
+        if sprites.lifting.box == 1 then
             print("lifting clicked")
         end
-        if sprites.park.box then
+        if sprites.park.box == 1 then
             print("park clicked")
         end
-        if sprites.store.box then
+        if sprites.store.box == 1 then
             print("store clicked")
         end
-        if sprites.waterCan.box then
+        if sprites.waterCan.box == 1 then
             print("waterCan clicked")
         end
 
@@ -170,19 +170,19 @@ function game:mousereleased(mouseX, mouseY, button)
     sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.y, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight, mouseX, mouseY)
 
     if button then
-        if sprites.plant.box then
+        if sprites.plant.box == 1 then
             print("plant clicked")
         end
-        if sprites.lifting.box then
+        if sprites.lifting.box == 1 then
             print("lifting clicked")
         end
-        if sprites.park.box then
+        if sprites.park.box == 1 then
             print("park clicked")
         end
-        if sprites.store.box then
+        if sprites.store.box == 1 then
             print("store clicked")
         end
-        if sprites.waterCan.box then
+        if sprites.waterCan.box == 1 then
             print("waterCan clicked")
         end
 
