@@ -162,6 +162,31 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
+    sprites.plant.box = BoxTracker2(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
+    sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
+    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight)
+    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight)
+    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.x, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight)
+
+    if button then
+        if sprites.plant.box then
+            print("plant clicked")
+            csetScene("homeGardenRewrite")
+        end
+        if sprites.lifting.box then
+            print("lifting clicked")
+        end
+        if sprites.park.box then
+            print("park clicked")
+        end
+        if sprites.store.box then
+            print("store clicked")
+        end
+        if sprites.waterCan.box then
+            print("waterCan clicked")
+        end
+
+    end
 
 end
 
