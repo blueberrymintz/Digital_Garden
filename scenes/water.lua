@@ -1,7 +1,7 @@
 local anim8 = require ("libraries/anim8-master/anim8")
 local cron = require ("libraries/cronLua_Master/cron")
 local boxes = require ("tracker/boxTracker")
-
+local objTracker = require("tracker/objTracker")
 
 local game = {}
 
@@ -110,6 +110,8 @@ function game:mousepressed(mouseX, mouseY, button)
     local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
     if button and sinkBox == 1 then
         print("sink clicked")
+        LastHeldObject("waterCan")
+        TapObject("waterCan")
     end
     if button and waterCanBox == 1 then
         print("water can clicked")

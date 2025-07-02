@@ -23,7 +23,7 @@ function game:load()
     sprites.lifting = {}
     sprites.park = {}
     sprites.store = {}
-    sprites.waterCan = {}
+    sprites.water = {}
 
 -- resize for all sprites
 sprites.resize = 0.06
@@ -36,7 +36,7 @@ sprites.shift = {
     sprites.lifting.image = love.graphics.newImage("sprites/symbols/plantLiftingIcon.png")
     sprites.park.image = love.graphics.newImage("sprites/symbols/plantParkIcon.png")
     sprites.store.image = love.graphics.newImage("sprites/symbols/storeIcon.png")
-    sprites.waterCan.image = love.graphics.newImage("sprites/symbols/wateringCanIcon.png")
+    sprites.water.image = love.graphics.newImage("sprites/symbols/wateringCanIcon.png")
 
     -- plant icon
         sprites.plant.grid = anim8.newGrid(sprites.plant.image:getWidth(), sprites.plant.image:getHeight(), sprites.plant.image:getWidth(), sprites.plant.image:getHeight())
@@ -92,17 +92,17 @@ sprites.shift = {
 
 
     -- watering can icon
-        sprites.waterCan.grid = anim8.newGrid(sprites.waterCan.image:getWidth(), sprites.waterCan.image:getHeight(), sprites.waterCan.image:getWidth(), sprites.waterCan.image:getHeight())
-        sprites.waterCan.pos = {
+        sprites.water.grid = anim8.newGrid(sprites.water.image:getWidth(), sprites.water.image:getHeight(), sprites.water.image:getWidth(), sprites.water.image:getHeight())
+        sprites.water.pos = {
             x = 150,
             y = 200
         }
-        sprites.waterCan.resize = {
+        sprites.water.resize = {
             w = Screen.resizeValue.w * sprites.resize,
             h = Screen.resizeValue.h * sprites.resize
         }
-        sprites.waterCan.trueWidth = sprites.waterCan.image:getWidth() * sprites.waterCan.resize.w
-        sprites.waterCan.trueHeight = sprites.waterCan.image:getHeight() * sprites.waterCan.resize.h
+        sprites.water.trueWidth = sprites.water.image:getWidth() * sprites.water.resize.w
+        sprites.water.trueHeight = sprites.water.image:getHeight() * sprites.water.resize.h
 
  -- ALL animations
         sprites.plant.animation = {
@@ -121,8 +121,8 @@ sprites.shift = {
         a = anim8.newAnimation(sprites.store.grid( 1, 1), 1)
         }
 
-        sprites.waterCan.animation = {
-        a = anim8.newAnimation(sprites.waterCan.grid( 1, 1), 1)
+        sprites.water.animation = {
+        a = anim8.newAnimation(sprites.water.grid( 1, 1), 1)
         }
     
 end
@@ -139,7 +139,7 @@ function game:mousepressed(mouseX, mouseY, button)
     sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
     sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
     sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
-    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.y, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight, mouseX, mouseY)
+    sprites.water.box = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
 
     if button then
         if sprites.plant.box == 1 then
@@ -154,8 +154,8 @@ function game:mousepressed(mouseX, mouseY, button)
         if sprites.store.box == 1 then
             print("store clicked")
         end
-        if sprites.waterCan.box == 1 then
-            print("waterCan clicked")
+        if sprites.water.box == 1 then
+            print("water clicked")
         end
 
     end
@@ -167,7 +167,7 @@ function game:mousereleased(mouseX, mouseY, button)
     sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
     sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
     sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
-    sprites.waterCan.box = BoxTracker2(sprites.waterCan.pos.x, sprites.waterCan.pos.y, sprites.waterCan.trueWidth, sprites.waterCan.trueHeight, mouseX, mouseY)
+    sprites.water.box = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
 
     if button then
         if sprites.plant.box == 1 then
@@ -183,8 +183,8 @@ function game:mousereleased(mouseX, mouseY, button)
         if sprites.store.box == 1 then
             print("store clicked")
         end
-        if sprites.waterCan.box == 1 then
-            print("waterCan clicked")
+        if sprites.water.box == 1 then
+            print("water clicked")
             csetScene("water")
         end
 
@@ -201,7 +201,7 @@ function game:draw()
     sprites.lifting.animation.a:draw(sprites.lifting.image, sprites.lifting.pos.x, sprites.lifting.pos.y, 0, sprites.lifting.resize.w, sprites.lifting.resize.h)
     sprites.park.animation.a:draw(sprites.park.image, sprites.park.pos.x, sprites.park.pos.y, sprites.park.resize.w, sprites.park.resize.h)
     sprites.store.animation.a:draw(sprites.store.image, sprites.store.pos.x, sprites.store.pos.y, 0, sprites.store.resize.w, sprites.store.resize.h)
-    sprites.waterCan.animation.a:draw(sprites.waterCan.image, sprites.waterCan.pos.x, sprites.waterCan.pos.y, 0, sprites.waterCan.resize.w, sprites.waterCan.resize.h)
+    sprites.water.animation.a:draw(sprites.water.image, sprites.water.pos.x, sprites.water.pos.y, 0, sprites.water.resize.w, sprites.water.resize.h)
 end
 
 return game
