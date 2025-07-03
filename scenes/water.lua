@@ -191,6 +191,7 @@ function game:mousemoved(mouseX, mouseY)
         DropObject("waterCan")
         end
     end
+    
 end
 
 
@@ -201,7 +202,10 @@ function game:update(dt)
         sprites.water.pos.y = love.mouse.getY() - sprites.water.holdPos.y
 
     end
-
+    local boundsBox2 = ColliderTracker("container", 15, 170, 380, 360, sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
+    if boundsBox2 == 2 then
+        print("WOPPS")
+    end
 end
 
 function game:draw()

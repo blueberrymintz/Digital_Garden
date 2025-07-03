@@ -12,11 +12,9 @@ local mouseY = mouseY or love.mouse.getY()
     end
 end
         
-function ColliderTracker(type, x, y, length, height, x2, y2, length2, height2)
+function ColliderTracker(style, x, y, length, height, x2, y2, length2, height2)
     -- type options: container (box within a collider) or intercept (box outside a collider)
-    if type == nil or type(type) ~= string then
-    error("Type of collider must be string")
-    end
+    
     local collider = {
     l = x,
     r = x + length,
@@ -29,21 +27,21 @@ function ColliderTracker(type, x, y, length, height, x2, y2, length2, height2)
     t = y2,
     b = y2 + height2
     }
-    if type == "container" then
+    if style == "container" then
         if box.l > collider.l and box.r < collider.r and box.t > collider.t and box.b < collider.b then 
             return 1
         else
             return 2
         end
     end
-    if type == "intercept" then
+    if style == "intercept" then
         if not (box.l > collider.l and box.r < collider.r and box.t > collider.t and box.b < collider. b) then 
             return 1
         else
             return 2
         end
     end
-    
+
     
 
 end
