@@ -147,10 +147,10 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    local SFXbox = BoxTracker2(sprites.SFX.pos.x, sprites.SFX.pos.y, sprites.SFX.trueWidth, sprites.SFX.trueHeight, mouseX, mouseY)
-    local musicBox = BoxTracker2(sprites.music.pos.x, sprites.music.pos.y, sprites.music.trueWidth, sprites.music.trueHeight, mouseX, mouseY)
-    local SFXtoggleBox = BoxTracker2(sprites.toggle.pos.SFX.x, sprites.toggle.pos.SFX.y, sprites.toggle.trueWidth, sprites.toggle.trueHeight, mouseX, mouseY)
-    local musicToggleBox = BoxTracker2(sprites.toggle.pos.music.x, sprites.toggle.pos.music.y, sprites.toggle.trueWidth, sprites.toggle.trueHeight, mouseX, mouseY)
+    local SFXbox = BoxTracker(sprites.SFX.pos.x, sprites.SFX.pos.y, sprites.SFX.trueWidth, sprites.SFX.trueHeight, mouseX, mouseY)
+    local musicBox = BoxTracker(sprites.music.pos.x, sprites.music.pos.y, sprites.music.trueWidth, sprites.music.trueHeight, mouseX, mouseY)
+    local SFXtoggleBox = BoxTracker(sprites.toggle.pos.SFX.x, sprites.toggle.pos.SFX.y, sprites.toggle.trueWidth, sprites.toggle.trueHeight, mouseX, mouseY)
+    local musicToggleBox = BoxTracker(sprites.toggle.pos.music.x, sprites.toggle.pos.music.y, sprites.toggle.trueWidth, sprites.toggle.trueHeight, mouseX, mouseY)
     if button == 1 and SFXbox == 1 then
         updateToggle('SFX')
     end
@@ -163,9 +163,9 @@ function game:mousepressed(mouseX, mouseY, button)
     if button == 1 and musicToggleBox == 1 then
         updateToggle('music')
     end
-    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
-    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
-    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
+    local settingsBox = BoxTracker(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
+    local homeBox = BoxTracker(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
+    local portalsBox = BoxTracker(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
     if button and settingsBox == 1 then
         print("settingsBox clicked")
     end
@@ -179,9 +179,9 @@ end
 
 function game:mousereleased(mouseX, mouseY, button)
 
-    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
-    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
-    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
+    local settingsBox = BoxTracker(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
+    local homeBox = BoxTracker(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
+    local portalsBox = BoxTracker(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
 if button and settingsBox == 1 then
         print("settingsBox released")
         csetScene("settingsMenuRewrite")

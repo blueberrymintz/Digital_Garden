@@ -135,11 +135,11 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    sprites.plant.box = BoxTracker2(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
-    sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
-    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
-    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
-    sprites.water.box = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    sprites.plant.box = BoxTracker(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
+    sprites.lifting.box = BoxTracker(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
+    sprites.park.box = BoxTracker(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
+    sprites.store.box = BoxTracker(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
+    sprites.water.box = BoxTracker(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
 
     if button then
         if sprites.plant.box == 1 then
@@ -163,11 +163,11 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
-    sprites.plant.box = BoxTracker2(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
-    sprites.lifting.box = BoxTracker2(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
-    sprites.park.box = BoxTracker2(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
-    sprites.store.box = BoxTracker2(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
-    sprites.water.box = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    sprites.plant.box = BoxTracker(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
+    sprites.lifting.box = BoxTracker(sprites.lifting.pos.x, sprites.lifting.pos.y, sprites.lifting.trueWidth, sprites.lifting.trueHeight, mouseX, mouseY)
+    sprites.park.box = BoxTracker(sprites.park.pos.x, sprites.park.pos.y, sprites.park.trueWidth, sprites.park.trueHeight, mouseX, mouseY)
+    sprites.store.box = BoxTracker(sprites.store.pos.x, sprites.store.pos.y, sprites.store.trueWidth, sprites.store.trueHeight, mouseX, mouseY)
+    sprites.water.box = BoxTracker(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
 
     if button then
         if sprites.plant.box == 1 then

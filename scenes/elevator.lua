@@ -109,9 +109,9 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    local upArrowBox = BoxTracker2(sprites.button.position.up.x, sprites.button.position.up.y, sprites.button.position.up.trueWidth, sprites.button.position.up.trueHeight, mouseX, mouseY)
-    local downArrowBox = BoxTracker2(sprites.button.position.down.x, sprites.button.position.down.y, sprites.button.position.down.trueWidth, sprites.button.position.down.trueHeight, mouseX, mouseY)
-    local elevatorBox = BoxTracker2(sprites.elevator.position.x, sprites.elevator.position.y, sprites.elevator.trueWidth, sprites.elevator.trueHeight, mouseX, mouseY)
+    local upArrowBox = BoxTracker(sprites.button.position.up.x, sprites.button.position.up.y, sprites.button.position.up.trueWidth, sprites.button.position.up.trueHeight, mouseX, mouseY)
+    local downArrowBox = BoxTracker(sprites.button.position.down.x, sprites.button.position.down.y, sprites.button.position.down.trueWidth, sprites.button.position.down.trueHeight, mouseX, mouseY)
+    local elevatorBox = BoxTracker(sprites.elevator.position.x, sprites.elevator.position.y, sprites.elevator.trueWidth, sprites.elevator.trueHeight, mouseX, mouseY)
     if button and upArrowBox == 1 then
         print("Up Arrow Pressed")
         sprites.button.animations.up:gotoFrame(2, 1)

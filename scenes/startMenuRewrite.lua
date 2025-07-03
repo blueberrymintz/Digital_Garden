@@ -52,8 +52,8 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    local STARTbox = BoxTracker2(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
-    local SETTINGSbox = BoxTracker2(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
+    local STARTbox = BoxTracker(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
+    local SETTINGSbox = BoxTracker(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
     if button and STARTbox == 1 then
         print("Start button pressed")
     end
@@ -64,8 +64,8 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
-    local STARTbox = BoxTracker2(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
-    local SETTINGSbox = BoxTracker2(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
+    local STARTbox = BoxTracker(sprites.START.pos.x, sprites.START.pos.y, sprites.START.trueWidth, sprites.START.trueHeight, mouseX, mouseY)
+    local SETTINGSbox = BoxTracker(sprites.SETTINGS.pos.x, sprites.SETTINGS.pos.y, sprites.SETTINGS.trueWidth, sprites.SETTINGS.trueHeight, mouseX, mouseY)
     if button and STARTbox == 1 then
         print("Start button released")
         csetScene("homeGardenRewrite")

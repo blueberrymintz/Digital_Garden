@@ -124,8 +124,8 @@ function game:keypressed(key, scancode, isrepeat)
 end
 
 function game:mousepressed(mouseX, mouseY, button)
-    local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
-    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    local sinkBox = BoxTracker(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
+    local waterCanBox = BoxTracker(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
     
     if button and sinkBox == 1 then
         print("sink clicked")
@@ -141,9 +141,9 @@ function game:mousepressed(mouseX, mouseY, button)
         end
     end
     -- global navigation buttons
-    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
-    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
-    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
+    local settingsBox = BoxTracker(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
+    local homeBox = BoxTracker(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
+    local portalsBox = BoxTracker(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
     if button and settingsBox == 1 then
         print("settingsBox clicked")
     end
@@ -156,8 +156,8 @@ function game:mousepressed(mouseX, mouseY, button)
 end
 
 function game:mousereleased(mouseX, mouseY, button)
-    local sinkBox = BoxTracker2(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
-    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    local sinkBox = BoxTracker(sprites.sink.pos.x, sprites.sink.pos.y, sprites.sink.trueWidth, sprites.sink.trueHeight, mouseX, mouseY)
+    local waterCanBox = BoxTracker(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
     
     if button and sinkBox == 1 then
         print("sink released")
@@ -167,9 +167,9 @@ function game:mousereleased(mouseX, mouseY, button)
 
     end
     -- global navigation buttons
-    local settingsBox = BoxTracker2(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
-    local homeBox = BoxTracker2(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
-    local portalsBox = BoxTracker2(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
+    local settingsBox = BoxTracker(buttons.settings.pos.x, buttons.settings.pos.y, buttons.settings.trueWidth, buttons.settings.trueHeight, mouseX, mouseY)
+    local homeBox = BoxTracker(buttons.home.pos.x, buttons.home.pos.y, buttons.home.trueWidth, buttons.home.trueHeight, mouseX, mouseY)
+    local portalsBox = BoxTracker(buttons.portals.pos.x, buttons.portals.pos.y, buttons.portals.trueWidth, buttons.portals.trueHeight, mouseX, mouseY)
     if button and settingsBox == 1 then
         print("settingsBox released")
         csetScene("settingsMenuRewrite")
@@ -185,8 +185,7 @@ function game:mousereleased(mouseX, mouseY, button)
 end
 
 function game:mousemoved(mouseX, mouseY)
-    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
-    local boundsBox = BoxTracker2(15, 170, 380, 360, mouseX, mouseY)
+    local boundsBox = BoxTracker(15 * Screen.resizeValue.w, 170 * Screen.resizeValue.h, 380 * Screen.resizeValue.w, 360 * Screen.resizeValue.h, mouseX, mouseY)
     if boundsBox == 2 then
         if CallHeldObject() == "waterCan" then
         DropObject("waterCan")
@@ -214,6 +213,11 @@ function game:draw()
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
         buttons.home.animation:draw(buttons.home.image, buttons.home.pos.x, buttons.home.pos.y, 0, buttons.home.resize.w, buttons.home.resize.h)
             buttons.portals.animation:draw(buttons.portals.image, buttons.portals.pos.x, buttons.portals.pos.y, 0, buttons.portals.resize.w, buttons.portals.resize.h)
+
+    if DevelopmentMode then
+        love.graphics.rectangle("line", 15 * Screen.resizeValue.w, 170 * Screen.resizeValue.h, 380 * Screen.resizeValue.w, 360 * Screen.resizeValue.h)
+    end
+
 end
 
 return game
