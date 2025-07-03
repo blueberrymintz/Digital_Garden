@@ -184,6 +184,17 @@ function game:mousereleased(mouseX, mouseY, button)
     end
 end
 
+function game:mousemoved(mouseX, mouseY)
+    local waterCanBox = BoxTracker2(sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight, mouseX, mouseY)
+    local boundsBox = BoxTracker2(15, 170, 380, 360, mouseX, mouseY)
+    if boundsBox == 2 then
+        if CallHeldObject() == "waterCan" then
+        DropObject("waterCan")
+        end
+    end
+end
+
+
 function game:update(dt)
     if WaterCan.isHeld then
 
@@ -203,7 +214,6 @@ function game:draw()
     buttons.settings.animation:draw(buttons.settings.image, buttons.settings.pos.x, buttons.settings.pos.y, 0, buttons.settings.resize.w, buttons.settings.resize.h)
         buttons.home.animation:draw(buttons.home.image, buttons.home.pos.x, buttons.home.pos.y, 0, buttons.home.resize.w, buttons.home.resize.h)
             buttons.portals.animation:draw(buttons.portals.image, buttons.portals.pos.x, buttons.portals.pos.y, 0, buttons.portals.resize.w, buttons.portals.resize.h)
-love.graphics.rectangle("line", sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
 end
 
 return game

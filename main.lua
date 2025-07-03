@@ -13,7 +13,7 @@ Scenery = SceneryInit(
 Main = {}
 local anim8 = require 'libraries/anim8-master/anim8'
 local settings = require 'settings'
-DevelopmentMode = false
+DevelopmentMode = true
 cron = require 'libraries/cronLua_Master/cron'
 
 GTick = {}
@@ -77,6 +77,12 @@ function love.mousereleased(mouseX, mouseY, button)
         end
     end
 end
+
+function love.mousemoved(mouseX, mouseY)
+
+    Scenery:mousemoved(mouseX, mouseY)
+end
+
 function love.update(dt)
     Scenery:update(dt)
     pauseMenuClock:reset(dt)
