@@ -28,20 +28,18 @@ function ColliderTracker(style, x, y, length, height, x2, y2, length2, height2)
     b = y2 + height2
     }
     if style == "container" then
-        if box.l > collider.l and box.r < collider.r and box.t > collider.t and box.b < collider.b then 
+        if box.l > collider.l and box.r < collider.r and box.t > collider.t and box.b < collider.b then
             return 1
         else
             return 2
         end
     end
     if style == "intercept" then
-        if not (box.l > collider.l and box.r < collider.r and box.t > collider.t and box.b < collider. b) then 
+        if not (box.l > collider.l - length2 and box.r < collider.r + length2 and box.t > collider.t - height2 and box.b < collider. b + height2) then 
             return 1
         else
             return 2
         end
     end
-
-    
 
 end

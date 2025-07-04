@@ -187,9 +187,7 @@ end
 function game:mousemoved(mouseX, mouseY)
     local boundsBox = BoxTracker(15 * Screen.resizeValue.w, 170 * Screen.resizeValue.h, 380 * Screen.resizeValue.w, 360 * Screen.resizeValue.h, mouseX, mouseY)
     if boundsBox == 2 then
-        if CallHeldObject() == "waterCan" then
-        DropObject("waterCan")
-        end
+        
     end
     
 end
@@ -203,8 +201,14 @@ function game:update(dt)
 
     end
     local boundsBox2 = ColliderTracker("container", 15, 170, 380, 360, sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
+    local boundsBox3 = ColliderTracker("container", 5, 160, 370, 350, sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
     if boundsBox2 == 2 then
-        print("WOPPS")
+        if CallHeldObject() == "waterCan" then
+            DropObject("waterCan")
+        end
+    end
+    if boundsBox3 == 2 then
+        
     end
 end
 
@@ -220,6 +224,7 @@ function game:draw()
 
     if DevelopmentMode then
         love.graphics.rectangle("line", 15 * Screen.resizeValue.w, 170 * Screen.resizeValue.h, 380 * Screen.resizeValue.w, 360 * Screen.resizeValue.h)
+        love.graphics.rectangle("line", sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
     end
 
 end
