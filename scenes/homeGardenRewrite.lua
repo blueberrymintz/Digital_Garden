@@ -25,9 +25,9 @@ function game:load()
     print("Warp Successful! Current Scene: Home Garden Rewrite")
     sprites.background = {}
 
-    sprites.background.image = love.graphics.newImage('sprites/homeGardenRewrite/plantsBackgroundSprite.png')
-        sprites.background.pos = {x = 0 * Screen.resizeValue.w, y = 0 * Screen.resizeValue.h}
-        sprites.background.resize = {w = Screen.resizeValue.w, h = Screen.resizeValue.h}
+    sprites.background.image = love.graphics.newImage('sprites/homeGardenRewrite/JJapartmentRoom.png')
+        sprites.background.pos = {x = 0 * Screen.resizeValue.w, y = 200 * Screen.resizeValue.h}
+        sprites.background.resize = {w = Screen.resizeValue.w * 0.1, h = Screen.resizeValue.h * 0.1}
         sprites.background.grid = anim8.newGrid(sprites.background.image:getWidth(), sprites.background.image:getHeight(), sprites.background.image:getWidth(), sprites.background.image:getHeight())
         sprites.background.animation = anim8.newAnimation(sprites.background.grid(1, 1), 0.1)
         sprites.background.trueWidth = sprites.background.image:getWidth() * sprites.background.resize.w
@@ -35,8 +35,8 @@ function game:load()
 
     sprites.plant = {}
         sprites.plant.image = love.graphics.newImage('sprites/homeGardenRewrite/plantSymbolsBW2.png')
-        sprites.plant.pos = {x = 50 * Screen.resizeValue.w, y = 300 * Screen.resizeValue.h}
-        sprites.plant.resize = {w = Screen.resizeValue.w * 0.1, h = Screen.resizeValue.h * 0.1}
+        sprites.plant.pos = {x = 130 * Screen.resizeValue.w, y = 400 * Screen.resizeValue.h}
+        sprites.plant.resize = {w = Screen.resizeValue.w * 0.03, h = Screen.resizeValue.h * 0.03}
         sprites.plant.grid = anim8.newGrid(sprites.plant.image:getWidth(), sprites.plant.image:getHeight(), sprites.plant.image:getWidth(), sprites.plant.image:getHeight())
         sprites.plant.animation = anim8.newAnimation(sprites.plant.grid(1, 1), 0.1)
         sprites.plant.trueWidth = sprites.plant.image:getWidth() * sprites.plant.resize.w
@@ -99,6 +99,14 @@ function game:mousepressed(mouseX, mouseY, button)
     if button and portalsBox == 1 then
         print("portalsBox clicked")
     end
+    local plantBox = BoxTracker(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
+    if button and plantBox == 1 then
+        print("plantBox clicked")
+        TapObject("plant")
+        if CallHeldObject() == "plant" then
+            print("Plant is now held")
+        end
+    end
 end
 
 function game:mousereleased(mouseX, mouseY, button)
@@ -116,6 +124,14 @@ function game:mousereleased(mouseX, mouseY, button)
     if button and portalsBox == 1 then
         print("portalsBox released")
         csetScene("icons")
+    end
+    local plantBox = BoxTracker(sprites.plant.pos.x, sprites.plant.pos.y, sprites.plant.trueWidth, sprites.plant.trueHeight, mouseX, mouseY)
+    if button and plantBox == 2 then
+        print("plantBox released")
+        DropObject("plant")
+        if CallHeldObject() == "plant" then
+            print("Plant is now dropped")
+        end
     end
 end
 

@@ -13,6 +13,11 @@ end
 local sprites = {}
 local buttons = {}
 
+local grace = true
+local function graceSwitcher()
+    if grace == false then grace = true else grace = false end
+end
+local graceTimer = cron.after(0.5, graceSwitcher)
 
 
 
@@ -184,7 +189,7 @@ function game:mousereleased(mouseX, mouseY, button)
     end
 end
 
-function game:mousemoved(mouseX, mouseY)
+function game:mousemoved(mouseX, mouseY)    
     local boundsBox = BoxTracker(15 * Screen.resizeValue.w, 170 * Screen.resizeValue.h, 380 * Screen.resizeValue.w, 360 * Screen.resizeValue.h, mouseX, mouseY)
     if boundsBox == 2 then
         
@@ -202,16 +207,14 @@ function game:update(dt)
     end
     local boundsBox2 = ColliderTracker("container", 15, 170, 380, 360, sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
     local boundsBox3 = ColliderTracker("container", 5, 160, 370, 350, sprites.water.pos.x, sprites.water.pos.y, sprites.water.trueWidth, sprites.water.trueHeight)
+    
     if boundsBox2 == 2 then
         if CallHeldObject() == "waterCan" then
             DropObject("waterCan")
         end
     end
-    if boundsBox3 == 2 then
-        
-    end
-end
 
+end
 function game:draw()
     sprites.background.animation:draw(sprites.background.image, sprites.background.pos.x, sprites.background.pos.y, 0, sprites.background.resize.w, sprites.background.resize.h)
     

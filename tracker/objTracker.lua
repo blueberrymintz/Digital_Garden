@@ -15,6 +15,11 @@ WaterCan.maxWaterCharges = 1
 WaterCan.isPouring = false
 WaterCan.isHeld = false
 
+Plant = {}
+Plant.objString = "plant"
+Plant.isWatered = false
+Plant.isHeld = false
+
 
 function SetLastHeldObject(objString)
 	-- Placeholder: set LastHeldObject to a new object
@@ -44,7 +49,10 @@ function TapObject(objString)
         WaterCan.isHeld = true
         SetHeldObject(tostring(objString))
         print("Object " .. objString .. " is now held.")
-    else
+    elseif objString == Plant.objString then
+        Plant.isHeld = true
+        SetHeldObject(tostring(objString))
+        print("Object " .. objString .. " is now held.")
         print("No matching object found to hold: " .. tostring(objString))
     end
 end
@@ -54,6 +62,10 @@ function DropObject(objString)
         WaterCan.isHeld = false
         SetHeldObject(nil)
         print("Object: " .. tostring(objString) .. " has been dropped. " ..  tostring(WaterCan.isHeld))
+    elseif objString == Plant.objString then
+        Plant.isHeld = false
+        SetHeldObject(nil)
+        print("Object: " .. tostring(objString) .. " has been dropped. " ..  tostring(Plant.isHeld))
     else
         print("No matching object found for string" .. tostring(objString))
     end
